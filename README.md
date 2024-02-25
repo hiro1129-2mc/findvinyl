@@ -1,10 +1,7 @@
 # Find Vinyl(仮)
 
-## ER図
-[![Image from Gyazo](https://i.gyazo.com/1480a951d6d054fb561ce03ebbdb9a13.png)](https://gyazo.com/1480a951d6d054fb561ce03ebbdb9a13)
-
 ## 画面遷移図
-https://www.figma.com/file/TZELZVG8E9e6JrvN6ppkJ8/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=design&node-id=0%3A1&mode=design&t=n4kMVhFVuAEicfRD-1
+https://www.figma.com/file/TZELZVG8E9e6JrvN6ppkJ8/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=design&node-id=0%3A1&mode=design&t=E16sPwSsSS5nkWbD-1
 
 ## サービス概要
 アナログレコードを集めている人向けの、所有しているレコード・欲しいレコードのリスト作成、聴いたレコードの記録が可能なサービスです。デジタル媒体に比べ管理が困難なレコードの情報を整理し、ユーザーのコレクション管理や過去に聴いた作品の振り返りを通じて、より音楽体験を豊かにすることを目指します。  
