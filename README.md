@@ -1,7 +1,7 @@
 # VINYLLOG
 
 ## 画面遷移図
-[![Image from Gyazo](https://i.gyazo.com/3acbc4a09de2d37f39978bf02aff7ad3.png)](https://gyazo.com/3acbc4a09de2d37f39978bf02aff7ad3)
+[![Image from Gyazo](https://i.gyazo.com/549c5afd2d28c66c3e586f9aece593b2.png)](https://gyazo.com/549c5afd2d28c66c3e586f9aece593b2)
 
 ## サービス概要
 アナログレコードを集めている人向けの、所有しているレコード・欲しいレコードのリスト作成、聴いたレコードの記録が可能なサービスです。デジタル媒体に比べ管理が困難なレコードの情報を整理し、ユーザーのコレクション管理や過去に聴いた作品の振り返りを通じて、より音楽体験を豊かにすることを目指します。  
