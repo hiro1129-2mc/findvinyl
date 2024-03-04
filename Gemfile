@@ -47,9 +47,45 @@ gem "bootsnap", require: false
 #環境変数管理
 gem "dotenv-rails"
 
+#ログイン
+gem 'sorcery', "0.16.3"
+
+#日本語化
+gem "rails-i18n", '~> 7.0.0'
+
+#モデル
+gem 'enum_help'
+
+#検索機能
+gem 'ransack'
+
+#ページネーション
+gem 'kaminari', '~> 1.2'
+
+# SEO
+gem 'meta-tags'
+
+#画像のアップロード
+gem 'carrierwave', '~> 2.0'
+gem 'mini_magick'
+
+#ショップ画像の保存
+gem "aws-sdk-s3", require: false
+
+#管理画面
+gem 'rails_admin', '~> 3.0'
+
+#デバッグ
+gem 'pry-byebug'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
+  #RSpec
+  gem "rspec-rails"
+  gem "factory_bot_rails"
+  gem "capybara"
+  gem "webdrivers"
 end
 
 group :development do
@@ -61,10 +97,8 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
-end
-
-group :test do
-  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
-  gem "selenium-webdriver"
+  #Lintチェック
+  gem "rubocop"
+  gem "rubocop-rails"
+  gem "rubocop-checkstyle_formatter"
 end
