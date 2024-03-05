@@ -72,11 +72,14 @@ gem 'mini_magick'
 #ショップ画像の保存
 gem "aws-sdk-s3", require: false
 
-#管理画面
-gem 'rails_admin', '~> 3.0'
-
 #デバッグ
 gem 'pry-byebug'
+
+#CSS
+gem 'cssbundling-rails'
+
+#JavaScript
+gem 'jsbundling-rails'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
