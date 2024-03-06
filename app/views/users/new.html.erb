@@ -5,7 +5,7 @@
       <%= form_with model: @user, class: 'bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4' do |f| %>
         <div class="mb-4">
           <%= f.label :name, class: 'block text-gray-700 text-sm font-bold mb-2' %>
-          <%= f.text_field :first_name, class: 'form-input mt-1 block w-full' %>
+          <%= f.text_field :name, class: 'form-input mt-1 block w-full' %>
         </div>
         <div class="mb-4">
           <%= f.label :email, class: 'block text-gray-700 text-sm font-bold mb-2' %>
@@ -19,10 +19,12 @@
           <%= f.label :password_confirmation, class: 'block text-gray-700 text-sm font-bold mb-2' %>
           <%= f.password_field :password_confirmation, class: 'form-input mt-1 block w-full' %>
         </div>
-        <%= f.submit '登録', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' %>
+        <div class="text-center">
+          <%= f.submit '登録', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' %>
+        </div>
       <% end %>
       <div class="text-center mt-4">
-        <%= link_to 'アカウント登録済みの方はこちら', '#', class: 'text-sm text-gray-600 hover:text-gray-800' %>
+        <%= link_to 'アカウント登録済みの方はこちら', login_path, class: 'text-sm text-gray-600 hover:text-gray-800' %>
       </div>
     </div>
   </div>
