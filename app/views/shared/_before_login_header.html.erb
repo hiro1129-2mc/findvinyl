@@ -4,8 +4,8 @@
       <a class="btn btn-ghost text-xl">VinylLog</a>
     </div>
     <div class="flex-none gap-2">
-      <a href="#" class="btn btn-ghost">新規作成</a>
-      <a href="#" class="btn btn-ghost">ログイン</a>
+      <%= link_to '新規作成', new_user_path, class: "btn btn-ghost" %>
+      <%= link_to 'ログイン', login_path, class: "btn btn-ghost" %>
     </div>
   </div>
 </header>
