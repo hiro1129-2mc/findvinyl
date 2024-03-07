@@ -1,0 +1,38 @@
+ja:
+  helpers:
+    submit:
+      create: 登録
+      submit: 保存
+      update: 更新
+    label:
+      email: メールアドレス
+      password: パスワード
+  user_sessions:
+    new:
+      title: ログイン
+      login: ログイン
+      to_register_page: ユーザー新規登録
+      password_forget: パスワードをお忘れの方はこちら
+  users:
+    new:
+      title: ユーザー登録
+      to_login_page: ユーザー登録済みの方はこちら
+  header:
+    login: ログイン
+    logout: ログアウト
+    to_register_page: 新規登録
+    home: ホーム
+    search_shops: お店を探す
+    add_item: アイテムを追加
+    my_page: マイページ
+  my_interests:
+    collection_list: コレクションリスト
+    wishlist: 欲しいものリスト
+    records_reports: 記録・レポート
+    bookmarked_shops: ブックマークしたお店
+  footer:
+    contact_us: お問合せ
+    terms_of_use: 利用規約
+    privacy_policy: プライバシーポリシー
+
+
