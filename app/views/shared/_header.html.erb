@@ -18,18 +18,19 @@
   </button>
   <div class="p-5">
     <ul>
-      <li><a href="#" class="block p-2">ホーム</a></li>
-      <li><a href="#" class="block p-2">お店を探す</a></li>
-      <li><a href="#" class="block p-2">アイテムを追加</a></li>
+      <%= link_to 'ホーム', "#", class: "block p-2" %>
+      <%= link_to 'お店を探す', "#", class: "block p-2" %>
+      <%= link_to 'アイテムを追加', "#", class: "block p-2" %>
       <li>
-        <a href="#" class="block p-2">マイページ</a>
+        <%= link_to 'マイページ', "#", class: "block p-2" %>
         <ul class="pl-4">
-          <li><a href="#" class="block p-2">コレクションリスト</a></li>
-          <li><a href="#" class="block p-2">欲しいものリスト</a></li>
-          <li><a href="#" class="block p-2">記録・レポート</a></li>
-          <li><a href="#" class="block p-2">ブックマークしたお店</a></li>
+          <%= link_to 'コレクションリスト', "#", class: "block p-2" %>
+          <%= link_to '欲しいものリスト', "#", class: "block p-2" %>
+          <%= link_to '記録・レポート', "#", class: "block p-2" %>
+          <%= link_to 'ブックマークしたお店', "#", class: "block p-2" %>
         </ul>
       </li>
+      <%= link_to 'ログアウト', logout_path, method: :delete, data: { turbo_method: :delete }, class: "block p-2" %>
     </ul>
   </div>
   <script>
