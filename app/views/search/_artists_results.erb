@@ -1,0 +1,10 @@
+<div class="mt-4">
+  <div class="flex p-4 bg-gray-200 rounded-t-lg">
+    <span class="flex-1 text-sm font-semibold text-gray-900"><%= t('results.columns.artist') %></span>
+  </div>
+  <% results.each do |artist| %>
+    <div class="flex items-center justify-start p-4 hover:bg-gray-100 rounded-lg">
+      <%= link_to artist.name, "#", class: "text-gray-800 text-lg" %>
+    </div>
+  <% end %>
+</div>

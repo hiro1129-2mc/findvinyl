@@ -1,0 +1,15 @@
+<%= search_form_for @q, url: search_path, html: { class: "search-container p-4" } do |f| %>
+  <div class="flex items-center">
+    <%= f.search_field :name_cont, placeholder: t('search.placeholder.keyword'), class: "input input-bordered input-primary w-full max-w-xs" %>
+    <%= select_tag :type, options_for_select(
+      [
+        [t('search.form.artist'), 'artist'], 
+        [t('search.form.release_title'), 'release']
+      ], selected: params[:type]), 
+      class: "select select-bordered select-primary ml-2" 
+    %>
+    <button type="submit" class="btn btn-primary ml-2">
+      <img alt="<%= t('search.button') %>" src="https://static.metabrainz.org/MB/search-52f8034.svg" class="w-4 h-4">
+    </button>
+  </div>
+<% end %>

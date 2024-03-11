@@ -10,9 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_06_123558) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_10_160730) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "artist_credit_names", force: :cascade do |t|
+    t.bigint "artist_credit_id", null: false
+    t.bigint "artist_id", null: false
+    t.index ["artist_credit_id"], name: "index_artist_credit_names_on_artist_credit_id"
+    t.index ["artist_id"], name: "index_artist_credit_names_on_artist_id"
+  end
+
+  create_table "artist_credits", force: :cascade do |t|
+    t.string "name", null: false
+  end
+
+  create_table "artists", force: :cascade do |t|
+    t.uuid "gid", null: false
+    t.string "name", null: false
+    t.index ["name"], name: "index_artists_on_name"
+  end
+
+  create_table "medium_formats", force: :cascade do |t|
+    t.string "name", null: false
+  end
+
+  create_table "mediums", force: :cascade do |t|
+    t.bigint "release_id", null: false
+    t.bigint "medium_format_id"
+    t.index ["medium_format_id"], name: "index_mediums_on_medium_format_id"
+    t.index ["release_id"], name: "index_mediums_on_release_id"
+  end
+
+  create_table "releases", force: :cascade do |t|
+    t.uuid "gid", null: false
+    t.string "name", null: false
+    t.bigint "artist_credit_id", null: false
+    t.index ["artist_credit_id"], name: "index_releases_on_artist_credit_id"
+    t.index ["name"], name: "index_releases_on_name"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
@@ -26,4 +62,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_06_123558) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "artist_credit_names", "artist_credits"
+  add_foreign_key "artist_credit_names", "artists"
+  add_foreign_key "mediums", "medium_formats"
+  add_foreign_key "mediums", "releases"
+  add_foreign_key "releases", "artist_credits"
 end
