@@ -1,0 +1,28 @@
+<div class="mt-4">
+  <div class="flex p-4 bg-gray-200 rounded-t-lg">
+    <span class="flex-1 text-sm font-semibold text-gray-900"><%= t('results.columns.title') %></span>
+    <span class="flex-1 text-sm font-semibold text-gray-900"><%= t('results.columns.artist') %></span>
+    <span class="flex-1 text-sm font-semibold text-gray-900"><%= t('results.columns.format') %></span>
+  </div>
+  <% results.each do |release| %>
+    <div class="mt-4 p-4 hover:bg-gray-100 rounded-lg">
+      <div class="mb-2 flex">
+        <p class="flex-1 text-lg text-gray-900">
+          <%= link_to release.name, "#", class: "text-gray-800 text-lg" %>
+        </p>
+        <p class="flex-1 text-gray-800">
+          <%= release.artist_credit.name %>
+        </p>
+        <p class="flex-1 text-gray-800">
+          <% release.mediums.each do |medium| %>
+            <% if medium.medium_format.present? %>
+              <%= medium.medium_format.name %>
+            <% else %>
+              <%= " " %>
+            <% end %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>
