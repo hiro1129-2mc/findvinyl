@@ -1,4 +1,5 @@
 class SearchController < ApplicationController
+
   def index
     @type = params[:type]
     @q = get_search_query(@type, params[:q])

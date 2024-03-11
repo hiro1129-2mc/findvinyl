@@ -1,0 +1,41 @@
+<div class="container mx-auto pt-3">
+  <div class="flex flex-wrap">
+    <div class="w-full lg:w-10/12 lg:mx-auto">
+      <%= render 'shared/search_form', q: @q, url: search_path %>
+
+      <h1 class="text-3xl font-bold text-gray-900 mt-4 mb-4"><%= @artist.name %></h1>
+
+      <h2 class="text-xl font-semibold text-gray-800 mt-6 mb-2"><%= t('artists.show.releases') %></h2>
+
+      <div class="flex items-center p-4 bg-gray-200 rounded-t-lg">
+        <p class="flex-1 text-lg text-gray-900">
+          <span class="text-sm font-semibold text-gray-900 mr-8"><%= t('results.columns.title') %></span>
+        </p>
+        <p class="flex-1 text-lg text-gray-900">
+          <span class="text-sm font-semibold text-gray-900"><%= t('results.columns.format') %></span>
+        </p>
+      </div>
+
+      <ul class="space-y-2">
+        <% @releases.each do |release| %>
+          <li class="p-4 hover:bg-gray-100 rounded-lg">
+            <div class="flex items-center gap-x-8">
+              <p class="text-lg text-gray-900 flex-1">
+                <%= link_to release.name, "#" %>
+              </p>
+              <p class="text-sm text-gray-800 flex-1">
+                <% release.mediums.each_with_index do |medium, index| %>
+                  <%= medium.medium_format.name %><%= "," unless index == release.mediums.size - 1 %>
+                <% end %>
+              </p>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+
+      <div class="mt-6">
+        <%= paginate @releases %>
+      </div>
+    </div>
+  </div>
+</div>

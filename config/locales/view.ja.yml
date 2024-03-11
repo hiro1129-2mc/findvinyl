@@ -47,3 +47,6 @@ ja:
       title: "タイトル"
       artist: "アーティスト"
       format: "フォーマット"
+  artists:
+    show:
+      releases: リリース
