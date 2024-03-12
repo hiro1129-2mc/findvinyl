@@ -47,3 +47,10 @@ ja:
       title: "タイトル"
       artist: "アーティスト"
       format: "フォーマット"
+  artists:
+    show:
+      releases: リリース
+      life_span: 活動期間
+      disambiguation: 認識情報
+      country: 国籍
+      details_not_available: アーティストの詳細情報はありません。

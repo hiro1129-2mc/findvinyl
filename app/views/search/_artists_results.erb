@@ -4,7 +4,7 @@
   </div>
   <% results.each do |artist| %>
     <div class="flex items-center justify-start p-4 hover:bg-gray-100 rounded-lg">
-      <%= link_to artist.name, "#", class: "text-gray-800 text-lg" %>
+      <%= link_to artist.name, artist_path(artist), class: "text-gray-800 text-lg" %>
     </div>
   <% end %>
 </div>

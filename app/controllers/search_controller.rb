@@ -7,7 +7,7 @@ class SearchController < ApplicationController
   end
 
   private
-  
+
   def get_search_query(type, search_params)
     case type
     when 'artist'
