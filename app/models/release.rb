@@ -7,7 +7,7 @@ class Release < ApplicationRecord
   validates :gid, presence: true, uniqueness: true
   validates :artist_credit_id, presence: true
 
-  scope :search_by_name, -> (name) { where("releases.name ILIKE ?", "%#{name}%") }
+  scope :search_by_name, ->(name) { where('releases.name ILIKE ?', "%#{name}%") }
 
   def self.search_with_associations(name)
     search_by_name(name)
@@ -15,7 +15,7 @@ class Release < ApplicationRecord
       .references(:artist_credits, :medium_formats)
   end
 
-  def self.ransackable_attributes(auth_object = nil)
+  def self.ransackable_attributes(_auth_object = nil)
     %w[name]
   end
 end

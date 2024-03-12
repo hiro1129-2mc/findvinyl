@@ -5,6 +5,13 @@
 
       <h1 class="text-3xl font-bold text-gray-900 mt-4 mb-4"><%= @artist.name %></h1>
 
+      <% if @data.present? %>
+        <p><strong><%= t('artists.show.life_span') %></strong> <%= @data["life-span"]["begin"] %> ~ <%= @data["life-span"]["end"] %></p>
+        <p><strong><%= t('artists.show.country') %></strong> <%= @data["country"] %></p>
+      <% else %>
+        <p><%= t('artists.show.details_not_available') %></p>
+      <% end %>
+
       <h2 class="text-xl font-semibold text-gray-800 mt-6 mb-2"><%= t('artists.show.releases') %></h2>
 
       <div class="flex items-center p-4 bg-gray-200 rounded-t-lg">
@@ -25,8 +32,9 @@
               </p>
               <p class="text-sm text-gray-800 flex-1">
                 <% release.mediums.each_with_index do |medium, index| %>
-                  <%= medium.medium_format.name %><%= "," unless index == release.mediums.size - 1 %>
-                <% end %>
+                  <%= medium.medium_format ? medium.medium_format.name : " " %>
+                  <%= "," unless index == release.mediums.size - 1 %>
+                 <% end %>
               </p>
             </div>
           </li>
