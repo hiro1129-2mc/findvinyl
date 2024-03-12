@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'artists/show'
   root 'static_pages#top'
   resources :users, only: %i[new create]
   resources :artists, only: %i[show]
