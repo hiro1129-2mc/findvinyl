@@ -1,0 +1,50 @@
+<div class="container mx-auto pt-6 px-4">
+  <div class="flex flex-wrap justify-center">
+    <div class="w-full lg:w-10/12">
+      <%= render 'shared/search_form', q: @q, url: search_path, class: "mb-6" %>
+
+      <div class="card bg-base-100 shadow-xl">
+        <div class="card-body">
+          <h1 class="card-title text-6xl font-bold"><%= @release.name %></h1>
+          <p class="text-xl text-gray-600 mb-4"><%= @release.artist_credit.name %></p>
+            
+          <% if @data.present? %>
+            <div class="mb-4">
+              <% @release.mediums.each do |medium| %>
+                <% if medium.medium_format.present? %>
+                  <p><strong><%= t('results.columns.format') %>:</strong> <%= medium.medium_format.name %>
+                <% else %>
+                  <%= " " %>
+                <% end %>
+              <% end %>
+              <p><strong><%= t('releases.show.release_date') %>:</strong> <%= @data["date"] %></p>
+              <p><strong><%= t('releases.show.press_country') %>:</strong> <%= @data["country"] %></p>
+              <p><strong><%= t('releases.show.status') %>:</strong> <%= @data["status"] %></p>
+            </div>
+
+            <% if @data["media"].present? %>
+              <% @data["media"].each do |media| %>
+                <div class="mb-4">
+                  <p><strong><%= t('releases.show.track_count') %>:</strong>:</strong> <%= media["track-count"] %></p>
+                </div>
+
+                <div class="pl-4">
+                  <h3 class="text-xl font-bold mb-2"><%= t('releases.show.track_list') %></h3>
+                  <ul class="list-disc">
+                    <% media["tracks"].each do |track| %>
+                      <li class="ml-6"><%= track["title"] %></li>
+                    <% end %> <!-- media["tracks"].eachの終了タグ -->
+                  </ul>
+                </div>
+              <% end %> <!-- @release["media"].eachの終了タグ -->
+            <% else %>
+              <p><%= t('releases.show.track_not_available') %></p>
+            <% end %>
+          <% else %>
+            <p><%= t('releases.show.details_not_available') %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

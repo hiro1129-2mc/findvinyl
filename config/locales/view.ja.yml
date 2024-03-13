@@ -54,3 +54,13 @@ ja:
       disambiguation: 認識情報
       country: 国籍
       details_not_available: アーティストの詳細情報はありません。
+  releases:
+    show:
+      release_date: リリース日
+      press_country: プレス国
+      status: ステータス
+      media_info: メディア情報
+      track_not_available: トラック情報はありません。
+      track_count: トラック数
+      track_list: トラックリスト
+      details_not_available: リリースの詳細情報はありません。
