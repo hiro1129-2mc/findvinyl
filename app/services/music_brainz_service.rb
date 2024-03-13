@@ -11,7 +11,7 @@ class MusicBrainzService
 
   def fetch_artist_details(gid)
     sleep_until_allowed
-    url = "#{BASE_URL}/artist/#{gid}?fmt=json" # JSON形式でデータをリクエスト
+    url = "#{BASE_URL}/artist/#{gid}?fmt=json"
     response = request_to_musicbrainz_api(url)
     @last_request_time = Time.now
     JSON.parse(response.body) if response.is_a?(Net::HTTPSuccess)
@@ -19,8 +19,7 @@ class MusicBrainzService
 
   def fetch_release_details(gid)
     sleep_until_allowed
-    # リリース詳細のリクエストにもベースURLとJSONフォーマットを指定
-    url = "#{BASE_URL}/release/#{gid}?fmt=json"
+    url = "#{BASE_URL}/release/#{gid}?inc=recordings&fmt=json"
     response = request_to_musicbrainz_api(url)
     @last_request_time = Time.now
     JSON.parse(response.body) if response.is_a?(Net::HTTPSuccess)

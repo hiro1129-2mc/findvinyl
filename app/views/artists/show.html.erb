@@ -28,7 +28,7 @@
           <li class="p-4 hover:bg-gray-100 rounded-lg">
             <div class="flex items-center gap-x-8">
               <p class="text-lg text-gray-900 flex-1">
-                <%= link_to release.name, "#" %>
+                <%= link_to release.name, release_path(release) %>
               </p>
               <p class="text-sm text-gray-800 flex-1">
                 <% release.mediums.each_with_index do |medium, index| %>
