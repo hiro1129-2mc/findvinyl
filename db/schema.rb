@@ -10,9 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_10_160730) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_14_122644) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accessories", force: :cascade do |t|
+    t.string "name", null: false
+  end
 
   create_table "artist_credit_names", force: :cascade do |t|
     t.bigint "artist_credit_id", null: false
@@ -25,10 +29,55 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_10_160730) do
     t.string "name", null: false
   end
 
+  create_table "artist_names", force: :cascade do |t|
+    t.string "name", null: false
+  end
+
   create_table "artists", force: :cascade do |t|
     t.uuid "gid", null: false
     t.string "name", null: false
     t.index ["name"], name: "index_artists_on_name"
+  end
+
+  create_table "conditions", force: :cascade do |t|
+    t.string "grade", null: false
+  end
+
+  create_table "item_accessories", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.bigint "accessory_id", null: false
+    t.index ["accessory_id"], name: "index_item_accessories_on_accessory_id"
+    t.index ["item_id"], name: "index_item_accessories_on_item_id"
+  end
+
+  create_table "item_tags", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.bigint "tag_id", null: false
+    t.index ["item_id"], name: "index_item_tags_on_item_id"
+    t.index ["tag_id"], name: "index_item_tags_on_tag_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "title_id", null: false
+    t.bigint "artist_name_id", null: false
+    t.bigint "press_country_id"
+    t.bigint "matrix_number_id"
+    t.bigint "condition_id"
+    t.text "user_note"
+    t.integer "role", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_name_id"], name: "index_items_on_artist_name_id"
+    t.index ["condition_id"], name: "index_items_on_condition_id"
+    t.index ["matrix_number_id"], name: "index_items_on_matrix_number_id"
+    t.index ["press_country_id"], name: "index_items_on_press_country_id"
+    t.index ["title_id"], name: "index_items_on_title_id"
+    t.index ["user_id"], name: "index_items_on_user_id"
+  end
+
+  create_table "matrix_numbers", force: :cascade do |t|
+    t.string "number", null: false
   end
 
   create_table "medium_formats", force: :cascade do |t|
@@ -42,12 +91,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_10_160730) do
     t.index ["release_id"], name: "index_mediums_on_release_id"
   end
 
+  create_table "press_countries", force: :cascade do |t|
+    t.string "name", null: false
+  end
+
   create_table "releases", force: :cascade do |t|
     t.uuid "gid", null: false
     t.string "name", null: false
     t.bigint "artist_credit_id", null: false
     t.index ["artist_credit_id"], name: "index_releases_on_artist_credit_id"
     t.index ["name"], name: "index_releases_on_name"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
+  end
+
+  create_table "titles", force: :cascade do |t|
+    t.string "name", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -64,6 +125,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_10_160730) do
 
   add_foreign_key "artist_credit_names", "artist_credits"
   add_foreign_key "artist_credit_names", "artists"
+  add_foreign_key "item_accessories", "accessories"
+  add_foreign_key "item_accessories", "items"
+  add_foreign_key "item_tags", "items"
+  add_foreign_key "item_tags", "tags"
+  add_foreign_key "items", "artist_names"
+  add_foreign_key "items", "conditions"
+  add_foreign_key "items", "matrix_numbers"
+  add_foreign_key "items", "press_countries"
+  add_foreign_key "items", "titles"
+  add_foreign_key "items", "users"
   add_foreign_key "mediums", "medium_formats"
   add_foreign_key "mediums", "releases"
   add_foreign_key "releases", "artist_credits"
