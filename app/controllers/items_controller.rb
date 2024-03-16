@@ -4,12 +4,12 @@ class ItemsController < ApplicationController
 
   def collection_items
     @q = current_user.items.collection.ransack(params[:q])
-    @items = @q.result(distinct: true).includes(:user).order(title: :asc).page(params[:page])
+    @items = @q.result(distinct: true).includes(:user).order(title: :asc).page(params[:page]).per(20)
   end
 
   def wont_items
     @q = current_user.items.wont.ransack(params[:q])
-    @items = @q.result(distinct: true).includes(:user).order(title: :asc).page(params[:page])
+    @items = @q.result(distinct: true).includes(:user).order(title: :asc).page(params[:page]).per(20)
   end
 
   def new
