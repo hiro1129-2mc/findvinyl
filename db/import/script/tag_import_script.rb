@@ -12,7 +12,7 @@ begin
   file_path = 'db/import/data/tag.tsv'
   
   CSV.foreach(file_path, col_sep: "\t", headers: false, quote_char: "\0") do |row|
-    name = row.values_at(0)
+    name = row[0]
     # データベースにデータを挿入
     conn.exec_params("INSERT INTO tags (name) VALUES ($1)", [name])
   end

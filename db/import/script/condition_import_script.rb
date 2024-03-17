@@ -12,11 +12,11 @@ begin
   file_path = 'db/import/data/condition.tsv'
   
   CSV.foreach(file_path, col_sep: "\t", headers: false, quote_char: "\0") do |row|
-    grade = row.values_at(0)
+    grade = row[0]
     # データベースにデータを挿入
     conn.exec_params("INSERT INTO conditions (grade) VALUES ($1)", [grade])
   end
-  
+
   # トランザクションをコミット
   conn.exec("COMMIT")
   puts "Data import completed."
