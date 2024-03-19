@@ -7,7 +7,7 @@ class Release < ApplicationRecord
   validates :gid, presence: true, uniqueness: true
   validates :artist_credit_id, presence: true
 
-  scope :search_by_name, ->(name) { where('releases.name ILIKE ?', "%#{name}%") }
+  scope :search_by_name, ->(word) { where('releases.name ILIKE ?', "%#{word}%") }
 
   def self.search_with_associations(name)
     search_by_name(name)

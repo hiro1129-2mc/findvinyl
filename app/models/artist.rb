@@ -5,7 +5,7 @@ class Artist < ApplicationRecord
   validates :gid, presence: true, uniqueness: true
   validates :name, presence: true
 
-  scope :search_by_name, ->(name) { where('name ILIKE ?', "%#{name}%") }
+  scope :search_by_name, ->(word) { where('name ILIKE ?', "%#{word}%") }
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[name]

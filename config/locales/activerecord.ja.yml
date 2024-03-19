@@ -2,9 +2,20 @@ ja:
   activerecord:
     models:
       user: ユーザー
+      item: アイテム
+
     attributes:
       user:
         email: メールアドレス
         name: ニックネーム
         password: パスワード
         password_confirmation: パスワード確認
+      item:
+        title: タイトル
+        artist_name: アーティスト名
+        press_country: プレス国
+        matrix_number: マトリクスナンバー
+        condition: コンディション
+        user_note: メモ
+        tag: タグ
+        accessory: 付属品
