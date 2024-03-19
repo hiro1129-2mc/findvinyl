@@ -1,6 +1,7 @@
 <div class="flex justify-center items-center min-h-screen">
   <div class="w-full max-w-md mx-auto bg-white shadow-md rounded-lg p-6">
     <%= form_with model: @item, local: true do |form| %>
+      <%= render 'shared/error_messages', object: form.object %>
       <% if params[:role] %>
         <%= form.hidden_field :role, value: params[:role] %>
       <% end %>
@@ -51,7 +52,7 @@
       </div>
 
       <div class="flex justify-end space-x-2 mt-4">
-        <%= link_to "Cancel", "#", class: "btn" %>
+        <%= link_to "Cancel", request.referer || search_path, class: "btn" %>
         <%= form.submit "保存", class: "btn btn-primary" %>
       </div>
     <% end %>

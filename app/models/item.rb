@@ -2,9 +2,9 @@ class Item < ApplicationRecord
   belongs_to :user
   belongs_to :title
   belongs_to :artist_name
-  belongs_to :press_country
-  belongs_to :matrix_number
-  belongs_to :condition
+  belongs_to :press_country, optional: true
+  belongs_to :matrix_number, optional: true
+  belongs_to :condition, optional: true
 
   has_many :item_tags, dependent: :destroy
   has_many :tags, through: :item_tags
