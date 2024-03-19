@@ -37,8 +37,9 @@ class ItemsController < ApplicationController
     @item.save_with_tags(tag_names: tag_names)
 
     if @item.save
-      redirect_to items_path
+      redirect_to items_path, success: "アイテムを保存しました"
     else
+      flash.now[:danger] = "アイテムを作成できませんでした"
       render :new, status: :unprocessable_entity
     end
   end
@@ -69,8 +70,9 @@ class ItemsController < ApplicationController
     @item.save_with_tags(tag_names: tag_names)
   
     if @item.update(item_params.except(:title, :artist_name, :press_country, :matrix_number))
-      redirect_to item_path(@item)
+      redirect_to item_path(@item), success: "アイテムを編集しました"
     else
+      flash.now[:danger] = "アイテムを編集できませんでした"
       render :edit, status: :unprocessable_entity
     end
   end

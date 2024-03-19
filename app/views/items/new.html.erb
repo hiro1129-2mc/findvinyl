@@ -5,49 +5,49 @@
         <%= form.hidden_field :role, value: params[:role] %>
       <% end %>
       <% if params[:role] == 'collection' %>
-        <h2 class="text-xl font-bold mb-4">コレクションを作成</h2>
+        <h2 class="text-xl font-bold mb-4"><%= t('items.new.create_collection') %></h2>
       <% elsif params[:role] == 'want' %>
-        <h2 class="text-xl font-bold mb-4">欲しいものを作成</h2>
+        <h2 class="text-xl font-bold mb-4"><%= t('items.new.create_want') %></h2>
       <% end %>
 
       <div class="form-control">
         <%= form.label :title, class: "label" %>
-        <%= form.text_field :title, value: @item.title&.name || params[:item]&.fetch(:title, nil), placeholder: "Title", class: "input input-bordered", required: true %>
+        <%= form.text_field :title, value: @item.title&.name || params[:item]&.fetch(:title, nil), class: "input input-bordered", required: true %>
       </div>
 
       <div class="form-control">
         <%= form.label :artist_name, class: "label" %>
-        <%= form.text_field :artist_name, value: @item.artist_name&.name || params[:item]&.fetch(:artist_name, nil), placeholder: "Artist Name", class: "input input-bordered", required: true %>
+        <%= form.text_field :artist_name, value: @item.artist_name&.name || params[:item]&.fetch(:artist_name, nil), class: "input input-bordered", required: true %>
       </div>
 
       <div class="form-control">
         <%= form.label :press_country, class: "label" %>
-        <%= form.text_field :press_country, value: @item.press_country&.name || params[:item]&.fetch(:press_country, nil), placeholder: "Press Country", class: "input input-bordered", required: true %>
-      </div>
-
-      <div class="form-control">
-        <%= form.label :condition_id, "Condition", class: "label" %>
-        <%= form.select :condition_id, @conditions.map { |condition| [condition.grade, condition.id] }, {}, {class: "select select-bordered", required: true} %>
-      </div>
-
-      <div class="form-control">
-        <%= form.label :accessory_id, "Accessory", class: "label" %>
-        <%= form.select :accessory_id, @accessories.map { |accessory| [accessory.name, accessory.id] }, {include_blank: true}, {class: "select select-bordered", required: false} %>
-      </div>
-
-      <div class="form-control">
-        <%= form.label :tag, class: "label" %>
-        <%= form.text_field :tag, value: @item.tag_names, placeholder: "Tag", class: "input input-bordered" %>
+        <%= form.text_field :press_country, value: @item.press_country&.name || params[:item]&.fetch(:press_country, nil), class: "input input-bordered" %>
       </div>
 
       <div class="form-control">
         <%= form.label :matrix_number, class: "label" %>
-        <%= form.text_field :matrix_number, value: @item.matrix_number&.number || params[:item]&.fetch(:matrix_number, nil), placeholder: "Matrix Number", class: "input input-bordered", required: true %>
+        <%= form.text_field :matrix_number, value: @item.matrix_number&.number || params[:item]&.fetch(:matrix_number, nil), class: "input input-bordered" %>
+      </div>
+
+      <div class="form-control">
+        <%= form.label :condition, class: "label" %>
+        <%= form.select :condition_id, @conditions.map { |condition| [condition.grade, condition.id] }, {include_blank: true}, {class: "select select-bordered"} %>
+      </div>
+
+      <div class="form-control">
+        <%= form.label :accessory, class: "label" %>
+        <%= form.select :accessory_id, @accessories.map { |accessory| [accessory.name, accessory.id] }, {include_blank: true}, {class: "select select-bordered"} %>
+      </div>
+
+      <div class="form-control">
+        <%= form.label :tag, class: "label" %>
+        <%= form.text_field :tag, value: @item.tag_names, class: "input input-bordered" %>
       </div>
 
       <div class="form-control">
         <%= form.label :user_note, class: "label" %>
-        <%= form.text_area :user_note, value: @item.user_note, placeholder: "User Note", class: "textarea textarea-bordered", required: true %>
+        <%= form.text_area :user_note, value: @item.user_note, class: "textarea textarea-bordered" %>
       </div>
 
       <div class="flex justify-end space-x-2 mt-4">

@@ -1,0 +1,28 @@
+<% flash.each do |message_type, message| %>
+  <% case message_type.to_sym %>
+  <% when :notice %>
+    <div class="alert alert-success">
+      <div class="flex-1">
+        <label><%= message %></label>
+      </div>
+    </div>
+  <% when :error, :alert %>
+    <div class="alert alert-error">
+      <div class="flex-1">
+        <label><%= message %></label>
+      </div>
+    </div>
+  <% when :warning %>
+    <div class="alert alert-warning">
+      <div class="flex-1">
+        <label><%= message %></label>
+      </div>
+    </div>
+  <% else %>
+    <div class="alert alert-info">
+      <div class="flex-1">
+        <label><%= message %></label>
+      </div>
+    </div>
+  <% end %>
+<% end %>

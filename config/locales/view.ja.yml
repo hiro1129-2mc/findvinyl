@@ -64,3 +64,7 @@ ja:
       track_count: トラック数
       track_list: トラックリスト
       details_not_available: リリースの詳細情報はありません。
+  items:
+    new:
+      create_collection: コレクションを作成
+      create_want: 欲しいものを作成
