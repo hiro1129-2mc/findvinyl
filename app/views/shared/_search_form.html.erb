@@ -19,8 +19,8 @@
       <span>+</span>
     </button> 
     <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-      <li><%= link_to "コレクションを作成", new_item_path(role: 'collection') %></li>
-      <li><%= link_to "欲しいものを作成", new_item_path(role: 'want') %></li>
+      <li><%= link_to t('items.new.create_collection'), new_item_path(role: 'collection') %></li>
+      <li><%= link_to t('items.new.create_want'), new_item_path(role: 'want') %></li>
     </ul>
   </div>
 </div>
