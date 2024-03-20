@@ -7,6 +7,7 @@
       <button type="submit" class="btn btn-primary ml-2">
         <img alt="Search" src="https://static.metabrainz.org/MB/search-52f8034.svg" class="w-4 h-4">
       </button>
+      <%= render 'shared/add_item_btn' %>
     </div>
   <% end %>
 
@@ -52,6 +53,13 @@
 
 <script>
   function redirectToItemUrl(element) {
+    // ドロップダウンメニューの要素をクリックした場合は、この関数を実行しない
+    if (!element.closest('.dropdown-content')) {
+      event.stopPropagation();
+      const itemUrl = element.closest('[data-item-url]').getAttribute('data-item-url');
+      window.location.href = itemUrl;
+    }
+
     // イベントの伝播を停止して、リンクのデフォルトの動作を防ぐ
     event.stopPropagation();
 

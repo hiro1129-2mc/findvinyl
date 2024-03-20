@@ -1,0 +1,9 @@
+<div class="dropdown dropdown-end">
+  <button tabindex="0" class="btn btn-circle btn-outline dropdown-toggle">
+    <span>+</span>
+  </button> 
+  <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 dropdown-menu">
+    <li><%= link_to t('items.new.create_collection'), new_item_path(role: 'collection'), class: 'dropdown-menu' %></li>
+    <li><%= link_to t('items.new.create_want'), new_item_path(role: 'want'), class: 'dropdown-menu' %></li>
+  </ul>
+</div>
