@@ -1,6 +1,15 @@
 <div class="container mx-auto mt-8">
   <h1 class="text-2xl font-bold text-center mb-8"><%= t('my_interests.collection_list') %></h1>
-  
+
+  <%= search_form_for @q, url: collection_items_path, method: :get, class: "space-y-4" do |f| %>
+    <div class="flex items-center">
+      <%= f.search_field :title_name_or_artist_name_name_cont, placeholder: t('search.in_collection_list'), class: "input input-bordered w-full max-w-xs" %>
+      <button type="submit" class="btn btn-primary ml-2">
+        <img alt="Search" src="https://static.metabrainz.org/MB/search-52f8034.svg" class="w-4 h-4">
+      </button>
+    </div>
+  <% end %>
+
   <% if @items.any? %>
     <div class="flex justify-between items-center border-b py-2 mb-4">
       <div class="flex-1">

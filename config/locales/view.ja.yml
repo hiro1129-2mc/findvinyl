@@ -43,6 +43,8 @@ ja:
   search:
     button: 検索
     no_results: 検索結果が見つかりませんでした。
+    in_collection_list: コレクション内検索
+    in_want_list: 欲しいもの内検索
     form:
       artist: アーティスト
       release_title: リリースタイトル
@@ -84,3 +86,4 @@ ja:
       tag: タグ
       not_found: 指定されたアイテムが見つかりません。
       no_items: アイテムがありません。
+
