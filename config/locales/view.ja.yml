@@ -7,6 +7,9 @@ ja:
       create: 登録
       submit: 保存
       update: 更新
+      edit: 編集
+      delete: 削除
+      move_to_collection: コレクションに移動
     label:
       email: メールアドレス
       password: パスワード
@@ -47,9 +50,9 @@ ja:
       keyword: "検索ワード"
   results:
     columns:
-      title: "タイトル"
-      artist: "アーティスト"
-      format: "フォーマット"
+      title: タイトル
+      artist: アーティスト
+      format: フォーマット
   artists:
     show:
       releases: リリース
@@ -68,6 +71,16 @@ ja:
       track_list: トラックリスト
       details_not_available: リリースの詳細情報はありません。
   items:
+    confirm_delete: 本当に削除しますか？
     new:
       create_collection: コレクションを作成
       create_want: 欲しいものを作成
+      saved: アイテムを保存しました
+      not_created: アイテムを作成できませんでした
+    edit:
+      edit: アイテムを編集しました
+      not_edited: アイテムを編集できませんでした
+    index:
+      tag: タグ
+      not_found: 指定されたアイテムが見つかりません。
+      no_items: アイテムがありません。
