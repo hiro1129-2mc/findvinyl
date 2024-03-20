@@ -10,6 +10,7 @@ ja:
       edit: 編集
       delete: 削除
       move_to_collection: コレクションに移動
+      back: 戻る
     label:
       email: メールアドレス
       password: パスワード
@@ -86,4 +87,10 @@ ja:
       tag: タグ
       not_found: 指定されたアイテムが見つかりません。
       no_items: アイテムがありません。
-
+    show:
+      collection_show: コレクション詳細
+      want_show: 欲しいもの詳細
+      matrix_number: マトリクスナンバー
+      condition: コンディション
+      accessory: 付属品
+      user_note: メモ
