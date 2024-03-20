@@ -1,2 +1,76 @@
-<h1>Items#show</h1>
-<p>Find me in app/views/items/show.html.erb</p>
+<div class="flex justify-center items-center min-h-screen">
+  <div class="w-full max-w-md mx-auto bg-white shadow-md rounded-lg p-6">
+    <h1 class="text-2xl font-bold text-center">
+      <% if @item.collection? %>
+        <%= t('items.show.collection_show') %>
+      <% elsif @item.want? %>
+        <%= t('items.show.want_show') %>
+      <% end %>
+    </h1>
+
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text"><%= t('results.columns.title') %></span>
+      </label>
+      <input type="text" value="<%= @item.title&.name %>" class="input input-bordered" disabled>
+    </div>
+
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text"><%= t('results.columns.artist') %></span>
+      </label>
+      <input type="text" value="<%= @item.artist_name&.name %>" class="input input-bordered" disabled>
+    </div>
+
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text"><%= t('releases.show.press_country') %></span>
+      </label>
+      <input type="text" value="<%= @item.press_country&.name %>" class="input input-bordered" disabled>
+    </div>
+
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text"><%= t('items.show.matrix_number') %></span>
+      </label>
+      <input type="text" value="<%= @item.matrix_number&.number %>" class="input input-bordered" disabled>
+    </div>
+
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text"><%= t('items.show.condition') %></span>
+      </label>
+      <input type="text" value="<%= @item.condition&.grade %>" class="input input-bordered" disabled>
+    </div>
+
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text"><%= t('items.show.accessory') %></span>
+      </label>
+      <input type="text" value="<%= @item.accessory_names %>" class="input input-bordered" disabled>
+    </div>
+
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text"><%= t('items.index.tag') %></span>
+      </label>
+      <input type="text" value="<%= @item.tag_names %>" class="input input-bordered" disabled>
+    </div>
+
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text"><%= t('items.show.user_note') %></span>
+      </label>
+      <textarea class="textarea textarea-bordered" disabled><%= @item.user_note %></textarea>
+    </div>
+
+    <div class="flex justify-end space-x-2 mt-4">
+      <%= link_to t('helpers.submit.back'), items_path, class: "btn" %>
+      <% if @item.want? %>
+        <%= link_to t('helpers.submit.move_to_collection'), "#", class: "btn btn-primary" %>
+      <% end %>
+      <%= link_to t('helpers.submit.edit'), edit_item_path(@item), class: "btn btn-primary" %>
+      <%= link_to t('helpers.submit.delete'), "#", class: "btn btn-xl btn-error" %>
+    </div>
+  </div>
+</div>

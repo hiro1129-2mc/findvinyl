@@ -24,11 +24,11 @@
     </div>
 
     <% @items.each do |item| %>
-      <div class="flex justify-between items-center border-b py-2 mb-4">
-        <div class="flex-1">
-          <span class="font-semibold"><%= item.title.name %></span>
+      <div class="flex justify-between items-center border-b py-2 mb-4 cursor-pointer" data-item-url="<%= item_path(item) %>">
+        <div class="flex-1" onclick="redirectToItemUrl(this)">
+          <span><%= item.title.name %></span>
         </div>
-        <div class="flex-1">
+        <div class="flex-1" onclick="redirectToItemUrl(this)">
           <span><%= item.artist_name.name %></span>
         </div>
         <div class="flex-1">
@@ -49,3 +49,14 @@
     <p class="text-center"><%= t('items.index.no_items') %></p>
   <% end %>
 </div>
+
+<script>
+  function redirectToItemUrl(element) {
+    // イベントの伝播を停止して、リンクのデフォルトの動作を防ぐ
+    event.stopPropagation();
+
+    // data-item-url属性からURLを取得してリダイレクト
+    const itemUrl = element.closest('[data-item-url]').getAttribute('data-item-url');
+    window.location.href = itemUrl;
+  }
+</script>
