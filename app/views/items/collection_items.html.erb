@@ -1,0 +1,30 @@
+<div class="container mx-auto mt-8">
+  <h1 class="text-2xl font-bold text-center mb-8">コレクション一覧</h1>
+  
+  <% if @items.any? %>
+    <% @items.each do |item| %>
+      <div class="flex justify-between items-center border-b py-2 mb-4">
+        <div class="flex-1">
+          <span class="font-semibold"><%= item.title.name %></span>
+        </div>
+        <div class="flex-1">
+          <span><%= item.artist_name.name %></span>
+        </div>
+        <div class="flex-1">
+          <% item.tags.each do |tag| %>
+            <%= link_to tag.name, collection_items_path(q: { tags_name_eq: tag.name }, view_type: 'collection_items'), class: 'badge badge-primary' %>
+          <% end %>
+        </div>
+        <div class="flex space-x-2">
+          <%= link_to '編集', edit_item_path(item), class: "btn btn-xs btn-primary" %>
+          <%= link_to '削除', item, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-xs btn-error" %>
+        </div>
+      </div>
+    <% end %>
+    <div class="mt-6">
+      <%= paginate @items %>
+    </div>
+  <% else %>
+    <p class="text-center">アイテムがありません。</p>
+  <% end %>
+</div>

@@ -1,4 +1,7 @@
 ja:
+  defaults:
+    flash_message:
+      require_login: ログインしてください
   helpers:
     submit:
       create: 登録
@@ -27,7 +30,7 @@ ja:
     my_page: マイページ
   my_interests:
     collection_list: コレクションリスト
-    wishlist: 欲しいものリスト
+    wantlist: 欲しいものリスト
     records_reports: 記録・レポート
     bookmarked_shops: ブックマークしたお店
   footer:

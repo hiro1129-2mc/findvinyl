@@ -18,9 +18,17 @@ class Item < ApplicationRecord
 
   enum role: { collection: 0, want: 1 }
 
-  scope :with_tag, ->(tag_name) { joins(:tags).where(tags: { name: tag_name }) }
+  scope :collection_items, -> { where(role: 0).joins(:artist_name).order('artist_names.name ASC') }
+  scope :want_items, -> { where(role: 1).joins(:artist_name).order('artist_names.name ASC') }
   scope :title_contain, ->(word) { joins(:title).where('titles.name LIKE ?', "%#{word}%") }
   scope :artist_name_contain, ->(word) { joins(:artist_name).where('artist_names.name LIKE ?', "%#{word}%") }
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["artist_name_id", "condition_id", "matrix_number_id", "press_country_id", "role", "title_id", "user_note", "tags"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+  end
 
   def find_or_create_related_objects(attributes)
     attributes.each do |relation, value|

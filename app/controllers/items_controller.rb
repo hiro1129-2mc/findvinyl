@@ -3,14 +3,20 @@ class ItemsController < ApplicationController
   before_action :set_item, only: %i[show edit update destroy]
   before_action :set_select_collections, only: [:new, :create, :edit, :update]
 
-  def collection_items
-    @q = current_user.items.collection.ransack(params[:q])
-    @items = @q.result(distinct: true).includes(:user).order(title: :asc).page(params[:page]).per(20)
-  end
-
-  def want_items
-    @q = current_user.items.wont.ransack(params[:q])
-    @items = @q.result(distinct: true).includes(:user).order(title: :asc).page(params[:page]).per(20)
+  def index
+    case params[:view_type]
+    when 'collection_items'
+      items = current_user.items.collection_items
+      @q = items.ransack(params[:q])
+      results = @q.result
+      @items = @q.result.page(params[:page]).per(20)
+      render 'collection_items'
+    when 'want_items'
+      items = current_user.items.want_items
+      @q = items.ransack(params[:q])
+      @items = @q.result.page(params[:page]).per(20)
+      render 'want_items'
+    end
   end
 
   def new
@@ -91,8 +97,9 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = current_user.items.find_by(id: params[:id])
-    raise ActiveRecord::RecordNotFound unless @item
+    raise ActiveRecord::RecordNotFound, "指定されたアイテムが見つかりません。" unless @item
   end
+  
 
   def set_select_collections
     @press_countries = PressCountry.all
