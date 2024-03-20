@@ -4,7 +4,6 @@ class TagsController < ApplicationController
     tagged_items = current_user.items.joins(:tags).where(tags: { id: @tag.id })
 
     @q = tagged_items.ransack(params[:q])
-    results = @q.result
 
     case params[:view_type]
     when 'collection_items'
