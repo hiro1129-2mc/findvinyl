@@ -24,8 +24,8 @@
       <li>
         <%= link_to t('header.my_page'), "#", class: "block p-2" %>
         <ul class="pl-4">
-          <%= link_to t('my_interests.collection_list'), "#", class: "block p-2" %>
-          <%= link_to t('my_interests.wishlist'), "#", class: "block p-2" %>
+          <%= link_to t('my_interests.collection_list'), collection_items_path, class: "block p-2" %>
+          <%= link_to t('my_interests.wantlist'), want_items_path, class: "block p-2" %>
           <%= link_to t('my_interests.records_reports'), "#", class: "block p-2" %>
           <%= link_to t('my_interests.bookmarked_shops'), "#", class: "block p-2" %>
         </ul>

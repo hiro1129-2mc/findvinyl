@@ -1,0 +1,42 @@
+<div class="container mx-auto mt-8">
+  <h1 class="text-2xl font-bold text-center mb-8"><%= t('my_interests.collection_list') %></h1>
+  
+  <% if @items.any? %>
+    <div class="flex justify-between items-center border-b py-2 mb-4">
+      <div class="flex-1">
+        <span class="font-semibold"><%= t('results.columns.title') %></span>
+      </div>
+      <div class="flex-1">
+        <span class="font-semibold"><%= t('results.columns.artist') %></span>
+      </div>
+      <div class="flex-1">
+        <span class="font-semibold"><%= t('items.index.tag') %></span>
+      </div>
+    </div>
+
+    <% @items.each do |item| %>
+      <div class="flex justify-between items-center border-b py-2 mb-4">
+        <div class="flex-1">
+          <span class="font-semibold"><%= item.title.name %></span>
+        </div>
+        <div class="flex-1">
+          <span><%= item.artist_name.name %></span>
+        </div>
+        <div class="flex-1">
+          <% item.tags.each do |tag| %>
+            <%= link_to tag.name, collection_tag_items_path(tag_id: tag.id), class: 'badge badge-primary' %>
+          <% end %>
+        </div>
+        <div class="flex space-x-2">
+          <%= link_to t('helpers.submit.edit'), edit_item_path(item), class: "btn btn-xs btn-primary" %>
+          <%= link_to t('helpers.submit.delete'), item, method: :delete, data: { confirm: t('items.confirm_delete') }, class: "btn btn-xs btn-error" %>
+        </div>
+      </div>
+    <% end %>
+    <div class="mt-6">
+      <%= paginate @items %>
+    </div>
+  <% else %>
+    <p class="text-center"><%= t('items.index.no_items') %></p>
+  <% end %>
+</div>
