@@ -25,10 +25,12 @@ class Item < ApplicationRecord
   scope :artist_name_contain, ->(word) { joins(:artist_name).where('artist_names.name LIKE ?', "%#{word}%") }
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[artist_name_id condition_id matrix_number_id press_country_id role title_id user_note tags]
+    %w[tags]
   end
 
-  def self.ransackable_associations(auth_object = nil); end
+  def self.ransackable_associations(_auth_object = nil)
+    %w[title artist_name]
+  end
 
   def find_or_create_related_objects(attributes)
     attributes.each do |relation, value|

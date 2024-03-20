@@ -8,7 +8,6 @@ class ItemsController < ApplicationController
     when 'collection_items'
       items = current_user.items.collection_items
       @q = items.ransack(params[:q])
-      results = @q.result
       @items = @q.result.page(params[:page]).per(20)
       render 'collection_items'
     when 'want_items'
