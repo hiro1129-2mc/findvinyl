@@ -12,7 +12,7 @@
         </div>
         <div class="flex-1">
           <% item.tags.each do |tag| %>
-            <%= link_to tag.name, collection_items_path(q: { tags_name_eq: tag.name }, view_type: 'collection_items'), class: 'badge badge-primary' %>
+            <%= link_to tag.name, collection_tag_items_path(tag_id: tag.id), class: 'badge badge-primary' %>
           <% end %>
         </div>
         <div class="flex space-x-2">

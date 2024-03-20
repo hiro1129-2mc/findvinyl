@@ -18,6 +18,7 @@ class Item < ApplicationRecord
 
   enum role: { collection: 0, want: 1 }
 
+  scope :tagged_with, ->(tag_id) { joins(:tags).where(tags: { id: tag_id }) }
   scope :collection_items, -> { where(role: 0).joins(:artist_name).order('artist_names.name ASC') }
   scope :want_items, -> { where(role: 1).joins(:artist_name).order('artist_names.name ASC') }
   scope :title_contain, ->(word) { joins(:title).where('titles.name LIKE ?', "%#{word}%") }
