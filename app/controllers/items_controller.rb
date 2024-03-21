@@ -82,9 +82,14 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    item = current_user.items.find(params[:id])
-    item.destroy!
-    redirect_to items_path
+    @item = current_user.items.find(params[:id])
+    role = @item.role
+    @item.destroy!
+    if role == 'collection'
+      redirect_to collection_items_path, notice: t('items.delete.success.collection')
+    else
+      redirect_to want_items_path, notice: t('items.delete.success.want')
+    end
   end
 
   private

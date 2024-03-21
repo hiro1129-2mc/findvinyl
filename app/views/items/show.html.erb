@@ -70,7 +70,7 @@
         <%= link_to t('helpers.submit.move_to_collection'), "#", class: "btn btn-primary" %>
       <% end %>
       <%= link_to t('helpers.submit.edit'), edit_item_path(@item), class: "btn btn-primary" %>
-      <%= link_to t('helpers.submit.delete'), "#", class: "btn btn-xl btn-error" %>
+      <%= link_to t('helpers.submit.delete'), item_path(@item), class: "btn btn-xl btn-error", data: { turbo_method: :delete, turbo_confirm: t('items.confirm_delete') } %>
     </div>
   </div>
 </div>
