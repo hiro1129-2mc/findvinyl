@@ -65,7 +65,7 @@
     </div>
 
     <div class="flex justify-end space-x-2 mt-4">
-      <%= link_to t('helpers.submit.back'), items_path, class: "btn" %>
+      <%= link_to t('helpers.submit.back'), "#", class: "btn" %>
       <% if @item.want? %>
         <%= link_to t('helpers.submit.move_to_collection'), "#", class: "btn btn-primary" %>
       <% end %>

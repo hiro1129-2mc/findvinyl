@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
+    @item = Item.new(role: params[:role])
     @press_countries = PressCountry.all
     @conditions = Condition.all
     @accessories = Accessory.all
@@ -42,7 +42,12 @@ class ItemsController < ApplicationController
     @item.save_with_tags(tag_names:)
 
     if @item.save
-      redirect_to items_path, success: t('items.new.saved')
+      if @item.role == 'collection'
+        redirect_to collection_items_path, notice: t('items.edit.edit')
+      else
+        @item.role
+        redirect_to want_items_path, notice: t('items.edit.edit')
+      end
     else
       flash.now[:danger] = t('items.new.not_created')
       render :new, status: :unprocessable_entity
@@ -74,7 +79,12 @@ class ItemsController < ApplicationController
     @item.save_with_tags(tag_names:)
 
     if @item.update(item_params.except(:title, :artist_name, :press_country, :matrix_number))
-      redirect_to item_path(@item), success: t('items.edit.edit')
+      if @item.role == 'collection'
+        redirect_to collection_items_path, notice: t('items.new.saved')
+      else
+        @item.role
+        redirect_to want_items_path, notice: t('items.new.saved')
+      end
     else
       flash.now[:danger] = t('items.edit.not_edited')
       render :edit, status: :unprocessable_entity

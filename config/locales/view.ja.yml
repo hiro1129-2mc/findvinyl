@@ -83,6 +83,8 @@ ja:
     edit:
       edit: アイテムを編集しました
       not_edited: アイテムを編集できませんでした
+      edit_collection: コレクション編集
+      edit_want: 欲しいのもの編集
     index:
       tag: タグ
       not_found: 指定されたアイテムが見つかりません。
