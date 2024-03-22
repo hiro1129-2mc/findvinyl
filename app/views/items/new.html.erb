@@ -52,8 +52,8 @@
       </div>
 
       <div class="flex justify-end space-x-2 mt-4">
-        <%= link_to "Cancel", request.referer || search_path, class: "btn" %>
-        <%= form.submit "保存", class: "btn btn-primary" %>
+        <%= link_to t('helpers.submit.cancel'), request.referer || search_path, class: "btn" %>
+        <%= form.submit t('helpers.submit.submit'), class: "btn btn-primary" %>
       </div>
     <% end %>
   </div>

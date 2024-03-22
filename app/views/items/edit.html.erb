@@ -1,2 +1,58 @@
-<h1>Items#edit</h1>
-<p>Find me in app/views/items/edit.html.erb</p>
+<div class="flex justify-center items-center min-h-screen">
+  <div class="w-full max-w-md mx-auto bg-white shadow-md rounded-lg p-6">
+    <% if @item.collection? %>
+        <h2 class="text-xl font-bold mb-4"><%= t('items.edit.edit_collection') %></h2>
+    <% elsif @item.want? %>
+        <h2 class="text-xl font-bold mb-4"><%= t('items.edit.edit_want') %></h2>
+    <% end %>
+
+    <%= form_with model: @item, local: true do |form| %>
+      <%= render 'shared/error_messages', object: form.object %>
+
+      <div class="form-control">
+        <%= form.label :title, class: "label" %>
+        <%= form.text_field :title, value: @item.title&.name || params[:item]&.fetch(:title, nil), class: "input input-bordered", required: true %>
+      </div>
+
+      <div class="form-control">
+        <%= form.label :artist_name, class: "label" %>
+        <%= form.text_field :artist_name, value: @item.artist_name&.name || params[:item]&.fetch(:artist_name, nil), class: "input input-bordered", required: true %>
+      </div>
+
+      <div class="form-control">
+        <%= form.label :press_country, class: "label" %>
+        <%= form.text_field :press_country, value: @item.press_country&.name || params[:item]&.fetch(:press_country, nil), class: "input input-bordered" %>
+      </div>
+
+      <div class="form-control">
+        <%= form.label :matrix_number, class: "label" %>
+        <%= form.text_field :matrix_number, value: @item.matrix_number&.number || params[:item]&.fetch(:matrix_number, nil), class: "input input-bordered" %>
+      </div>
+
+      <div class="form-control">
+        <%= form.label :condition, class: "label" %>
+        <%= form.select :condition_id, @conditions.map { |condition| [condition.grade, condition.id] }, {include_blank: true}, {class: "select select-bordered"} %>
+      </div>
+
+      <div class="form-control">
+        <%= form.label :accessory, class: "label" %>
+        <%= form.select :accessory_id, @accessories.map { |accessory| [accessory.name, accessory.id] }, {include_blank: true}, {class: "select select-bordered"} %>
+      </div>
+
+      <div class="form-control">
+        <%= form.label :tag, class: "label" %>
+        <%= form.text_field :tag, value: @item.tag_names, class: "input input-bordered" %>
+      </div>
+
+      <div class="form-control">
+        <%= form.label :user_note, class: "label" %>
+        <%= form.text_area :user_note, value: @item.user_note, class: "textarea textarea-bordered" %>
+      </div>
+
+      <div class="flex justify-end space-x-2 mt-4">
+        <%= link_to t('helpers.submit.cancel'), request.referer || search_path, class: "btn" %>
+        <%= form.submit t('helpers.submit.submit'), class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

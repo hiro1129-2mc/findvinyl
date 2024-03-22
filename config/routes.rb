@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create]
   resources :artists, only: %i[show]
   resources :releases, only: %i[show]
-  resources :items, only: %i[new create show edit update destroy]
+  resources :items, only: %i[new create show edit update destroy] do
+    member do
+      patch :move_to_collection
+    end
+  end
 
   get 'collection_tag_items', to: 'tags#index', defaults: { view_type: 'collection_items' }
   get 'want_tag_items', to: 'tags#index', defaults: { view_type: 'want_items' }

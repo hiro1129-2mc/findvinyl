@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :require_login
-  before_action :set_item, only: %i[show edit update destroy]
+  before_action :set_item, only: %i[show edit update destroy move_to_collection]
   before_action :set_select_collections, only: %i[new create edit update]
 
   def index
@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
+    @item = Item.new(role: params[:role])
     @press_countries = PressCountry.all
     @conditions = Condition.all
     @accessories = Accessory.all
@@ -42,7 +42,12 @@ class ItemsController < ApplicationController
     @item.save_with_tags(tag_names:)
 
     if @item.save
-      redirect_to items_path, success: t('items.new.saved')
+      if @item.role == 'collection'
+        redirect_to collection_items_path, notice: t('items.edit.edit')
+      else
+        @item.role
+        redirect_to want_items_path, notice: t('items.edit.edit')
+      end
     else
       flash.now[:danger] = t('items.new.not_created')
       render :new, status: :unprocessable_entity
@@ -74,17 +79,35 @@ class ItemsController < ApplicationController
     @item.save_with_tags(tag_names:)
 
     if @item.update(item_params.except(:title, :artist_name, :press_country, :matrix_number))
-      redirect_to item_path(@item), success: t('items.edit.edit')
+      if @item.role == 'collection'
+        redirect_to collection_items_path, notice: t('items.new.saved')
+      else
+        @item.role
+        redirect_to want_items_path, notice: t('items.new.saved')
+      end
     else
       flash.now[:danger] = t('items.edit.not_edited')
       render :edit, status: :unprocessable_entity
     end
   end
 
+  def move_to_collection
+    if @item.update(role: 'collection')
+      redirect_to want_items_path, notice: t('items.role_updated_to_collection')
+    else
+      redirect_to want_items_path, alert: t('items.role_update_failed')
+    end
+  end
+
   def destroy
-    item = current_user.items.find(params[:id])
-    item.destroy!
-    redirect_to items_path
+    @item = current_user.items.find(params[:id])
+    role = @item.role
+    @item.destroy!
+    if role == 'collection'
+      redirect_to collection_items_path, notice: t('items.delete.success.collection')
+    else
+      redirect_to want_items_path, notice: t('items.delete.success.want')
+    end
   end
 
   private

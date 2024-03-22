@@ -1,9 +1,10 @@
 class TagsController < ApplicationController
   def index
     @tag = Tag.find(params[:tag_id])
-    tagged_items = current_user.items.joins(:tags).where(tags: { id: @tag.id })
+    tagged_items = current_user.items.tagged_with(@tag.id)
 
     @q = tagged_items.ransack(params[:q])
+    results = @q.result
 
     case params[:view_type]
     when 'collection_items'
