@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :require_login
-  before_action :set_item, only: %i[show edit update destroy]
+  before_action :set_item, only: %i[show edit update destroy move_to_collection]
   before_action :set_select_collections, only: %i[new create edit update]
 
   def index
@@ -88,6 +88,14 @@ class ItemsController < ApplicationController
     else
       flash.now[:danger] = t('items.edit.not_edited')
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def move_to_collection
+    if @item.update(role: 'collection')
+      redirect_to want_items_path, notice: t('items.role_updated_to_collection')
+    else
+      redirect_to want_items_path, alert: t('items.role_update_failed')
     end
   end
 

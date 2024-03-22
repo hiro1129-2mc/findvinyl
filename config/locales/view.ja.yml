@@ -11,6 +11,7 @@ ja:
       delete: 削除
       move_to_collection: コレクションに移動
       back: 戻る
+      cancel: キャンセル
     label:
       email: メールアドレス
       password: パスワード
@@ -75,6 +76,8 @@ ja:
       details_not_available: リリースの詳細情報はありません。
   items:
     confirm_delete: 本当に削除しますか？
+    role_updated_to_collection: 欲しいものをコレクションに移動しました
+    role_update_failed: 欲しいものをコレクションに移動できませんでした
     new:
       create_collection: コレクションを作成
       create_want: 欲しいものを作成
