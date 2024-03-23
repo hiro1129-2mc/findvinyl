@@ -23,6 +23,11 @@ class ItemsController < ApplicationController
     @press_countries = PressCountry.all
     @conditions = Condition.all
     @accessories = Accessory.all
+
+    @title = params[:title]
+    @artist_name = params[:artist_name]
+    @release_format = params[:release_format]
+    @press_country = params[:press_country]
   end
 
   def create

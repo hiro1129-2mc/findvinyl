@@ -13,22 +13,22 @@
 
       <div class="form-control">
         <%= form.label :title, class: "label" %>
-        <%= form.text_field :title, value: @item.title&.name || params[:item]&.fetch(:title, nil), class: "input input-bordered", required: true %>
+        <%= form.text_field :title, value: @title || params[:title], class: "input input-bordered", required: true %>
       </div>
 
       <div class="form-control">
         <%= form.label :artist_name, class: "label" %>
-        <%= form.text_field :artist_name, value: @item.artist_name&.name || params[:item]&.fetch(:artist_name, nil), class: "input input-bordered", required: true %>
+        <%= form.text_field :artist_name, value: @artist_name || params[:artist_name], class: "input input-bordered", required: true %>
       </div>
 
       <div class="form-control">
         <%= form.label :release_format, class: "label" %>
-        <%= form.text_field :release_format, value: @item.release_format&.name || params[:item]&.fetch(:release_format, nil), class: "input input-bordered" %>
+        <%= form.text_field :release_format, value: @release_format || params[:release_format], class: "input input-bordered" %>
       </div>
 
       <div class="form-control">
         <%= form.label :press_country, class: "label" %>
-        <%= form.text_field :press_country, value: @item.press_country&.name || params[:item]&.fetch(:press_country, nil), class: "input input-bordered" %>
+        <%= form.text_field :press_country, value: @press_country || params[:press_country], class: "input input-bordered" %>
       </div>
 
       <div class="form-control">
