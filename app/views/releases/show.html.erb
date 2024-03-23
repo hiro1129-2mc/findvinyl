@@ -9,17 +9,39 @@
           <p class="text-xl text-gray-600 mb-4"><%= @release.artist_credit.name %></p>
             
           <% if @data.present? %>
-            <div class="mb-4">
-              <% @release.mediums.each do |medium| %>
-                <% if medium.medium_format.present? %>
-                  <p><strong><%= t('results.columns.format') %>:</strong> <%= medium.medium_format.name %>
-                <% else %>
-                  <%= " " %>
+            <div class="mb-4 flex justify-between">
+              <div>
+                <% @release.mediums.each do |medium| %>
+                  <% if medium.medium_format.present? %>
+                    <p><strong><%= t('results.columns.format') %>:</strong> <%= medium.medium_format.name %>
+                  <% else %>
+                    <%= " " %>
+                  <% end %>
                 <% end %>
-              <% end %>
-              <p><strong><%= t('releases.show.release_date') %>:</strong> <%= @data["date"] %></p>
-              <p><strong><%= t('releases.show.press_country') %>:</strong> <%= @data["country"] %></p>
-              <p><strong><%= t('releases.show.status') %>:</strong> <%= @data["status"] %></p>
+                <p><strong><%= t('releases.show.release_date') %>:</strong> <%= @data["date"] %></p>
+                <p><strong><%= t('releases.show.press_country') %>:</strong> <%= @data["country"] %></p>
+                <p><strong><%= t('releases.show.status') %>:</strong> <%= @data["status"] %></p>
+              </div>
+              <div class="flex flex-col items-end space-y-2">
+                <%= link_to new_item_path(role: 'collection', 
+                                          title: @release.name, 
+                                          artist_name: @release.artist_credit.name, 
+                                          release_format: @release.mediums.find { |m| m.medium_format.present? }.medium_format.name, 
+                                          press_country: @data["country"]), 
+                            class: "btn btn-primary btn-block" do %>
+                  <%= t('items.new.add_to_collection') %>
+                <% end %>
+                
+                <%# 欲しいものに追加のリンク %>
+                <%= link_to new_item_path(role: 'want', 
+                                          title: @release.name, 
+                                          artist_name: @release.artist_credit.name, 
+                                          release_format: @release.mediums.find { |m| m.medium_format.present? }.medium_format.name, 
+                                          press_ccountry: @data["country"]), 
+                            class: "btn btn-secondary btn-block" do %>
+                  <%= t('items.new.add_to_wishlist') %>
+                <% end %>
+              </div>
             </div>
 
             <% if @data["media"].present? %>
@@ -33,10 +55,10 @@
                   <ul class="list-disc">
                     <% media["tracks"].each do |track| %>
                       <li class="ml-6"><%= track["title"] %></li>
-                    <% end %> <!-- media["tracks"].eachの終了タグ -->
+                    <% end %>
                   </ul>
                 </div>
-              <% end %> <!-- @release["media"].eachの終了タグ -->
+              <% end %>
             <% else %>
               <p><%= t('releases.show.track_not_available') %></p>
             <% end %>

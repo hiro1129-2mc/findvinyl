@@ -81,6 +81,8 @@ ja:
     new:
       create_collection: コレクションを作成
       create_want: 欲しいものを作成
+      add_to_collection: コレクションに追加
+      add_to_wishlist: 欲しいものに追加
       saved: アイテムを保存しました
       not_created: アイテムを作成できませんでした
     edit:
