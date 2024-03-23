@@ -24,6 +24,13 @@
 
     <div class="form-control">
       <label class="label">
+        <span class="label-text"><%= t('results.columns.format') %></span>
+      </label>
+      <input type="text" value="<%= @item.release_format&.name %>" class="input input-bordered" disabled>
+    </div>
+
+    <div class="form-control">
+      <label class="label">
         <span class="label-text"><%= t('releases.show.press_country') %></span>
       </label>
       <input type="text" value="<%= @item.press_country&.name %>" class="input input-bordered" disabled>

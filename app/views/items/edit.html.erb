@@ -20,6 +20,11 @@
       </div>
 
       <div class="form-control">
+        <%= form.label :release_format, class: "label" %>
+        <%= form.text_field :release_format, value: @item.release_format&.name || params[:item]&.fetch(:release_format, nil), class: "input input-bordered" %>
+      </div>
+
+      <div class="form-control">
         <%= form.label :press_country, class: "label" %>
         <%= form.text_field :press_country, value: @item.press_country&.name || params[:item]&.fetch(:press_country, nil), class: "input input-bordered" %>
       </div>

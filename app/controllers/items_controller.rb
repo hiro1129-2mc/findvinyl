@@ -26,11 +26,12 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = current_user.items.build(item_params.except(:title, :artist_name, :press_country, :matrix_number))
+    @item = current_user.items.build(item_params.except(:title, :artist_name, :release_format, :press_country, :matrix_number))
 
     @item.find_or_create_related_objects({
                                            title: params[:item][:title],
                                            artist_name: params[:item][:artist_name],
+                                           release_format: params[:item][:release_format],
                                            press_country: params[:item][:press_country],
                                            matrix_number: params[:item][:matrix_number]
                                          })
@@ -43,10 +44,10 @@ class ItemsController < ApplicationController
 
     if @item.save
       if @item.role == 'collection'
-        redirect_to collection_items_path, notice: t('items.edit.edit')
+        redirect_to collection_items_path, notice: t('items.new.saved')
       else
         @item.role
-        redirect_to want_items_path, notice: t('items.edit.edit')
+        redirect_to want_items_path, notice: t('items.new.saved')
       end
     else
       flash.now[:danger] = t('items.new.not_created')
@@ -68,6 +69,7 @@ class ItemsController < ApplicationController
     @item.find_or_create_related_objects({
                                            title: params[:item][:title],
                                            artist_name: params[:item][:artist_name],
+                                           release_format: params[:item][:release_format],
                                            press_country: params[:item][:press_country],
                                            matrix_number: params[:item][:matrix_number]
                                          })
@@ -78,12 +80,12 @@ class ItemsController < ApplicationController
     tag_names = params[:item][:tag]&.split(',') || []
     @item.save_with_tags(tag_names:)
 
-    if @item.update(item_params.except(:title, :artist_name, :press_country, :matrix_number))
+    if @item.update(item_params.except(:title, :artist_name, :release_format, :press_country, :matrix_number))
       if @item.role == 'collection'
-        redirect_to collection_items_path, notice: t('items.new.saved')
+        redirect_to collection_items_path, notice: t('items.edit.edit')
       else
         @item.role
-        redirect_to want_items_path, notice: t('items.new.saved')
+        redirect_to want_items_path, notice: t('items.edit.edit')
       end
     else
       flash.now[:danger] = t('items.edit.not_edited')
@@ -113,7 +115,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:title, :artist_name, :press_country, :matrix_number, :condition_id, :user_note, :role)
+    params.require(:item).permit(:title, :artist_name, :release_format, :press_country, :matrix_number, :condition_id, :user_note, :role)
   end
 
   def set_item
