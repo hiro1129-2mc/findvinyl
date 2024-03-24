@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for vinyllog on 2024-03-07T20:54:02+09:00
+# fly.toml app configuration file generated for vinyllog on 2024-03-23T12:00:51+09:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -19,6 +19,6 @@ primary_region = 'nrt'
 
 [[vm]]
   size = 'shared-cpu-1x'
-  memory = '512mb'
+  memory = '2gb'
   cpu_kind = 'shared'
   cpus = 1

@@ -20,6 +20,11 @@
       </div>
 
       <div class="form-control">
+        <%= form.label :release_format, class: "label" %>
+        <%= form.text_field :release_format, value: @item.release_format&.name || params[:item]&.fetch(:release_format, nil), class: "input input-bordered" %>
+      </div>
+
+      <div class="form-control">
         <%= form.label :press_country, class: "label" %>
         <%= form.text_field :press_country, value: @item.press_country&.name || params[:item]&.fetch(:press_country, nil), class: "input input-bordered" %>
       </div>
@@ -35,8 +40,10 @@
       </div>
 
       <div class="form-control">
-        <%= form.label :accessory, class: "label" %>
-        <%= form.select :accessory_id, @accessories.map { |accessory| [accessory.name, accessory.id] }, {include_blank: true}, {class: "select select-bordered"} %>
+        <%= form.label :accessories, t('activerecord.attributes.item.accessories'), class: "label" %>
+        <%= form.select :accessory_ids, 
+                        @accessories.map { |accessory| [accessory.name, accessory.id] }, {}, 
+                        { class: 'select2', multiple: true } %>
       </div>
 
       <div class="form-control">
@@ -56,3 +63,11 @@
     <% end %>
   </div>
 </div>
+
+<script>
+  document.addEventListener("turbo:load", function() {
+    $('.select2').each(function() {
+      $(this).select2();
+    });
+  });
+</script>

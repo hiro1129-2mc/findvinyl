@@ -2,6 +2,7 @@ class Item < ApplicationRecord
   belongs_to :user
   belongs_to :title
   belongs_to :artist_name
+  belongs_to :release_format, optional: true
   belongs_to :press_country, optional: true
   belongs_to :matrix_number, optional: true
   belongs_to :condition, optional: true
