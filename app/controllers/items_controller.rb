@@ -31,7 +31,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = current_user.items.build(item_params.except(:title, :artist_name, :release_format, :press_country, :matrix_number))
+    @item = current_user.items.build(item_params.except(:title, :artist_name, :release_format, :press_country, :matrix_number, accessory_ids: []))
 
     @item.find_or_create_related_objects({
                                            title: params[:item][:title],
@@ -85,7 +85,7 @@ class ItemsController < ApplicationController
     tag_names = params[:item][:tag]&.split(',') || []
     @item.save_with_tags(tag_names:)
 
-    if @item.update(item_params.except(:title, :artist_name, :release_format, :press_country, :matrix_number))
+    if @item.update(item_params.except(:title, :artist_name, :release_format, :press_country, :matrix_number, accessory_ids: []))
       if @item.role == 'collection'
         redirect_to collection_items_path, notice: t('items.edit.edit')
       else
@@ -120,7 +120,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:title, :artist_name, :release_format, :press_country, :matrix_number, :condition_id, :user_note, :role)
+    params.require(:item).permit(:title, :artist_name, :release_format, :press_country, :matrix_number, :condition_id, :user_note, :role, accessory_ids: [])
   end
 
   def set_item

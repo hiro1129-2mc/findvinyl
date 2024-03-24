@@ -42,8 +42,10 @@
       </div>
 
       <div class="form-control">
-        <%= form.label :accessory, class: "label" %>
-        <%= form.select :accessory_id, @accessories.map { |accessory| [accessory.name, accessory.id] }, {include_blank: true}, {class: "select select-bordered"} %>
+        <%= form.label :accessories, t('activerecord.attributes.item.accessories'), class: "label" %>
+        <%= form.select :accessory_ids, 
+                        @accessories.map { |accessory| [accessory.name, accessory.id] }, {}, 
+                        { class: 'select2', multiple: true } %>
       </div>
 
       <div class="form-control">
@@ -63,3 +65,9 @@
     <% end %>
   </div>
 </div>
+
+<script>
+  document.addEventListener("turbo:load", function() {
+    $('.select2').select2();
+  });
+</script>
