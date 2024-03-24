@@ -83,6 +83,4 @@ test:
 #
 production:
   <<: *default
-  database: findvinyl_production
-  username: findvinyl
-  password: <%= ENV["FINDVINYL_DATABASE_PASSWORD"] %>
+  # DATABASE_URL環境変数から接続情報を自動的に取得
