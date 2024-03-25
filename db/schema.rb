@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_23_090422) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_17_080642) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -73,12 +73,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_23_090422) do
     t.integer "role", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "release_format_id"
     t.index ["artist_name_id"], name: "index_items_on_artist_name_id"
     t.index ["condition_id"], name: "index_items_on_condition_id"
     t.index ["matrix_number_id"], name: "index_items_on_matrix_number_id"
     t.index ["press_country_id"], name: "index_items_on_press_country_id"
-    t.index ["release_format_id"], name: "index_items_on_release_format_id"
     t.index ["title_id"], name: "index_items_on_title_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
@@ -102,10 +100,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_23_090422) do
   create_table "press_countries", force: :cascade do |t|
     t.string "name", null: false
     t.index ["name"], name: "index_press_countries_on_name", unique: true
-  end
-
-  create_table "release_formats", force: :cascade do |t|
-    t.string "name", null: false
   end
 
   create_table "releases", force: :cascade do |t|
@@ -148,7 +142,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_23_090422) do
   add_foreign_key "items", "conditions"
   add_foreign_key "items", "matrix_numbers"
   add_foreign_key "items", "press_countries"
-  add_foreign_key "items", "release_formats"
   add_foreign_key "items", "titles"
   add_foreign_key "items", "users"
   add_foreign_key "mediums", "medium_formats"
