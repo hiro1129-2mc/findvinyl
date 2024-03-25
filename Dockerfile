@@ -4,7 +4,7 @@ FROM ruby:3.2.2
 #環境変数
 ENV TZ Asia/Tokyo
 ENV LC_ALL C.UTF-8
-ENV RAILS_ENV=production
+#ENV RAILS_ENV=production
 
 # yarnインストール
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - \
