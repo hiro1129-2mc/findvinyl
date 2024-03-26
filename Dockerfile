@@ -2,9 +2,8 @@
 FROM ruby:3.2.2
 
 #環境変数
-ENV TZ Asia/Tokyo
-ENV LC_ALL C.UTF-8
-#ENV RAILS_ENV=production
+ENV TZ=Asia/Tokyo \
+    LC_ALL=C.UTF-8
 
 # yarnインストール
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - \
@@ -36,6 +35,5 @@ RUN chmod +x /usr/bin/entrypoint.sh
 #コンテナがリッスンするPORTを指定
 EXPOSE 3000
 
-# ENTRYPOINTとCMDを統合
+# ENTRYPOINTを指定
 ENTRYPOINT ["entrypoint.sh"]
-CMD ["rails", "server", "-b", "0.0.0.0"]
