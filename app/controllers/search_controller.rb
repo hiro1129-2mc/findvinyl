@@ -1,4 +1,6 @@
 class SearchController < ApplicationController
+  skip_before_action :require_login, only: [:index]
+
   def index
     @type = params[:type]
     @q = get_search_query(@type, params[:q])

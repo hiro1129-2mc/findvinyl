@@ -1,4 +1,6 @@
 class ArtistsController < ApplicationController
+  skip_before_action :require_login, only: [:show]
+
   def show
     @artist = Artist.find(params[:id])
     @q = Artist.ransack(params[:q])

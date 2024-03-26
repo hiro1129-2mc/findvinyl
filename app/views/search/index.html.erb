@@ -1,14 +1,11 @@
 <div class="container mx-auto pt-3">
   <div class="flex flex-wrap">
     <div class="w-full lg:w-10/12 lg:mx-auto">
-      <%= render 'shared/search_form', q: @q, url: search_path %>
 
       <div class="mt-4">
         <% if @results.blank? %>
           <% if params[:q].present? %>
             <p><%= t('search.no_results') %></p>
-          <% else %>
-            <%= render 'search_instructions' %>
           <% end %>
         <% else %>
           <% case @type %>

@@ -3,7 +3,7 @@ class MusicBrainzService
   require 'uri'
 
   # MusicBrainz APIのベースURL
-  BASE_URL = 'https://musicbrainz.org/ws/2'
+  BASE_URL = 'https://musicbrainz.org/ws/2'.freeze
 
   def initialize
     @last_request_time = nil

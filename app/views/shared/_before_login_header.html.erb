@@ -3,7 +3,10 @@
     <div class="flex-1">
       <a class="btn btn-ghost text-xl">VinylLog</a>
     </div>
-    <div class="flex-none gap-2">
+    <div class="flex justify-center items-center mx-4">
+      <%= render 'shared/search_form', q: @q, url: search_path %>
+    </div>
+    <div class="flex-1 justify-end flex">
       <%= link_to t('header.to_register_page'), new_user_path, class: "btn btn-ghost" %>
       <%= link_to t('header.login'), login_path, class: "btn btn-ghost" %>
     </div>
