@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create]
   resources :artists, only: %i[show]
   resources :releases, only: %i[show]
+  resources :records
   resources :items, only: %i[new create show edit update destroy] do
     member do
       patch :move_to_collection

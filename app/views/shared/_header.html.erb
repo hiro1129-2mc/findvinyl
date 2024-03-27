@@ -28,7 +28,7 @@
         <ul class="pl-4">
           <%= link_to t('my_interests.collection_list'), collection_items_path, class: "block p-2" %>
           <%= link_to t('my_interests.wantlist'), want_items_path, class: "block p-2" %>
-          <%= link_to t('my_interests.records_reports'), "#", class: "block p-2" %>
+          <%= link_to t('my_interests.records_reports'), records_path, class: "block p-2" %>
           <%= link_to t('my_interests.bookmarked_shops'), "#", class: "block p-2" %>
         </ul>
       </li>
@@ -42,7 +42,7 @@
       const closeMenu = document.getElementById('closeMenu');
 
       menuToggle.addEventListener('click', (e) => {
-        e.stopPropagation(); // このイベントが親要素に伝播するのを防ぎます
+        e.stopPropagation(); // このイベントが親要素に伝播するのを防ぐ
         sidebar.classList.toggle('translate-x-full');
       });
 

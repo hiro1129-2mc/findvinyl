@@ -11,6 +11,8 @@ class Item < ApplicationRecord
   has_many :tags, through: :item_tags
   has_many :item_accessories, dependent: :destroy
   has_many :accessories, through: :item_accessories
+  has_many :record_items, dependent: :destroy
+  has_many :records, through: :record_items
 
   validates :user_id, presence: true
   validates :title_id, presence: true
