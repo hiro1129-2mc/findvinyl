@@ -1,5 +1,8 @@
 class RecordsController < ApplicationController
-  def index; end
+
+  def index
+    @records = current_user.records.includes(:user)
+  end
 
   def new; end
 
