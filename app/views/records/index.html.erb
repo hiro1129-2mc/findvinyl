@@ -6,7 +6,7 @@
         <div>
           <%= month_calendar do |date| %>
             <%= date.day %>
-            <% records each do |record| %>
+            <% @records.each do |record| %>
                 <%= link_to '♪', "#" %>
             <% end %>
           <% end %>
