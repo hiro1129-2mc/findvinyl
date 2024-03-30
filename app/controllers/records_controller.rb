@@ -2,7 +2,8 @@ class RecordsController < ApplicationController
   before_action :require_login
 
   def index
-    @records = current_user.records.includes(:user)
+    records_grouped_by_date = current_user.records.group_by { |record| record.created_at.to_date }
+    @records_by_date = records_grouped_by_date.keys
   end
 
   def search

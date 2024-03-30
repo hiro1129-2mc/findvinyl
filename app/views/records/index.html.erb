@@ -6,8 +6,8 @@
       <div class="flex-1 flex items-center justify-center">
         <%= month_calendar do |date| %>
           <%= date.day %>
-          <% @records.each do |record| %>
-            <%= link_to '♪', "#" %>
+          <% if @records_by_date.include?(date) %>
+            <%= link_to '♪', "#", class: "record-exists" %>
           <% end %>
         <% end %>
       </div>
