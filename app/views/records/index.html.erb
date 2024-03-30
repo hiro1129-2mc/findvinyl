@@ -1,16 +1,16 @@
 <div class="container mx-auto mt-8">
-  <h1 class="text-2xl font-bold text-center mb-8"><%= t('my_interests.collection_list') %></h1>
-    <div class="flex">
+  <h1 class="text-2xl font-bold text-center mb-8"><%= t('記録・レポート') %></h1>
+  <div class="flex flex-col items-center">
+    <div class="flex w-full">
       <div class="flex-1"></div>
-      <div class="flex-1 flex items-center justify-center py-0">
-        <div>
-          <%= month_calendar do |date| %>
-            <%= date.day %>
-            <% @records.each do |record| %>
-                <%= link_to '♪', "#" %>
-            <% end %>
+      <div class="flex-1 flex items-center justify-center">
+        <%= month_calendar do |date| %>
+          <%= date.day %>
+          <% @records.each do |record| %>
+            <%= link_to '♪', "#" %>
           <% end %>
-        </div>
+        <% end %>
       </div>
+    </div>
   </div>
 </div>

@@ -1,0 +1,30 @@
+<div class="flex justify-center items-center">
+  <div class="w-full max-w-md mx-auto bg-white shadow-md rounded-lg p-6">
+
+    <div class="text-center mb-4">
+      <%= Date.today.strftime("%Y.%m.%d") %>
+    </div>
+    <%= form_with model: @record, local: true do |form| %>
+      <div class="mb-4">
+        <label for="item_search" class="block text-gray-700 text-sm font-bold mb-2">レコード検索</label>
+        <input type="text" id="item_search" name="item_search" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="タイトル・アーティスト名を入力">
+      </div>
+    
+      <div id="search_results" class="max-h-48 overflow-y-auto border p-2 mt-2"></div>
+    
+      <div id="selected_items" class="mb-4 mt-4"></div>
+    
+      <div class="mb-4">
+        <%= form.label :日記, class: 'block text-gray-700 text-sm font-bold mb-2' %>
+        <%= form.text_area :content, rows: 4, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+      </div>
+    
+      <div class="flex justify-end space-x-2 mt-4">
+        <%= link_to t('helpers.submit.cancel'), request.referer || search_path, class: "btn" %>
+        <%= form.submit t('helpers.submit.submit'), class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= javascript_include_tag 'record_form' %>
