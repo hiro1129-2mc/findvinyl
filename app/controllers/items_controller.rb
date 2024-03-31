@@ -7,12 +7,12 @@ class ItemsController < ApplicationController
     case params[:view_type]
     when 'collection_items'
       items = current_user.items.collection_items
-      @items_search = items.ransack(params[:q])  # ここを変更
+      @items_search = items.ransack(params[:q])
       @items = @items_search.result.page(params[:page]).per(20)
       render 'collection_items'
     when 'want_items'
       items = current_user.items.want_items
-      @items_search = items.ransack(params[:q])  # ここを変更
+      @items_search = items.ransack(params[:q])
       @items = @items_search.result.page(params[:page]).per(20)
       render 'want_items'
     end

@@ -6,6 +6,7 @@
     <div class="flex justify-center items-center mx-4">
       <%= render 'shared/search_form', q: @q, url: search_path %>
     </div>
+
     <div class="flex-1 justify-end flex">
       <button class="btn btn-square btn-ghost" id="menuToggle">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current">
@@ -28,7 +29,7 @@
         <ul class="pl-4">
           <%= link_to t('my_interests.collection_list'), collection_items_path, class: "block p-2" %>
           <%= link_to t('my_interests.wantlist'), want_items_path, class: "block p-2" %>
-          <%= link_to t('my_interests.records_reports'), "#", class: "block p-2" %>
+          <%= link_to t('my_interests.records_reports'), records_path, class: "block p-2" %>
           <%= link_to t('my_interests.bookmarked_shops'), "#", class: "block p-2" %>
         </ul>
       </li>
@@ -42,7 +43,7 @@
       const closeMenu = document.getElementById('closeMenu');
 
       menuToggle.addEventListener('click', (e) => {
-        e.stopPropagation(); // このイベントが親要素に伝播するのを防ぎます
+        e.stopPropagation(); // このイベントが親要素に伝播するのを防ぐ
         sidebar.classList.toggle('translate-x-full');
       });
 

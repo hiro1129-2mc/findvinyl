@@ -3,6 +3,12 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create]
   resources :artists, only: %i[show]
   resources :releases, only: %i[show]
+  resources :records do
+    collection do
+      get :search
+      get 'daily_records/:date', to: 'records#daily_records', as: :daily_records
+    end
+  end
   resources :items, only: %i[new create show edit update destroy] do
     member do
       patch :move_to_collection

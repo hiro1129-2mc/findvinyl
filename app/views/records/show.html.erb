@@ -1,0 +1,28 @@
+<div class="flex justify-center items-center">
+  <div class="w-full max-w-md mx-auto bg-white shadow-md rounded-lg p-6">
+    <div class="mb-4">
+      <div class="flex justify-center items-center">
+        <h2 class="text-xl font-bold"><%= @record.created_at.strftime("%Y-%m-%d %H:%M") %></h2>
+      </div>
+
+      <% if @record.items.any? %>
+        <div class="mb-4">
+          <h3 class="text-lg font-bold"><%= t('records.daily_records.listened_records') %></h3>
+          <ul>
+            <% @record.items.each do |item| %>
+              <li><%= item.title.name %> - <%= item.artist_name.name %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <h3 class="text-lg font-bold"><%= t('records.new.diary') %></h3>
+      <p><%= @record.content %></p>
+    </div>
+
+    <div class="flex justify-end space-x-2 mt-4">
+      <%= link_to t('helpers.submit.edit'), edit_record_path(@record), class: "btn btn-primary" %>
+      <%= link_to t('helpers.submit.delete'), record_path(@record), class: "btn btn-xl btn-error", data: { turbo_method: :delete, turbo_confirm: t('records.confirm_delete') } %>
+    </div>
+  </div>
+</div>

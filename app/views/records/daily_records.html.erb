@@ -1,0 +1,26 @@
+<div class="flex justify-center items-center">
+  <div class="w-full max-w-md mx-auto bg-white shadow-md rounded-lg p-6">
+    <h1 class="text-2xl font-bold text-center mb-8"><%= t('records.daily_records.title', date: params[:date]) %></h1>
+    <% @records.each do |record| %>
+      <%= link_to record_path(record), class: "block mb-4 bg-white shadow-md rounded-lg p-6" do %>
+        <div>
+          <h2 class="text-xl font-bold"><%= record.created_at.strftime("%Y-%m-%d %H:%M") %></h2>
+          
+          <% if record.items.any? %>
+            <div class="mb-4">
+              <h3 class="text-lg font-bold"><%= t('records.daily_records.listened_records') %></h3>
+              <ul>
+                <% record.items.each do |item| %>
+                  <li><%= item.title.name %> - <%= item.artist_name.name %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+    
+          <h3 class="text-lg font-bold"><%= t('records.new.diary') %></h3>
+          <p><%= record.content.length > 30 ? "#{record.content[0, 30]}..." : record.content %></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

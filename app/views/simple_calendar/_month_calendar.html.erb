@@ -1,0 +1,46 @@
+<div class="flex flex-col items-center justify-center">
+  <div class="w-1/2 max-w-lg p-6 mx-auto bg-white rounded-2xl border border-gray-300">
+    <div class="flex justify-between pb-4">
+      <nav class="flex items-center justify-between w-full">
+        <div>
+          <%= link_to t('simple_calendar.previous', default: '<'), calendar.url_for_previous_view, class: "-rotate-90 cursor-pointer" %>
+        </div>
+        
+        <div class="flex-grow text-center">
+          <time datetime="<%= start_date.strftime('%Y-%m') %>" class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></time>
+        </div>
+        
+        <div>
+          <%= link_to t('simple_calendar.next', default: '>'), calendar.url_for_next_view, class: "rotate-90 cursor-pointer" %>
+        </div>
+      </nav>
+    </div>
+
+    <table class="w-full mt-4 table-auto">
+      <thead class="text-left">
+        <tr>
+          <% date_range.slice(0, 7).each do |day| %>
+            <th class="px-4 py-2 text-sm font-semibold text-gray-700"><%= t('date.abbr_day_names')[day.wday] %></th>
+          <% end %>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% date_range.each_slice(7) do |week| %>
+          <tr>
+            <% week.each do |day| %>
+              <%= content_tag :td, class: "px-4 py-2 border hover:bg-gray-100 text-xs text-left align-top #{calendar.td_classes_for(day)}" do %>
+                <% instance_exec(day, calendar.sorted_events_for(day), &passed_block) %>
+              <% end %>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="flex justify-end w-full mt-4">
+    <%= link_to new_record_path, class: "btn btn-primary" do %>
+      <%= t('記録する') %>
+    <% end %>
+  </div>
+</div>
