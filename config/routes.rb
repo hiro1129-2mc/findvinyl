@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :records do
     collection do
       get :search
+      get 'daily_records/:date', to: 'records#daily_records', as: :daily_records
     end
   end
   resources :items, only: %i[new create show edit update destroy] do

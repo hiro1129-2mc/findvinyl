@@ -2,8 +2,7 @@ class RecordsController < ApplicationController
   before_action :require_login
 
   def index
-    records_grouped_by_date = current_user.records.group_by { |record| record.created_at.to_date }
-    @records_by_date = records_grouped_by_date.keys
+    @records_by_date = current_user.records.group_by { |record| record.created_at.to_date }
   end
 
   def search
@@ -21,7 +20,7 @@ class RecordsController < ApplicationController
   def create
     @record = current_user.records.build(record_params)
     if @record.save
-      redirect_to records_path, notice: '記録を作成しました'
+      redirect_to records_path, notice: t('records.new.saved')
     else
       render :new, status: :unprocessable_entity
     end
@@ -31,7 +30,14 @@ class RecordsController < ApplicationController
 
   def update; end
 
-  def show; end
+  def show
+    @record = Record.find(params[:id])
+  end
+
+  def daily_records
+    date = Date.parse(params[:date])
+    @records = current_user.records.where('DATE(created_at) = ?', date)
+  end
 
   def destroy; end
 

@@ -105,3 +105,18 @@ ja:
       success:
         collection: コレクションを削除しました。
         want: 欲しいものを削除しました。
+  records:
+    confirm_delete: 本当に削除しますか？
+    new:
+      saved: 記録を作成しました
+      search_items: レコード検索
+      title_artist_label: タイトル・アーティスト名を入力
+      diary: 日記
+    index:
+      record_report: 記録・レポート
+    daily_records:
+      title: 記録一覧（%{date}）
+      listened_records: 聴いたレコード
+      details_button: 詳細を見る
+    show:
+      title: 記録詳細
