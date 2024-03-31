@@ -120,3 +120,5 @@ ja:
       details_button: 詳細を見る
     show:
       title: 記録詳細
+    delete:
+      success: 記録を削除しました。

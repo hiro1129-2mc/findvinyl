@@ -39,7 +39,11 @@ class RecordsController < ApplicationController
     @records = current_user.records.where('DATE(created_at) = ?', date)
   end
 
-  def destroy; end
+  def destroy
+    @record = current_user.records.find(params[:id])
+    @record.destroy!
+    redirect_to records_path, success: t('records.delete.success')
+  end
 
   private
 
