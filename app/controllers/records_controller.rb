@@ -31,9 +31,31 @@ class RecordsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    @record = current_user.records.find(params[:id])
+    gon.record_items = @record.items.includes(:title, :artist_name).map do |item|
+      {
+        id: item.id,
+        title: item.title.name,
+        artist_name: item.artist_name.name
+      }
+    end
+  end
 
-  def update; end
+  def update
+    @record = current_user.records.find(params[:id])
+    if @record.update(record_params.except(:item_ids))
+      @record.record_items.destroy_all
+      if params[:item_ids].present?
+        params[:item_ids].each do |item_id|
+          @record.record_items.create(item_id:) unless item_id.blank?
+        end
+      end
+      redirect_to records_path, notice: t('records.update.saved')
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
   def show
     @record = Record.find(params[:id])

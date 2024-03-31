@@ -122,3 +122,5 @@ ja:
       title: 記録詳細
     delete:
       success: 記録を削除しました。
+    update:
+      saved: 記録を編集しました

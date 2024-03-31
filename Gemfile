@@ -80,6 +80,7 @@ gem 'cssbundling-rails'
 
 # JavaScript
 gem 'jsbundling-rails'
+gem 'gon'
 
 # カレンダー表示
 gem 'simple_calendar'
