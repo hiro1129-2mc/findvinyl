@@ -2,3 +2,4 @@
 @tailwind components;
 @tailwind utilities;
 @import "simple_calendar";
+@import 'select2/dist/css/select2.css';
