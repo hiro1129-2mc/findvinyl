@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag 'custom_styles', media: 'all', 'data-turbolinks-track': 'reload' %>
 <div class="flex justify-center items-center min-h-screen">
   <div class="w-full max-w-md mx-auto bg-white shadow-md rounded-lg p-6">
     <%= form_with model: @item, local: true do |form| %>
@@ -38,14 +39,16 @@
 
       <div class="form-control">
         <%= form.label :condition, class: "label" %>
-        <%= form.select :condition_id, @conditions.map { |condition| [condition.grade, condition.id] }, {include_blank: true}, {class: "select select-bordered"} %>
+        <%= form.select :condition_id,
+                        @conditions.map { |condition| [condition.grade, condition.id] }, {include_blank: true},
+                        {class: "select select-bordered"} %>
       </div>
 
       <div class="form-control">
         <%= form.label :accessories, t('activerecord.attributes.item.accessories'), class: "label" %>
         <%= form.select :accessory_ids, 
                         @accessories.map { |accessory| [accessory.name, accessory.id] }, {}, 
-                        { class: 'select2', multiple: true } %>
+                        { class: "select2", multiple: true } %>
       </div>
 
       <div class="form-control">
