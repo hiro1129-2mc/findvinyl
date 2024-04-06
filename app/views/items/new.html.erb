@@ -44,11 +44,13 @@
                         {class: "select select-bordered"} %>
       </div>
 
-      <div class="form-control">
-        <%= form.label :accessories, t('activerecord.attributes.item.accessories'), class: "label" %>
-        <%= form.select :accessory_ids, 
-                        @accessories.map { |accessory| [accessory.name, accessory.id] }, {}, 
-                        { class: "select2", multiple: true } %>
+      <div data-controller="item_new">
+        <div class="form-control">
+          <%= form.label :accessories, t('activerecord.attributes.item.accessories'), class: "label" %>
+          <%= form.select :accessory_ids, 
+                          @accessories.map { |accessory| [accessory.name, accessory.id] }, {}, 
+                          { class: "select2", multiple: true } %>
+        </div>
       </div>
 
       <div class="form-control">
@@ -68,5 +70,3 @@
     <% end %>
   </div>
 </div>
-
-<%= javascript_include_tag 'item_new_form' %>
