@@ -34,7 +34,7 @@
         </div>
         <div class="flex-1">
           <% item.tags.each do |tag| %>
-            <%= link_to tag.name, collection_tag_items_path(tag_id: tag.id), class: 'badge badge-primary' %>
+            <%= link_to tag.name, want_tag_items_path(tag_id: tag.id), class: 'badge badge-primary' %>
           <% end %>
         </div>
         <div class="flex space-x-2">
