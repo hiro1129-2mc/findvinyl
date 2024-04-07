@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('turbo:load', () => {
   const searchInput = document.getElementById("item_search");
   const resultsContainer = document.getElementById("search_results");
   const selectedItemsContainer = document.getElementById('selected_items');
@@ -18,35 +18,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 新しいアイテムをselectedItemsに追加する関数
   const addItemToSelectedItems = (item) => {
-    const itemElement = document.createElement('div');
-    itemElement.className = 'item';
-    itemElement.style.display = 'flex';
-    itemElement.style.justifyContent = 'space-between';
-    itemElement.style.alignItems = 'center';
+    if (!document.querySelector(`input[name="item_ids[]"][value="${item.id}"]`)) {
+      const itemElement = document.createElement('div');
+      itemElement.className = 'item';
+      itemElement.style.display = 'flex';
+      itemElement.style.justifyContent = 'space-between';
+      itemElement.style.alignItems = 'center';
 
-    const itemText = document.createElement('span');
-    itemText.textContent = `\u3000${item.title} ${item.artist_name}`;
-    itemElement.appendChild(itemText);
+      const itemText = document.createElement('span');
+      itemText.textContent = `\u3000${item.title} ${item.artist_name}`;
+      itemElement.appendChild(itemText);
 
-    const removeButton = document.createElement('button');
-    removeButton.innerHTML = '&times;';
-    removeButton.className = 'remove-button';
-    removeButton.style.marginLeft = 'auto';
-    removeButton.onclick = () => {
-      itemElement.remove();
-      // 選択されたアイテムのIDを保持する隠しフィールドも削除
-      document.querySelector(`input[name="item_ids[]"][value="${item.id}"]`)?.remove();
-    };
+      const removeButton = document.createElement('button');
+      removeButton.innerHTML = '&times;';
+      removeButton.className = 'remove-button';
+      removeButton.style.marginLeft = 'auto';
+      removeButton.onclick = () => {
+        itemElement.remove();
+        // 選択されたアイテムのIDを保持する隠しフィールドも削除
+        document.querySelector(`input[name="item_ids[]"][value="${item.id}"]`)?.remove();
+      };
 
-    itemElement.appendChild(removeButton);
-    selectedItemsContainer.appendChild(itemElement);
+      itemElement.appendChild(removeButton);
+      selectedItemsContainer.appendChild(itemElement);
 
-    // 選択されたアイテムのIDを保持する隠しフィールドを追加
-    const hiddenInput = document.createElement('input');
-    hiddenInput.setAttribute('type', 'hidden');
-    hiddenInput.setAttribute('name', 'item_ids[]');
-    hiddenInput.value = item.id;
-    form.appendChild(hiddenInput);
+      // 選択されたアイテムのIDを保持する隠しフィールドを追加
+      const hiddenInput = document.createElement('input');
+      hiddenInput.setAttribute('type', 'hidden');
+      hiddenInput.setAttribute('name', 'item_ids[]');
+      hiddenInput.value = item.id;
+      form.appendChild(hiddenInput);
+    }
   };
 
   // アイテムを検索して結果を表示する関数

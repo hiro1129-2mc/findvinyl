@@ -9,9 +9,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-
-    <%= Gon::Base.render_data %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
   <body>
@@ -23,5 +20,7 @@
     <%= render 'shared/flash_message' %>
     <%= yield %>
     <%= render 'shared/footer' %>
+    <%= Gon::Base.render_data %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </body>
 </html>
