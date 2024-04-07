@@ -22,7 +22,7 @@
         <span class="font-semibold"><%= t('items.index.tag') %></span>
       </div>
       <div class="flex space-x-2">
-        <span class="w-12 h-4"></span>
+        <span class="w-14 h-4"></span>
       </div>
     </div>
 
@@ -43,7 +43,7 @@
           <%= link_to edit_item_path(item) do %>
             <span class="i-bi-pencil bg-black w-4 h-4 mr-2" aria-hidden="true"></span>
           <% end %>
-          <%= link_to  item_path(item), data: { turbo_method: :delete, turbo_confirm: t('items.confirm_delete') } do %>
+          <%= link_to item_path(item), data: { turbo_method: :delete, turbo_confirm: t('items.confirm_delete') } do %>
             <span class="i-bi-trash3 bg-black w-4 h-4 mr-2" aria-hidden="true"></span>
           <% end %>
         </div>
