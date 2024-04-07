@@ -4,8 +4,8 @@
   <%= search_form_for @items_search , url: want_items_path, method: :get, class: "space-y-4" do |f| %>
     <div class="flex justify-center items-center mx-4">
       <%= f.search_field :title_name_or_artist_name_name_cont, placeholder: t('search.in_want_list'), class: "input input-bordered w-full max-w-xs" %>
-      <button type="submit" class="btn btn-primary ml-2">
-        <img alt="Search" src="https://static.metabrainz.org/MB/search-52f8034.svg" class="w-4 h-4">
+      <button type="submit" class="btn btn-secondary">
+        <span class="i-bi-search bg-black w-4 h-4" aria-hidden="true"></span>
       </button>
     </div>
   <% end %>
