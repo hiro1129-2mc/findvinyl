@@ -2,6 +2,7 @@
   "name": "findvinyl",
   "private": true,
   "dependencies": {
+    "@egoist/tailwindcss-icons": "^1.7.4",
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.4",
     "autoprefixer": "^10.4.18",
@@ -16,5 +17,8 @@
   "scripts": {
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets"
+  },
+  "devDependencies": {
+    "@iconify/json": "^2.2.197"
   }
 }
