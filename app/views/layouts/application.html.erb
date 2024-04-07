@@ -11,14 +11,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
   </head>
 
-  <body>
+  <body class="flex flex-col min-h-screen">
     <% if logged_in? %>
       <%= render 'shared/header' %>
     <% else %>
       <%= render 'shared/before_login_header' %>
     <% end %>
     <%= render 'shared/flash_message' %>
-    <%= yield %>
+    <div class="flex-grow">
+      <%= yield %>
+    </div>
     <%= render 'shared/footer' %>
     <%= Gon::Base.render_data %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
