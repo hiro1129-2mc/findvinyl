@@ -46,10 +46,14 @@
             </div>
           <% end %>
           <%= link_to edit_item_path(item) do %>
-            <span class="i-bi-pencil bg-black w-4 h-4 mr-2" aria-hidden="true"></span>
+            <div class="tooltip" data-tip="<%= t('helpers.submit.edit') %>">
+              <span class="i-bi-pencil bg-black w-4 h-4 mr-2" aria-hidden="true"></span>
+            </div>
           <% end %>
           <%= link_to item_path(item), data: { turbo_method: :delete, turbo_confirm: t('items.confirm_delete') } do %>
-            <span class="i-bi-trash3 bg-black w-4 h-4 mr-2" aria-hidden="true"></span>
+            <div class="tooltip" data-tip="<%= t('helpers.submit.delete') %>">
+              <span class="i-bi-trash3 bg-black w-4 h-4 mr-2" aria-hidden="true"></span>
+            </div>
           <% end %>
         </div>
       </div>
