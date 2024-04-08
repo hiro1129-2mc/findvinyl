@@ -2,21 +2,25 @@
 <div class="flex justify-center items-center">
   <div class="w-full max-w-md mx-auto bg-white shadow-md rounded-lg p-6">
     <% if @item.collection? %>
-        <h2 class="text-xl font-bold mb-4"><%= t('items.edit.edit_collection') %></h2>
+        <h2 class="text-2xl font-bold text-center mb-4"><%= t('items.edit.edit_collection') %></h2>
     <% elsif @item.want? %>
-        <h2 class="text-xl font-bold mb-4"><%= t('items.edit.edit_want') %></h2>
+        <h2 class="text-2xl font-bold text-center mb-4"><%= t('items.edit.edit_want') %></h2>
     <% end %>
 
     <%= form_with model: @item, local: true do |form| %>
       <%= render 'shared/error_messages', object: form.object %>
 
       <div class="form-control">
-        <%= form.label :title, class: "label" %>
+        <%= form.label :title, class: "label" do %>
+          <%= form.object.class.human_attribute_name(:title) %> <span class="text-red-500">*</span>
+        <% end %>
         <%= form.text_field :title, value: @item.title&.name || params[:item]&.fetch(:title, nil), class: "input input-bordered", required: true %>
       </div>
 
       <div class="form-control">
-        <%= form.label :artist_name, class: "label" %>
+        <%= form.label :artist_name, class: "label" do %>
+          <%= form.object.class.human_attribute_name(:artist_name) %> <span class="text-red-500">*</span>
+        <% end %>
         <%= form.text_field :artist_name, value: @item.artist_name&.name || params[:item]&.fetch(:artist_name, nil), class: "input input-bordered", required: true %>
       </div>
 
@@ -53,7 +57,7 @@
 
       <div class="form-control">
         <%= form.label :tag, class: "label" %>
-        <%= form.text_field :tag, value: @item.tag_names, class: "input input-bordered" %>
+        <%= form.text_field :tag, value: @item.tag_names, placeholder: t('items.placeholder.tag_input'), class: "input input-bordered" %>
       </div>
 
       <div class="form-control">
@@ -62,8 +66,7 @@
       </div>
 
       <div class="flex justify-end space-x-2 mt-4">
-        <%= link_to t('helpers.submit.cancel'), request.referer || search_path, class: "btn" %>
-        <%= form.submit t('helpers.submit.submit'), class: "btn btn-primary" %>
+        <%= form.submit t('helpers.submit.submit'), class: "btn btn-secondary" %>
       </div>
     <% end %>
   </div>
