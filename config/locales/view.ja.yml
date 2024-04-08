@@ -78,6 +78,8 @@ ja:
     confirm_delete: 本当に削除しますか？
     role_updated_to_collection: 欲しいものをコレクションに移動しました
     role_update_failed: 欲しいものをコレクションに移動できませんでした
+    placeholder:
+      tag_input: ',区切りで入力してください'
     new:
       create_collection: コレクションを作成
       create_want: 欲しいものを作成
