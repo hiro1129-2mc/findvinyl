@@ -110,6 +110,7 @@ ja:
   records:
     confirm_delete: 本当に削除しますか？
     new:
+      create_record: 記録作成
       saved: 記録を作成しました
       search_items: レコード検索
       title_artist_label: タイトル・アーティスト名を入力
