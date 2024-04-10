@@ -1,9 +1,6 @@
 <div class="flex justify-center items-center">
   <div class="w-full max-w-md mx-auto bg-white shadow-md rounded-lg p-6">
-
-    <div class="text-center mb-4">
-      <%= @record.created_at.strftime("%Y-%m-%d %H:%M") %>
-    </div>
+  <h1 class="text-2xl font-bold text-center mb-8"><%= t('records.edit.edit_record') %></h1>
 
     <%= form_with model: @record, local: true, html: { id: 'record_form' } do |form| %>
       <div class="mb-4">
@@ -21,8 +18,7 @@
       </div>
 
       <div class="flex justify-end space-x-2 mt-4">
-        <%= link_to t('helpers.submit.cancel'), request.referer || search_path, class: "btn" %>
-        <%= form.submit t('helpers.submit.submit'), class: "btn btn-primary" %>
+        <%= form.submit t('helpers.submit.submit'), class: "btn btn-secondary" %>
       </div>
     <% end %>
   </div>

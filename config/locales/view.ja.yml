@@ -115,6 +115,8 @@ ja:
       search_items: レコード検索
       title_artist_label: タイトル・アーティスト名を入力
       comment: コメント
+    edit:
+      edit_record: 記録編集
     index:
       record_report: 記録・レポート
     daily_records:
