@@ -20,7 +20,7 @@ document.addEventListener('turbo:load', () => {
   const addItemToSelectedItems = (item) => {
     if (!document.querySelector(`input[name="item_ids[]"][value="${item.id}"]`)) {
       const selectedItem = document.createElement('div');
-      selectedItem.className = 'flex items-center rounded-2xl bg-white py-1 font-medium text-black ring-1 ring-inset ring-black justify-between w-full mb-1';
+      selectedItem.className = 'flex items-center rounded-2xl bg-white py-1 font-medium text-black ring-1 ring-inset ring-gray-300 justify-between w-full mb-1';
   
       let title = item.title.length > 10 ? item.title.substring(0, 10) + '...　' : item.title;
       let artistName = item.artist_name.length > 8 ? item.artist_name.substring(0, 8) + '...' : item.artist_name;
@@ -91,7 +91,7 @@ document.addEventListener('turbo:load', () => {
           addButton.onclick = () => {
             const selectedItemsContainer = document.getElementById('selected_items');
             const selectedItem = document.createElement('div');
-            selectedItem.className = 'flex items-center rounded-2xl bg-white py-1 font-medium text-black ring-1 ring-inset ring-black justify-between w-full mb-1';
+            selectedItem.className = 'flex items-center rounded-2xl bg-white py-1 font-medium text-black ring-1 ring-inset ring-gray-300 justify-between w-full mb-1';
 
             let title = item.title.name.length > 10 ? item.title.name.substring(0, 10) + '...　' : item.title.name;
             let artistName = item.artist_name.name.length > 8 ? item.artist_name.name.substring(0, 8) + '...' : item.artist_name.name;
