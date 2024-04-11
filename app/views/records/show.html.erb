@@ -1,7 +1,7 @@
 <div class="flex justify-center items-center">
   <div class="w-full max-w-md mx-auto bg-white shadow-md rounded-lg p-6">
     <div class="flex justify-center items-center">
-      <h2 class="text-2xl font-bold text-center mb-8"><%= @record.created_at.strftime("%Y-%m-%d %H:%M") %></h2>
+    <h1 class="text-2xl font-bold text-center mb-8"><%= t('records.show.title') %></h1>
     </div>
 
     <% if @record.items.any? %>
@@ -23,10 +23,12 @@
       </div>
     <% end %>
 
-    <h3 class="text-lg font-bold mb-4"><%= t('records.new.comment') %></h3>
-    <div class="p-2 border rounded min-h-[5rem]">
+    <h3 class="text-lg font-bold mb-2"><%= t('records.new.comment') %></h3>
+    <div class="p-2 border rounded min-h-[5rem] mb-2">
       <%= simple_format(@record.content) %>
     </div>
+
+    <h2 class="text-right mb-4"><%= @record.created_at.strftime("%Y/%m/%d %H:%M") %></h2>
 
     <div class="flex justify-end space-x-2 mt-4">
       <%= link_to edit_record_path(@record) do %>
