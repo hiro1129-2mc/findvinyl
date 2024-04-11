@@ -25,7 +25,7 @@
 
     <h3 class="text-lg font-bold mb-4"><%= t('records.new.comment') %></h3>
     <div class="p-2 border rounded min-h-[5rem]">
-      <%= @record.content %>
+      <%= simple_format(@record.content) %>
     </div>
 
     <div class="flex justify-end space-x-2 mt-4">

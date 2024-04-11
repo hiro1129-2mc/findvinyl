@@ -56,7 +56,7 @@
   <div class="mb-4 py-1 text-gray-600">
     <%= t('items.show.user_note') %>
     <div class="p-2 border rounded min-h-[5rem] overflow-y-auto">
-      <%= @item.user_note %>
+      <%= simple_format(@item.user_note) %>
     </div>
   </div>
 
