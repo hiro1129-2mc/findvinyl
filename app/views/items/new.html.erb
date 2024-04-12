@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag 'custom_styles', media: 'all', 'data-turbolinks-track': 'reload' %>
-<div class="flex justify-center items-center">
+<div class="flex justify-center items-center py-8">
   <div class="w-full max-w-md mx-auto" p-6">
     <%= form_with model: @item, local: true do |form| %>
       <%= render 'shared/error_messages', object: form.object %>
