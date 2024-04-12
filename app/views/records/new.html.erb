@@ -4,16 +4,17 @@
 
     <%= form_with model: @record, local: true, html: { id: 'record_form' } do |form| %>
       <div class="mb-4">
-        <label for="item_search" class="block text-accent text-sm font-bold mb-2"><%= t('records.new.search_items') %></label>
+        <label for="item_search" class="block text-accent font-bold mb-2"><%= t('records.new.search_items') %></label>
         <input type="text" id="item_search" name="item_search" class="shadow appearance-none border rounded w-full bg-secondary py-2 px-3 text-accent leading-tight focus:outline-none focus:shadow-outline" placeholder="<%= t('records.new.title_artist_label') %>">
       </div>
 
-      <div id="search_results" class="max-h-48 overflow-y-auto border p-2 mt-2"></div>
+      <div id="search_results" class="max-h-48 overflow-y-auto border p-2 mb-4 mt-2"></div>
 
+      <h2 class="font-bold mb-4"><%= t('records.daily_records.listened_records') %></h2>
       <div id="selected_items" class="mb-4 mt-4"></div>
     
       <div class="mb-4">
-        <%= form.label t('records.new.comment'), class: 'block text-accent text-sm font-bold mb-2' %>
+        <%= form.label t('records.new.comment'), class: 'block text-accent font-bold mb-2' %>
         <%= form.text_area :content, rows: 4, class: 'shadow appearance-none border rounded w-full bg-secondary py-2 px-3 text-accent leading-tight focus:outline-none focus:shadow-outline' %>
       </div>
 
