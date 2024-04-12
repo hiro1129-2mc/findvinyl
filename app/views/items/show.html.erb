@@ -1,4 +1,4 @@
-<div class="w-full max-w-md mx-auto bg-secondary shadow-md rounded-lg p-6">
+<div class="w-full max-w-md mx-auto p-6">
   <h1 class="text-2xl font-bold text-center mb-8">
     <% if @item.collection? %>
       <%= t('items.show.collection_show') %>
@@ -15,7 +15,7 @@
     <%= @item.artist_name&.name %>
   </div>
 
-  <div class="grid grid-cols-2 gap-4 items-start py-1 rounded-lg text-accent bg-neutral-600">
+  <div class="grid grid-cols-2 gap-4 items-start py-1 rounded-lg text-accent bg-secondary">
     <span><%= t('results.columns.format') %></span>
     <span><%= @item.release_format&.name %></span>
   </div>
@@ -25,7 +25,7 @@
     <span><%= @item.press_country&.name %></span>
   </div>
 
-  <div class="grid grid-cols-2 gap-4 items-start py-1 rounded-lg text-accent bg-neutral-600">
+  <div class="grid grid-cols-2 gap-4 items-start py-1 rounded-lg text-accent bg-secondary">
     <span><%= t('items.show.matrix_number') %></span>
     <span><%= @item.matrix_number&.number %></span>
   </div>
@@ -35,7 +35,7 @@
     <span><%= @item.condition&.grade %></span>
   </div>
 
-  <div class="grid grid-cols-2 gap-4 items-start py-1 rounded-lg text-accent bg-neutral-600">
+  <div class="grid grid-cols-2 gap-4 items-start py-1 rounded-lg text-accent bg-secondary">
     <span><%= t('items.show.accessory') %></span>
     <div>
       <% @item.accessory_names.split(',').each do |accessory_name| %>
@@ -48,14 +48,14 @@
     <span><%= t('items.index.tag') %></span>
     <div>
       <% @item.tags.each do |tag| %>
-        <span class="badge badge-base-100"><%= tag.name %></span>
+        <span class="badge badge-secondary"><%= tag.name %></span>
       <% end %>
     </div>
   </div>
 
   <div class="mb-4 py-1 text-accent">
     <%= t('items.show.user_note') %>
-    <div class="p-2 rounded min-h-[5rem] overflow-y-auto rounded-lg bg-neutral-600">
+    <div class="p-2 rounded min-h-[5rem] overflow-y-auto rounded-lg bg-secondary">
       <%= simple_format(@item.user_note) %>
     </div>
   </div>

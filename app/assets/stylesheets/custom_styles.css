@@ -4,7 +4,7 @@
   border-left-color: rgb(170, 170, 170) !important;
   border-right-color: rgb(170, 170, 170) !important;
   border-top-color: rgb(170, 170, 170) !important;
-  background-color: rgb(64 64 64) !important;
+  background-color: rgb(255 255 255) !important;
 }
 
 .form-control .select.select-bordered {
@@ -13,7 +13,7 @@
   border-left-color: rgb(170, 170, 170) !important;
   border-right-color: rgb(170, 170, 170) !important;
   border-top-color: rgb(170, 170, 170) !important;
-  background-color: rgb(64 64 64) !important;
+  background-color: rgb(255 255 255) !important;
 }
 
 .textarea.textarea-bordered{
@@ -22,7 +22,7 @@
   border-left-color: rgb(170, 170, 170) !important;
   border-right-color: rgb(170, 170, 170) !important;
   border-top-color: rgb(170, 170, 170) !important;
-  background-color: rgb(64 64 64) !important;
+  background-color: rgb(255 255 255) !important;
 }
 
 .select2-selection__rendered {
@@ -34,7 +34,7 @@
   border-left-color: rgb(170, 170, 170) !important;
   border-right-color: rgb(170, 170, 170) !important;
   border-top-color: rgb(170, 170, 170) !important;
-  background-color: rgb(64 64 64) !important;
+  background-color: rgb(255 255 255) !important;
 }
 
 .select2-results__option {

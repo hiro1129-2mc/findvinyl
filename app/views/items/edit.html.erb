@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag 'custom_styles', media: 'all', 'data-turbolinks-track': 'reload' %>
 <div class="flex justify-center items-center">
-  <div class="w-full max-w-md mx-auto bg-secondary shadow-md rounded-lg p-6">
+  <div class="w-full max-w-md mx-auto p-6">
     <% if @item.collection? %>
         <h2 class="text-2xl font-bold text-center mb-4"><%= t('items.edit.edit_collection') %></h2>
     <% elsif @item.want? %>
@@ -14,36 +14,36 @@
         <%= form.label :title, class: "label" do %>
           <%= form.object.class.human_attribute_name(:title) %> <span class="text-red-500">*</span>
         <% end %>
-        <%= form.text_field :title, value: @item.title&.name || params[:item]&.fetch(:title, nil), class: "input input-bordered", required: true %>
+        <%= form.text_field :title, value: @item.title&.name || params[:item]&.fetch(:title, nil), class: "input input-bordered text-base-100", required: true %>
       </div>
 
       <div class="form-control">
         <%= form.label :artist_name, class: "label" do %>
           <%= form.object.class.human_attribute_name(:artist_name) %> <span class="text-red-500">*</span>
         <% end %>
-        <%= form.text_field :artist_name, value: @item.artist_name&.name || params[:item]&.fetch(:artist_name, nil), class: "input input-bordered", required: true %>
+        <%= form.text_field :artist_name, value: @item.artist_name&.name || params[:item]&.fetch(:artist_name, nil), class: "input input-bordered text-base-100", required: true %>
       </div>
 
       <div class="form-control">
         <%= form.label :release_format, class: "label" %>
-        <%= form.text_field :release_format, value: @item.release_format&.name || params[:item]&.fetch(:release_format, nil), class: "input input-bordered" %>
+        <%= form.text_field :release_format, value: @item.release_format&.name || params[:item]&.fetch(:release_format, nil), class: "input input-bordered text-base-100" %>
       </div>
 
       <div class="form-control">
         <%= form.label :press_country, class: "label" %>
-        <%= form.text_field :press_country, value: @item.press_country&.name || params[:item]&.fetch(:press_country, nil), class: "input input-bordered" %>
+        <%= form.text_field :press_country, value: @item.press_country&.name || params[:item]&.fetch(:press_country, nil), class: "input input-bordered text-base-100" %>
       </div>
 
       <div class="form-control">
         <%= form.label :matrix_number, class: "label" %>
-        <%= form.text_field :matrix_number, value: @item.matrix_number&.number || params[:item]&.fetch(:matrix_number, nil), class: "input input-bordered" %>
+        <%= form.text_field :matrix_number, value: @item.matrix_number&.number || params[:item]&.fetch(:matrix_number, nil), class: "input input-bordered text-base-100" %>
       </div>
 
       <div class="form-control">
         <%= form.label :condition, class: "label" %>
         <%= form.select :condition_id,
                         @conditions.map { |condition| [condition.grade, condition.id] }, {include_blank: true},
-                        {class: "select select-bordered"} %>
+                        {class: "select select-bordered text-base-100"} %>
       </div>
 
       <div data-controller="item_edit">
@@ -51,18 +51,18 @@
           <%= form.label :accessories, t('activerecord.attributes.item.accessories'), class: "label" %>
           <%= form.select :accessory_ids, 
                           @accessories.map { |accessory| [accessory.name, accessory.id] }, {}, 
-                          { class: 'select2', multiple: true } %>
+                          { class: 'select2 text-base-100', multiple: true } %>
         </div>
       </div>
 
       <div class="form-control">
         <%= form.label :tag, class: "label" %>
-        <%= form.text_field :tag, value: @item.tag_names, placeholder: t('items.placeholder.tag_input'), class: "input input-bordered" %>
+        <%= form.text_field :tag, value: @item.tag_names, placeholder: t('items.placeholder.tag_input'), class: "input input-bordered text-base-100" %>
       </div>
 
       <div class="form-control">
         <%= form.label :user_note, class: "label" %>
-        <%= form.text_area :user_note, value: @item.user_note, class: "textarea textarea-bordered" %>
+        <%= form.text_area :user_note, value: @item.user_note, class: "textarea textarea-bordered text-base-100" %>
       </div>
 
       <div class="flex justify-end space-x-2 mt-4">
