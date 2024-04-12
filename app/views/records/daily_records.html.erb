@@ -1,16 +1,17 @@
 <div class="flex justify-center items-center">
-  <div class="w-full max-w-md mx-auto bg-white shadow-md rounded-lg p-6">
+  <div class="w-full max-w-md mx-auto bg-base-100 rounded-lg p-6">
     <h1 class="text-2xl font-bold text-center mb-8"><%= t('records.daily_records.title', date: params[:date]) %></h1>
     <% @records.each do |record| %>
-      <%= link_to record_path(record), class: "block mb-4 bg-white shadow-md rounded-lg p-6" do %>
+      <%= link_to record_path(record), class: "block mb-4 bg-secondary shadow-md rounded-lg p-6" do %>
         <div>
           <% if record.items.any? %>
             <div class="mb-4">
               <ul>
                 <% record.items.each do |item| %>
-                  <div class="flex items-center rounded-2xl bg-primary py-1 font-medium text-white justify-between w-full mb-1">
+                  <div class="flex items-center bg-secondary py-1 font-medium text-white justify-between w-full mb-1">
                     <div class="w-[200px] mr-2 ml-2">
-                      <p class="truncate">♪ <%= item.title.name %></p>
+                      <span class="i-bi-music-note bg-primary w-4 h-4" aria-hidden="true"></span>
+                      <span class="truncate"><%= item.title.name %></p>
                     </div>
                     <div class="w-[140px]">
                       <p class="truncate"><%= item.artist_name.name %></p>
@@ -20,8 +21,8 @@
               </ul>
             </div>
           <% end %>
-          <div class=""w-[350px] mb-4">
-            <p class="truncate"><%= record.content %></p>
+          <div class=""w-[350px]">
+            <p class="truncate mb-4"><%= record.content %></p>
           </div>
         </div>
         <h2 class="text-right"><%= record.created_at.strftime("%Y/%m/%d %H:%M") %></h2>

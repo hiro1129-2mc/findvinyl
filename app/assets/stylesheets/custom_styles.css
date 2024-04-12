@@ -4,6 +4,7 @@
   border-left-color: rgb(170, 170, 170) !important;
   border-right-color: rgb(170, 170, 170) !important;
   border-top-color: rgb(170, 170, 170) !important;
+  background-color: rgb(64 64 64) !important;
 }
 
 .form-control .select.select-bordered {
@@ -12,6 +13,7 @@
   border-left-color: rgb(170, 170, 170) !important;
   border-right-color: rgb(170, 170, 170) !important;
   border-top-color: rgb(170, 170, 170) !important;
+  background-color: rgb(64 64 64) !important;
 }
 
 .textarea.textarea-bordered{
@@ -20,6 +22,7 @@
   border-left-color: rgb(170, 170, 170) !important;
   border-right-color: rgb(170, 170, 170) !important;
   border-top-color: rgb(170, 170, 170) !important;
+  background-color: rgb(64 64 64) !important;
 }
 
 .select2-selection__rendered {
@@ -27,4 +30,17 @@
 }
 .select2-container .select2-selection--multiple {
   height: 48px !important;
+  border-bottom-color: rgb(170, 170, 170) !important;
+  border-left-color: rgb(170, 170, 170) !important;
+  border-right-color: rgb(170, 170, 170) !important;
+  border-top-color: rgb(170, 170, 170) !important;
+  background-color: rgb(64 64 64) !important;
+}
+
+.select2-results__option {
+  background-color: rgb(64 64 64) !important;
+}
+
+.select2-selection__choice {
+  background-color: rgb(64 64 64) !important;
 }

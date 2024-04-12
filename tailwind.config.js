@@ -17,6 +17,16 @@ module.exports = {
     }),
   ],
   daisyui: {
-    themes: ["corporate"],
+    themes: [
+      {
+        mytheme: {
+          "primary": "rgb(239 68 68)",
+          "secondary": "rgb(64 64 64)",
+          "accent": "rgb(214 211 209)",
+          "neutral": "rgb(24 24 27)",
+          "base-100": "rgb(38 38 38)",
+        },
+      },
+    ],
   },
 };

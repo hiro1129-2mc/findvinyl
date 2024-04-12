@@ -3,9 +3,9 @@
 
   <%= search_form_for @items_search , url: collection_items_path, method: :get, class: "space-y-4 mb-8" do |f| %>
     <div class="flex justify-center items-center mx-4">
-      <%= f.search_field :title_name_or_artist_name_name_cont, placeholder: t('search.in_collection_list'), class: "input input-bordered w-full max-w-xs" %>
-      <button type="submit" class="btn btn-secondary">
-        <span class="i-bi-search bg-black w-4 h-4" aria-hidden="true"></span>
+      <%= f.search_field :title_name_or_artist_name_name_cont, placeholder: t('search.in_collection_list'), class: "input input-bordered bg-secondary w-full max-w-xs" %>
+      <button type="submit" class="btn btn-primary">
+        <span class="i-bi-search bg-white w-4 h-4" aria-hidden="true"></span>
       </button>
     </div>
   <% end %>
@@ -36,18 +36,18 @@
         </div>
         <div class="flex-1">
           <% item.tags.each do |tag| %>
-            <%= link_to tag.name, collection_tag_items_path(tag_id: tag.id), class: 'badge badge-ghost' %>
+            <%= link_to tag.name, collection_tag_items_path(tag_id: tag.id), class: 'badge badge-primary text-accent' %>
           <% end %>
         </div>
         <div class="flex space-x-2">
           <%= link_to edit_item_path(item) do %>
             <div class="tooltip ml-8" data-tip="<%= t('helpers.submit.edit') %>">
-              <span class="i-bi-pencil bg-black w-4 h-4 mr-2" aria-hidden="true"></span>
+              <span class="i-bi-pencil bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
             </div>
           <% end %>
           <%= link_to item_path(item), data: { turbo_method: :delete, turbo_confirm: t('items.confirm_delete') } do %>
             <div class="tooltip" data-tip="<%= t('helpers.submit.delete') %>">
-              <span class="i-bi-trash3 bg-black w-4 h-4 mr-2" aria-hidden="true"></span>
+              <span class="i-bi-trash3 bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
             </div>
           <% end %>
         </div>

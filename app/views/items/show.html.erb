@@ -1,4 +1,4 @@
-<div class="w-full max-w-md mx-auto bg-white shadow-md rounded-lg p-6">
+<div class="w-full max-w-md mx-auto bg-secondary shadow-md rounded-lg p-6">
   <h1 class="text-2xl font-bold text-center mb-8">
     <% if @item.collection? %>
       <%= t('items.show.collection_show') %>
@@ -7,86 +7,68 @@
     <% end %>
   </h1>
 
-  <div class="text-xl mb-1 font-bold text-gray-600">
+  <div class="text-xl mb-1 font-bold text-white">
     <%= @item.title&.name %>
   </div>
 
-  <div class="mb-4 font-bold text-gray-500">
+  <div class="mb-4 font-bold text-accent">
     <%= @item.artist_name&.name %>
   </div>
 
-  <div class="grid grid-cols-2 gap-4 items-start py-1 text-gray-600 bg-gray-100">
+  <div class="grid grid-cols-2 gap-4 items-start py-1 rounded-lg text-accent bg-neutral-600">
     <span><%= t('results.columns.format') %></span>
     <span><%= @item.release_format&.name %></span>
   </div>
 
-  <div class="grid grid-cols-2 gap-4 items-start py-1 text-gray-600">
+  <div class="grid grid-cols-2 gap-4 items-start py-1 text-accent">
     <span><%= t('releases.show.press_country') %></span>
     <span><%= @item.press_country&.name %></span>
   </div>
 
-  <div class="grid grid-cols-2 gap-4 items-start py-1 text-gray-600 bg-gray-100">
+  <div class="grid grid-cols-2 gap-4 items-start py-1 rounded-lg text-accent bg-neutral-600">
     <span><%= t('items.show.matrix_number') %></span>
     <span><%= @item.matrix_number&.number %></span>
   </div>
 
-  <div class="grid grid-cols-2 gap-4 items-start py-1 text-gray-600">
+  <div class="grid grid-cols-2 gap-4 items-start py-1 text-accent">
     <span><%= t('items.show.condition') %></span>
     <span><%= @item.condition&.grade %></span>
   </div>
 
-  <div class="grid grid-cols-2 gap-4 items-start py-1 text-gray-600 bg-gray-100">
+  <div class="grid grid-cols-2 gap-4 items-start py-1 rounded-lg text-accent bg-neutral-600">
     <span><%= t('items.show.accessory') %></span>
     <div>
       <% @item.accessory_names.split(',').each do |accessory_name| %>
-        <span class="badge badge-ghost"><%= accessory_name.strip %></span>
+        <span class="badge badge-base-100"><%= accessory_name.strip %></span>
       <% end %>
     </div>
   </div>
 
-  <div class="grid grid-cols-2 gap-4 items-start py-1 text-gray-600">
+  <div class="grid grid-cols-2 gap-4 items-start py-1 text-accent">
     <span><%= t('items.index.tag') %></span>
     <div>
       <% @item.tags.each do |tag| %>
-        <span class="badge badge-ghost"><%= tag.name %></span>
+        <span class="badge badge-base-100"><%= tag.name %></span>
       <% end %>
     </div>
   </div>
 
-  <div class="mb-4 py-1 text-gray-600">
+  <div class="mb-4 py-1 text-accent">
     <%= t('items.show.user_note') %>
-    <div class="p-2 border rounded min-h-[5rem] overflow-y-auto">
+    <div class="p-2 rounded min-h-[5rem] overflow-y-auto rounded-lg bg-neutral-600">
       <%= simple_format(@item.user_note) %>
     </div>
   </div>
 
   <div class="flex justify-end space-x-2 mt-4">
-    <% if @item.collection? %>
-      <%= link_to collection_items_path do %>
-        <div class="tooltip" data-tip="<%= t('helpers.submit.back') %>">
-          <span class="i-bi-arrow-counterclockwise bg-black w-5 h-5 mr-2" aria-hidden="true"></span>
-        </div>
-      <% end %>
-    <% elsif @item.want? %>
-      <%= link_to want_items_path do %>
-        <div class="tooltip" data-tip="<%= t('helpers.submit.back') %>">
-          <span class="i-bi-arrow-counterclockwise bg-black w-5 h-5 mr-2" aria-hidden="true"></span>
-        </div>
-      <% end %>
-      <%= link_to move_to_collection_item_path(@item), data: { turbo_method: :patch } do %>
-        <div class="tooltip" data-tip="<%= t('helpers.submit.move_to_collection') %>">
-          <span class="i-bi-check-square bg-black w-5 h-5 mr-2" aria-hidden="true"></span>
-        </div>
-      <% end %>
-    <% end %>
     <%= link_to edit_item_path(@item) do %>
       <div class="tooltip" data-tip="<%= t('helpers.submit.edit') %>">
-        <span class="i-bi-pencil bg-black w-5 h-5 mr-2" aria-hidden="true"></span>
+        <span class="i-bi-pencil bg-primary w-5 h-5 mr-2" aria-hidden="true"></span>
       </div>
     <% end %>
     <%= link_to item_path(@item), data: { turbo_method: :delete, turbo_confirm: t('items.confirm_delete') } do %>
       <div class="tooltip" data-tip="<%= t('helpers.submit.delete') %>">
-        <span class="i-bi-trash3 bg-black w-5 h-5 mr-2" aria-hidden="true"></span>
+        <span class="i-bi-trash3 bg-primary w-5 h-5 mr-2" aria-hidden="true"></span>
       </div>
     <% end %>
   </div>

@@ -2,22 +2,22 @@
   <div class="flex items-center">
     <%= search_form_for @q, url: search_path, html: { class: "search-container p-4" } do |f| %>
       <div class="flex items-center">
-        <%= f.search_field :name_cont, placeholder: t('search.placeholder.keyword'), class: "input input-bordered input-neutral w-full max-w-xs" %>
+        <%= f.search_field :name_cont, placeholder: t('search.placeholder.keyword'), class: "input input-bordered bg-secondary w-full max-w-xs" %>
         <%= select_tag :type, options_for_select(
           [
             [t('search.form.artist'), 'artist'], 
             [t('search.form.release_title'), 'release']
           ], selected: params[:type]), 
-          class: "select select-bordered select-neutral" 
+          class: "select select-bordered bg-secondary" 
         %>
-        <button type="submit" class="btn btn-secondary">
-          <span class="i-bi-search bg-black w-4 h-4" aria-hidden="true"></span>
+        <button type="submit" class="btn btn-primary">
+          <span class="i-bi-search bg-white w-4 h-4" aria-hidden="true"></span>
         </button>
       </div>
     <% end %>
     <div class="dropdown dropdown-end">
       <button tabindex="0">
-        <span class="i-bi-plus-circle-fill bg-neutral w-10 h-10" aria-hidden="true"></span>
+        <span class="i-bi-plus-circle-fill bg-accent w-10 h-10" aria-hidden="true"></span>
       </button> 
       <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
         <li><%= link_to t('items.new.create_collection'), new_item_path(role: 'collection') %></li>

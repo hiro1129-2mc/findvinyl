@@ -1,11 +1,11 @@
 <div class="flex justify-center items-center">
-  <div class="w-full max-w-md mx-auto bg-white shadow-md rounded-lg p-6">
+  <div class="w-full max-w-md mx-auto bg-secondary shadow-md rounded-lg p-6">
     <h1 class="text-2xl font-bold text-center mb-8"><%= t('records.new.create_record') %></h1>
 
     <%= form_with model: @record, local: true, html: { id: 'record_form' } do |form| %>
       <div class="mb-4">
-        <label for="item_search" class="block text-gray-700 text-sm font-bold mb-2"><%= t('records.new.search_items') %></label>
-        <input type="text" id="item_search" name="item_search" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="<%= t('records.new.title_artist_label') %>">
+        <label for="item_search" class="block text-accent text-sm font-bold mb-2"><%= t('records.new.search_items') %></label>
+        <input type="text" id="item_search" name="item_search" class="shadow appearance-none border rounded w-full bg-secondary py-2 px-3 text-accent leading-tight focus:outline-none focus:shadow-outline" placeholder="<%= t('records.new.title_artist_label') %>">
       </div>
 
       <div id="search_results" class="max-h-48 overflow-y-auto border p-2 mt-2"></div>
@@ -13,12 +13,12 @@
       <div id="selected_items" class="mb-4 mt-4"></div>
     
       <div class="mb-4">
-        <%= form.label t('records.new.comment'), class: 'block text-gray-700 text-sm font-bold mb-2' %>
-        <%= form.text_area :content, rows: 4, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+        <%= form.label t('records.new.comment'), class: 'block text-accent text-sm font-bold mb-2' %>
+        <%= form.text_area :content, rows: 4, class: 'shadow appearance-none border rounded w-full bg-secondary py-2 px-3 text-accent leading-tight focus:outline-none focus:shadow-outline' %>
       </div>
 
       <div class="flex justify-end space-x-2 mt-4">
-        <%= form.submit t('helpers.submit.submit'), class: "btn btn-secondary" %>
+        <%= form.submit t('helpers.submit.submit'), class: "btn btn-primary text-white" %>
       </div>
     <% end %>
   </div>
