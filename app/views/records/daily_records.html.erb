@@ -9,11 +9,11 @@
               <ul>
                 <% record.items.each do |item| %>
                   <div class="flex items-center bg-secondary py-1 font-medium text-white justify-between w-full mb-1">
-                    <div class="w-[200px] mr-2 ml-2">
-                      <span class="i-bi-music-note bg-primary w-4 h-4" aria-hidden="true"></span>
-                      <span class="truncate"><%= item.title.name %></p>
+                    <span class="i-bi-music-note bg-primary w-4 h-4" aria-hidden="true"></span>
+                    <div class="w-[170px] mr-2 ml-2">
+                      <p class="truncate"><%= item.title.name %></p>
                     </div>
-                    <div class="w-[140px]">
+                    <div class="w-[120px]">
                       <p class="truncate"><%= item.artist_name.name %></p>
                     </div>
                   </div>
