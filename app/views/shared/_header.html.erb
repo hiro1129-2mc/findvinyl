@@ -19,22 +19,45 @@
   </header>
   <div id="sidebar" class="fixed top-0 right-0 w-64 h-full bg-secondary transform translate-x-full transition-transform duration-300 ease-in-out z-50" data-menu-target="sidebar">
     <button data-action="menu#closeMenu" class="btn btn-square btn-ghost absolute right-2 top-2" id="closeMenu">
-      ×
+      <span class="i-bi-x-lg bg-accent w-4 h-4" aria-hidden="true"></span>
     </button>
     <div class="p-5">
       <ul>
-        <%= link_to t('header.home'), "#", class: "block p-2" %>
-        <%= link_to t('header.search_shops'), "#", class: "block p-2" %>
-        <li>
-          <%= link_to t('header.my_page'), "#", class: "block p-2" %>
+        <li class="flex items-center p-2 pt-8">
+          <span class="i-bi-house bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
+          <%= link_to t('header.home'), "#", class: "block" %>
+        </li>
+        <li class="flex items-center p-2">
+          <span class="i-bi-shop bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
+          <%= link_to t('header.search_shops'), "#", class: "block" %>
+        </li>
+        <li class="flex items-center p-2 pt-4">
+          <span class="i-bi-person bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
+          <%= link_to t('header.my_page'), "#", class: "block" %>
+        </li>
           <ul class="pl-4">
-            <%= link_to t('my_interests.collection_list'), collection_items_path, class: "block p-2" %>
-            <%= link_to t('my_interests.wantlist'), want_items_path, class: "block p-2" %>
-            <%= link_to t('my_interests.records_reports'), records_path, class: "block p-2" %>
-            <%= link_to t('my_interests.bookmarked_shops'), "#", class: "block p-2" %>
+            <li class="flex items-center p-2">
+              <span class="i-bi-vinyl bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
+              <%= link_to t('my_interests.collection_list'), collection_items_path, class: "block" %>
+            </li>
+            <li class="flex items-center p-2">
+              <span class="i-bi-arrow-through-heart bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
+              <%= link_to t('my_interests.wantlist'), want_items_path, class: "block" %>
+            </li>
+            <li class="flex items-center p-2">
+              <span class="i-bi-bar-chart bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
+              <%= link_to t('my_interests.records_reports'), records_path, class: "block" %>
+            </li>
+            <li class="flex items-center p-2">
+              <span class="i-bi-bookmark bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
+              <%= link_to t('my_interests.bookmarked_shops'), "#", class: "block" %>
+            </li>
           </ul>
         </li>
-        <%= link_to t('header.logout'), logout_path, method: :delete, data: { turbo_method: :delete }, class: "block p-2" %>
+        <li class="flex items-center p-2 pt-4">
+          <span class="i-bi-box-arrow-up-right bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
+          <%= link_to t('header.logout'), logout_path, method: :delete, data: { turbo_method: :delete }, class: "block" %>
+        </li>
       </ul>
     </div>
   </div>
