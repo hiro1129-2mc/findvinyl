@@ -35,7 +35,7 @@ ja:
     my_page: マイページ
   my_interests:
     collection_list: コレクションリスト
-    wantlist: 欲しいものリスト
+    want_list: 欲しいものリスト
     records_reports: 記録・レポート
     bookmarked_shops: ブックマークしたお店
   footer:
@@ -129,3 +129,7 @@ ja:
       success: 記録を削除しました。
     update:
       saved: 記録を編集しました
+  my_page:
+    title: マイページ
+    what_to_listen: 何を聞きますか？
+    add_to_collection: コレクションをリストに追加しましょう。
