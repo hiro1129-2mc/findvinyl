@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('turbo:load', () => {
   const searchInput = document.getElementById("item_search");
   const resultsContainer = document.getElementById("search_results");
 
@@ -23,23 +23,40 @@ document.addEventListener("DOMContentLoaded", () => {
           const itemContainer = document.createElement('div');
           itemContainer.className = 'mb-2 flex justify-between items-center';
 
-          const itemText = document.createTextNode(`${item.title.name} ${item.artist_name.name}`);
+          let title = item.title.name.length > 10 ? item.title.name.substring(0, 10) + '...　' : item.title.name;
+          let artistName = item.artist_name.name.length > 8 ? item.artist_name.name.substring(0, 8) + '...' : item.artist_name.name;
+
+          const spaceToAdd = 12 - title.length;
+          let spaces = '';
+          if (spaceToAdd > 0) {
+            spaces = '　'.repeat(spaceToAdd);
+          }
+          const combinedText = `${title}${spaces}${artistName}`;
+
+          const itemText = document.createTextNode(combinedText);
           itemContainer.appendChild(itemText);
 
           const addButton = document.createElement('button');
-          addButton.setAttribute('type', 'button');
-          addButton.textContent = '登録';
-          addButton.className = 'ml-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700';
-          addButton.onclick = () => {
-            const selectedItemsContainer = document.getElementById('selected_items');
-            const selectedItem = document.createElement('div');
-            selectedItem.className = 'flex items-center mb-2 bg-white text-black rounded pl-4 pr-2 py-1 justify-between';
-            selectedItem.textContent = `${item.title.name} ${item.artist_name.name}`;
+            addButton.setAttribute('type', 'button');
+            addButton.innerHTML = '<span class="i-bi-plus-circle bg-accent w-4 h-4" aria-hidden="true"></span>';
+            addButton.onclick = () => {
+              const selectedItemsContainer = document.getElementById('selected_items');
+              const selectedItem = document.createElement('div');
+              selectedItem.className = 'flex items-center py-1 font-medium text-accent justify-between w-full mb-1';
+
+              let title = item.title.name.length > 10 ? item.title.name.substring(0, 10) + '...　' : item.title.name;
+              let artistName = item.artist_name.name.length > 8 ? item.artist_name.name.substring(0, 8) + '...' : item.artist_name.name;
+
+              const spaceToAdd = 12 - title.length;
+              let spaces = '';
+              if (spaceToAdd > 0) {
+                spaces = '　'.repeat(spaceToAdd);
+              }
+              selectedItem.textContent = `♪ ${title}${spaces}${artistName}`;
 
             // 「×」ボタンの追加
             const removeButton = document.createElement('button');
-            removeButton.innerHTML = '&times;';
-            removeButton.className = 'text-black';
+            removeButton.innerHTML = '<span class="i-bi-x-lg bg-accent w-4 h-4 mr-4" aria-hidden="true"></span>';
             removeButton.onclick = function() {
               selectedItem.remove();
               

@@ -51,7 +51,7 @@ class RecordsController < ApplicationController
           @record.record_items.create(item_id:) unless item_id.blank?
         end
       end
-      redirect_to records_path, notice: t('records.update.saved')
+      redirect_to record_path(@record), notice: t('records.update.saved')
     else
       render :edit, status: :unprocessable_entity
     end

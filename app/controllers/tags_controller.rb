@@ -3,8 +3,8 @@ class TagsController < ApplicationController
     @tag = Tag.find(params[:tag_id])
     tagged_items = current_user.items.tagged_with(@tag.id)
 
-    @q = tagged_items.ransack(params[:q])
-    results = @q.result
+    @items_search = tagged_items.ransack(params[:q])
+    results = @items_search.result
 
     case params[:view_type]
     when 'collection_items'

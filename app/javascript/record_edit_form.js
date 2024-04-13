@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('turbo:load', () => {
   const searchInput = document.getElementById("item_search");
   const resultsContainer = document.getElementById("search_results");
   const selectedItemsContainer = document.getElementById('selected_items');
@@ -18,35 +18,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 新しいアイテムをselectedItemsに追加する関数
   const addItemToSelectedItems = (item) => {
-    const itemElement = document.createElement('div');
-    itemElement.className = 'item';
-    itemElement.style.display = 'flex';
-    itemElement.style.justifyContent = 'space-between';
-    itemElement.style.alignItems = 'center';
-
-    const itemText = document.createElement('span');
-    itemText.textContent = `\u3000${item.title} ${item.artist_name}`;
-    itemElement.appendChild(itemText);
-
-    const removeButton = document.createElement('button');
-    removeButton.innerHTML = '&times;';
-    removeButton.className = 'remove-button';
-    removeButton.style.marginLeft = 'auto';
-    removeButton.onclick = () => {
-      itemElement.remove();
-      // 選択されたアイテムのIDを保持する隠しフィールドも削除
-      document.querySelector(`input[name="item_ids[]"][value="${item.id}"]`)?.remove();
-    };
-
-    itemElement.appendChild(removeButton);
-    selectedItemsContainer.appendChild(itemElement);
-
-    // 選択されたアイテムのIDを保持する隠しフィールドを追加
-    const hiddenInput = document.createElement('input');
-    hiddenInput.setAttribute('type', 'hidden');
-    hiddenInput.setAttribute('name', 'item_ids[]');
-    hiddenInput.value = item.id;
-    form.appendChild(hiddenInput);
+    if (!document.querySelector(`input[name="item_ids[]"][value="${item.id}"]`)) {
+      const selectedItem = document.createElement('div');
+      selectedItem.className = 'flex items-center py-1 text-accent justify-between w-full mb-1';
+  
+      let title = item.title.length > 10 ? item.title.substring(0, 10) + '...　' : item.title;
+      let artistName = item.artist_name.length > 8 ? item.artist_name.substring(0, 8) + '...' : item.artist_name;
+  
+      const actualTitleLength = item.title.length > 10 ? 14 : title.length + 1;
+      const spaceToAdd = 13 - actualTitleLength;
+      let spaces = '';
+      if (spaceToAdd > 0) {
+        spaces = '　'.repeat(spaceToAdd);
+      }
+  
+      selectedItem.textContent = `♪ ${title}${spaces}${artistName}`;
+      selectedItemsContainer.appendChild(selectedItem);
+  
+      // 「×」ボタンの追加
+      const removeButton = document.createElement('button');
+      removeButton.innerHTML = '<span class="i-bi-x-lg bg-accent w-4 h-4 mr-4" aria-hidden="true"></span>';
+      removeButton.onclick = function() {
+        selectedItem.remove();
+        document.querySelector(`input[name="item_ids[]"][value="${item.id}"]`)?.remove();
+      };
+      selectedItem.appendChild(removeButton);
+  
+      // 選択されたアイテムのIDを保持する隠しフィールドを追加
+      const hiddenInput = document.createElement('input');
+      hiddenInput.setAttribute('type', 'hidden');
+      hiddenInput.setAttribute('name', 'item_ids[]');
+      hiddenInput.value = item.id;
+      form.appendChild(hiddenInput);
+    }
   };
 
   // アイテムを検索して結果を表示する関数
@@ -68,23 +72,43 @@ document.addEventListener("DOMContentLoaded", () => {
           const itemContainer = document.createElement('div');
           itemContainer.className = 'mb-2 flex justify-between items-center';
 
-          const itemText = document.createTextNode(`${item.title.name} ${item.artist_name.name}`);
+          let title = item.title.name.length > 10 ? item.title.name.substring(0, 10) + '...　' : item.title.name;
+          let artistName = item.artist_name.name.length > 8 ? item.artist_name.name.substring(0, 8) + '...' : item.artist_name.name;
+
+          const spaceToAdd = 12 - title.length;
+          let spaces = '';
+          if (spaceToAdd > 0) {
+            spaces = '　'.repeat(spaceToAdd);
+          }
+          const combinedText = `${title}${spaces}${artistName}`;
+
+          const itemText = document.createTextNode(combinedText);
           itemContainer.appendChild(itemText);
 
           const addButton = document.createElement('button');
           addButton.setAttribute('type', 'button');
-          addButton.textContent = '登録';
-          addButton.className = 'ml-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700';
+          addButton.innerHTML = '<span class="i-bi-plus-circle bg-accent w-4 h-4" aria-hidden="true"></span>';
           addButton.onclick = () => {
             const selectedItemsContainer = document.getElementById('selected_items');
             const selectedItem = document.createElement('div');
-            selectedItem.className = 'flex items-center mb-2 bg-white text-black rounded pl-4 pr-2 py-1 justify-between';
-            selectedItem.textContent = `${item.title.name} ${item.artist_name.name}`;
+            selectedItem.className = 'flex items-center py-1 text-accent justify-between w-full mb-1';
+
+            let title = item.title.name.length > 10 ? item.title.name.substring(0, 10) + '...　' : item.title.name;
+            let artistName = item.artist_name.name.length > 8 ? item.artist_name.name.substring(0, 8) + '...' : item.artist_name.name;
+
+            const actualTitleLength = item.title.name.length > 10 ? 14 : title.length + 1;
+            const spaceToAdd = 13 - actualTitleLength;
+            let spaces = '';
+            if (spaceToAdd > 0) {
+              spaces = '　'.repeat(spaceToAdd);
+            }
+
+            selectedItem.textContent = `♪ ${title}${spaces}${artistName}`;
+            selectedItemsContainer.appendChild(selectedItem);
 
             // 「×」ボタンの追加
             const removeButton = document.createElement('button');
-            removeButton.innerHTML = '&times;';
-            removeButton.className = 'text-black';
+            removeButton.innerHTML = '<span class="i-bi-x-lg bg-accent w-4 h-4 mr-4" aria-hidden="true"></span>';
             removeButton.onclick = function() {
               selectedItem.remove();
               

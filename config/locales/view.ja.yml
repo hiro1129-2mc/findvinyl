@@ -78,6 +78,8 @@ ja:
     confirm_delete: 本当に削除しますか？
     role_updated_to_collection: 欲しいものをコレクションに移動しました
     role_update_failed: 欲しいものをコレクションに移動できませんでした
+    placeholder:
+      tag_input: ',区切りで入力してください'
     new:
       create_collection: コレクションを作成
       create_want: 欲しいものを作成
@@ -108,10 +110,13 @@ ja:
   records:
     confirm_delete: 本当に削除しますか？
     new:
+      create_record: 記録作成
       saved: 記録を作成しました
       search_items: レコード検索
       title_artist_label: タイトル・アーティスト名を入力
-      diary: 日記
+      comment: コメント
+    edit:
+      edit_record: 記録編集
     index:
       record_report: 記録・レポート
     daily_records:

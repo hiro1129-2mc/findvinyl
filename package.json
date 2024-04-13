@@ -2,14 +2,23 @@
   "name": "findvinyl",
   "private": true,
   "dependencies": {
+    "@egoist/tailwindcss-icons": "^1.7.4",
+    "@hotwired/stimulus": "^3.2.2",
+    "@hotwired/turbo-rails": "^8.0.4",
     "autoprefixer": "^10.4.18",
+    "daisyui": "^4.9.0",
+    "esbuild": "^0.20.2",
     "jquery": "^3.7.1",
     "postcss": "^8.4.35",
     "select2": "^4.1.0-rc.0",
+    "stimulus": "^3.2.2",
     "tailwindcss": "^3.4.1"
   },
   "scripts": {
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
-    "build": "yarn build:css"
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets"
+  },
+  "devDependencies": {
+    "@iconify/json": "^2.2.197"
   }
 }
