@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create]
   resources :artists, only: %i[show]
   resources :releases, only: %i[show]
+  resource :my_page, only: %i[show]
   resources :records do
     collection do
       get :search
