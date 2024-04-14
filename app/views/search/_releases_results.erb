@@ -1,19 +1,19 @@
-<div class="mt-4">
-  <div class="flex p-4 bg-gray-200 rounded-t-lg">
-    <span class="flex-1 text-sm font-semibold text-gray-900"><%= t('results.columns.title') %></span>
-    <span class="flex-1 text-sm font-semibold text-gray-900"><%= t('results.columns.artist') %></span>
-    <span class="flex-1 text-sm font-semibold text-gray-900"><%= t('results.columns.format') %></span>
+<div class="container mx-auto">
+  <div class="flex justify-between items-center border-b py-2 mb-4">
+    <span class="flex-1 font-semibold"><%= t('results.columns.title') %></span>
+    <span class="flex-1 font-semibold"><%= t('results.columns.artist') %></span>
+    <span class="flex-1 font-semibold"><%= t('results.columns.format') %></span>
   </div>
   <% results.each do |release| %>
-    <div class="mt-4 p-4 hover:bg-gray-100 rounded-lg">
-      <div class="mb-2 flex">
-        <p class="flex-1 text-lg text-gray-900">
-          <%= link_to release.name, release_path(release), class: "text-gray-800 text-lg" %>
+    <div>
+      <div class="flex">
+        <p class="flex-1 link link-hover py-2 mb-2">
+          <%= link_to release.name, release_path(release) %>
         </p>
-        <p class="flex-1 text-gray-800">
+        <p class="flex-1">
           <%= release.artist_credit.name %>
         </p>
-        <p class="flex-1 text-gray-800">
+        <p class="flex-1">
           <% release.mediums.each do |medium| %>
             <% if medium.medium_format.present? %>
               <%= medium.medium_format.name %>
