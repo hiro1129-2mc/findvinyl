@@ -1,7 +1,7 @@
 <header>
   <div class="navbar bg-base-100">
     <div class="flex-1">
-      <a class="btn btn-ghost text-xl">VinylLog</a>
+      <%= link_to "VinylLog", root_path, class: "btn btn-ghost text-xl" %>
     </div>
     <div class="flex justify-center items-center mx-4">
       <%= render 'shared/search_form', q: @q, url: search_path %>

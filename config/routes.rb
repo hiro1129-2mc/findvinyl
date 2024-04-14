@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'terms', to: 'static_pages#terms', as: 'terms'
+  get 'privacy_policy', to: 'static_pages#privacy_policy', as: 'privacy_policy'
   get 'collection_tag_items', to: 'tags#index', defaults: { view_type: 'collection_items' }
   get 'want_tag_items', to: 'tags#index', defaults: { view_type: 'want_items' }
   get 'collection_items', to: 'items#index', defaults: { view_type: 'collection_items' }

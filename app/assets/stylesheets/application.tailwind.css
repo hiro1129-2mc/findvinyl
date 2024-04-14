@@ -3,3 +3,4 @@
 @tailwind utilities;
 @import "simple_calendar";
 @import "custom_styles";
+@import "top";
