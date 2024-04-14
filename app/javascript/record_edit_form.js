@@ -87,7 +87,7 @@ document.addEventListener('turbo:load', () => {
 
           const addButton = document.createElement('button');
           addButton.setAttribute('type', 'button');
-          addButton.innerHTML = '<span class="i-bi-plus-circle bg-accent w-4 h-4" aria-hidden="true"></span>';
+          addButton.innerHTML = '<span class="i-bi-plus-circle bg-base-100 w-4 h-4" aria-hidden="true"></span>';
           addButton.onclick = () => {
             const selectedItemsContainer = document.getElementById('selected_items');
             const selectedItem = document.createElement('div');
