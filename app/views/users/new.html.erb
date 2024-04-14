@@ -4,22 +4,22 @@
     <%= form_with model: @user, class: 'px-8 pt-6 pb-8' do |f| %>
       <div class="form-control">
         <%= f.label :name, class: 'block text-accent mb-2' %>
-        <%= f.text_field :name, class: 'input input-bordered bg-white text-base-100 mb-2' %>
+        <%= f.text_field :name, class: 'input input-bordered bg-white text-base-100 mb-2', required: true %>
       </div>
 
       <div class="form-control">
         <%= f.label :email, class: 'block text-accent mb-2' %>
-        <%= f.email_field :email, class: 'input input-bordered bg-white text-base-100 mb-2' %>
+        <%= f.email_field :email, class: 'input input-bordered bg-white text-base-100 mb-2', required: true %>
       </div>
 
       <div class="form-control">
         <%= f.label :password, class: 'block text-accent mb-2' %>
-        <%= f.password_field :password, class: 'input input-bordered bg-white text-base-100 mb-2' %>
+        <%= f.password_field :password, class: 'input input-bordered bg-white text-base-100 mb-2', required: true %>
       </div>
 
       <div class="form-control">
         <%= f.label :password_confirmation, class: 'block text-accent mb-2' %>
-        <%= f.password_field :password_confirmation, class: 'input input-bordered bg-white text-base-100 mb-6' %>
+        <%= f.password_field :password_confirmation, class: 'input input-bordered bg-white text-base-100 mb-6', required: true %>
       </div>
 
       <div class="text-center">

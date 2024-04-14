@@ -21,10 +21,18 @@ ja:
       login: ログイン
       to_register_page: ユーザー新規登録
       password_forget: パスワードをお忘れの方はこちら
+    create:
+      success: ログインしました
+      failure: ログインに失敗しました
+    destroy:
+      success: ログアウトしました
   users:
     new:
       title: ユーザー登録
       to_login_page: ユーザー登録済みの方はこちら
+    create:
+      success: ユーザー登録が完了しました
+      failure: ユーザー登録に失敗しました
   header:
     login: ログイン
     logout: ログアウト
