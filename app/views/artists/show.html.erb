@@ -5,15 +5,15 @@
       <h1 class="text-3xl font-bold text-white mt-4 mb-4"><%= @artist.name %></h1>
 
       <% if @data.present? %>
-        <p><strong><%= t('artists.show.life_span') %></strong> <%= @data["life-span"]["begin"] %> ~ <%= @data["life-span"]["end"] %></p>
-        <p><strong><%= t('artists.show.country') %></strong> <%= @data["country"] %></p>
+        <p><strong><%= t('artists.show.life_span') %></strong> : <%= @data["life-span"]["begin"] %> ~ <%= @data["life-span"]["end"] %></p>
+        <p><strong><%= t('artists.show.country') %></strong> : <%= @data["country"] %></p>
       <% else %>
         <p><%= t('artists.show.details_not_available') %></p>
       <% end %>
 
       <h2 class="text-xl font-semibold mt-6 mb-2"><%= t('artists.show.releases') %></h2>
 
-      <div class="flex justify-between items-center border-b p-4">
+      <div class="flex justify-between items-center border-b p-4 mb-4">
         <div class="flex-1">
           <span class="font-semibold mr-8"><%= t('results.columns.title') %></span>
         </div>
@@ -24,12 +24,12 @@
 
       <ul class="space-y-2">
         <% @releases.each do |release| %>
-          <li class="p-4">
+          <li class="p-2">
             <div class="flex items-center gap-x-8">
-              <p class="flex-1">
+              <p class="flex-1 link link-hover">
                 <%= link_to release.name, release_path(release) %>
               </p>
-              <p class="text-sm text-gray-800 flex-1">
+              <p class="flex-1">
                 <% release.mediums.each_with_index do |medium, index| %>
                   <%= medium.medium_format ? medium.medium_format.name : " " %>
                   <%= "," unless index == release.mediums.size - 1 %>

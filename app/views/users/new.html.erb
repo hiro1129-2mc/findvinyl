@@ -1,36 +1,34 @@
-<div class="container mx-auto py-8">
-  <div class="flex justify-center items-center">
-    <div class="w-full max-w-md">
-      <h1 class="text-2xl font-bold text-center"><%= t('.title') %></h1>
-      <%= form_with model: @user, class: 'py-8 px-8 pt-6 pb-8' do |f| %>
-        <div class="form-control">
-          <%= f.label :name, class: 'block text-accent mb-2' %>
-          <%= f.text_field :name, class: 'input input-bordered bg-white text-base-100 mb-2' %>
-        </div>
+<div class="flex justify-center items-center py-8">
+  <div class="w-full max-w-md mx-auto bg-base-200 rounded-lg p-6">
+    <h1 class="text-2xl font-bold text-center"><%= t('.title') %></h1>
+    <%= form_with model: @user, class: 'px-8 pt-6 pb-8' do |f| %>
+      <div class="form-control">
+        <%= f.label :name, class: 'block text-accent mb-2' %>
+        <%= f.text_field :name, class: 'input input-bordered bg-white text-base-100 mb-2', required: true %>
+      </div>
 
-        <div class="form-control">
-          <%= f.label :email, class: 'block text-accent mb-2' %>
-          <%= f.email_field :email, class: 'input input-bordered bg-white text-base-100 mb-2' %>
-        </div>
+      <div class="form-control">
+        <%= f.label :email, class: 'block text-accent mb-2' %>
+        <%= f.email_field :email, class: 'input input-bordered bg-white text-base-100 mb-2', required: true %>
+      </div>
 
-        <div class="form-control">
-          <%= f.label :password, class: 'block text-accent mb-2' %>
-          <%= f.password_field :password, class: 'input input-bordered bg-white text-base-100 mb-2' %>
-        </div>
+      <div class="form-control">
+        <%= f.label :password, class: 'block text-accent mb-2' %>
+        <%= f.password_field :password, class: 'input input-bordered bg-white text-base-100 mb-2', required: true %>
+      </div>
 
-        <div class="form-control">
-          <%= f.label :password_confirmation, class: 'block text-accent mb-2' %>
-          <%= f.password_field :password_confirmation, class: 'input input-bordered bg-white text-base-100 mb-6' %>
-        </div>
-
-        <div class="text-center">
-          <%= f.submit class: 'btn btn-primary text-white' %>
-        </div>
-      <% end %>
+      <div class="form-control">
+        <%= f.label :password_confirmation, class: 'block text-accent mb-2' %>
+        <%= f.password_field :password_confirmation, class: 'input input-bordered bg-white text-base-100 mb-6', required: true %>
+      </div>
 
       <div class="text-center">
-        <%= link_to t('.to_login_page'), login_path, class: 'text-sm text-accent' %>
+        <%= f.submit class: 'btn btn-primary text-white' %>
       </div>
-    </div>
+    <% end %>
   </div>
+</div>
+
+<div class="text-center mb-8">
+  <%= link_to t('.to_login_page'), login_path, class: 'text-sm text-accent' %>
 </div>
