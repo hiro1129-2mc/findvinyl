@@ -1,5 +1,6 @@
 class RecordsController < ApplicationController
   before_action :require_login
+  before_action :set_record, only: %i[show edit update destroy]
 
   def index
     @records_by_date = current_user.records.group_by { |record| record.created_at.to_date }
@@ -73,6 +74,11 @@ class RecordsController < ApplicationController
   end
 
   private
+
+  def set_record
+    @record = current_user.records.find_by(id: params[:id])
+    redirect_to records_path, alert: 'Record not found.' if @record.nil?
+  end
 
   def record_params
     params.require(:record).permit(:content, item_ids: [])
