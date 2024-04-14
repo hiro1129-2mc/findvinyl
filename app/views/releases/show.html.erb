@@ -36,7 +36,7 @@
                                           title: @release.name, 
                                           artist_name: @release.artist_credit.name, 
                                           release_format: @release.mediums.find { |m| m.medium_format.present? }.medium_format.name, 
-                                          press_ccountry: @data["country"]), 
+                                          press_country: @data["country"]), 
                             class: "btn btn-primary btn-block" do %>
                   <%= t('items.new.add_to_wishlist') %>
                 <% end %>
