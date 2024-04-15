@@ -7,7 +7,8 @@ class RecordsController < ApplicationController
   end
 
   def search
-    @items_search = Item.ransack(title_name_or_artist_name_name_cont: params[:q], user_id_eq: current_user.id)
+    items = current_user.items
+    @items_search = items.ransack(title_name_or_artist_name_name_cont: params[:q])
     @items = @items_search.result.includes(:title, :artist_name)
 
     items_json = @items.as_json(include: %i[title artist_name])
