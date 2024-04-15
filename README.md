@@ -1,4 +1,4 @@
-# VINYLLOG
+# VinylLog
 
 ## ER図
 [![Image from Gyazo](https://i.gyazo.com/549c5afd2d28c66c3e586f9aece593b2.png)](https://gyazo.com/549c5afd2d28c66c3e586f9aece593b2)
