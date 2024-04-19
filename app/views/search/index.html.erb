@@ -5,7 +5,7 @@
       <div class="mt-4">
         <% if @results.blank? %>
           <% if params[:q].present? %>
-            <p><%= t('search.no_results') %></p>
+            <p class="text-center"><%= t('search.no_results') %></p>
           <% end %>
         <% else %>
           <% case @type %>
