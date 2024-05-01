@@ -37,20 +37,30 @@ export default class extends Controller {
   addItemToSelectedItems(item) {
     if (!this.formTarget.querySelector(`input[name="item_ids[]"][value="${item.id}"]`)) {
       const selectedItem = document.createElement('div')
-      selectedItem.className = 'flex items-center py-1 text-accent justify-between w-full mb-1'
-  
-      let title = item.title.length > 10 ? `${item.title.substring(0, 10)}...　` : item.title
-      let artistName = item.artist_name.length > 8 ? `${item.artist_name.substring(0, 8)}...` : item.artist_name
-  
-      const actualTitleLength = title.length > 10 ? 14 : title.length + 1
-      const spaceToAdd = 13 - actualTitleLength
-      let spaces = ''
-      if (spaceToAdd > 0) {
-        spaces = '　'.repeat(spaceToAdd)
-      }
-  
-      const itemText = document.createTextNode(`♪ ${title}${spaces}${artistName}`)
-      selectedItem.appendChild(itemText)
+      selectedItem.className = 'flex items-center py-1 justify-between w-full mb-1'
+
+      const noteIcon = document.createElement('span')
+      noteIcon.className = 'i-bi-music-note bg-primary w-4 h-4'
+      noteIcon.setAttribute('aria-hidden', 'true')
+      selectedItem.appendChild(noteIcon)
+
+      const titleContainer = document.createElement('div')
+      titleContainer.className = 'w-[200px]'
+      const titleElement = document.createElement('p')
+      titleElement.className = 'truncate'
+      titleElement.textContent = item.title
+      titleContainer.appendChild(titleElement)
+
+      const artistContainer = document.createElement('div')
+      artistContainer.className = 'w-[120px]'
+      const artistElement = document.createElement('p')
+      artistElement.className = 'truncate'
+      artistElement.textContent = item.artist_name
+      artistContainer.appendChild(artistElement)
+
+      selectedItem.appendChild(titleContainer)
+      selectedItem.appendChild(artistContainer)
+
       this.selectedItemsTarget.appendChild(selectedItem)
 
       const removeButton = document.createElement('button')
@@ -86,20 +96,24 @@ export default class extends Controller {
 
         data.forEach(item => {
           const itemContainer = document.createElement('div')
-          itemContainer.className = 'mb-2 flex justify-between items-center'
+          itemContainer.className = 'flex justify-between items-center py-1'
 
-          let title = item.title.name.length > 10 ? `${item.title.name.substring(0, 10)}...　` : item.title.name
-          let artistName = item.artist_name.name.length > 8 ? `${item.artist_name.name.substring(0, 8)}...` : item.artist_name.name
+          const titleContainer = document.createElement('div')
+          titleContainer.className = 'w-[200px]'
+          const titleElement = document.createElement('p')
+          titleElement.className = 'truncate'
+          titleElement.textContent = item.title.name
+          titleContainer.appendChild(titleElement)
 
-          const spaceToAdd = 12 - title.length
-          let spaces = ''
-          if (spaceToAdd > 0) {
-            spaces = '　'.repeat(spaceToAdd)
-          }
-          const combinedText = `${title}${spaces}${artistName}`
+          const artistContainer = document.createElement('div')
+          artistContainer.className = 'w-[120px]'
+          const artistElement = document.createElement('p')
+          artistElement.className = 'truncate'
+          artistElement.textContent = item.artist_name.name
+          artistContainer.appendChild(artistElement)
 
-          const itemText = document.createTextNode(combinedText)
-          itemContainer.appendChild(itemText)
+          itemContainer.appendChild(titleContainer)
+          itemContainer.appendChild(artistContainer)
 
           const addButton = document.createElement('button')
           addButton.setAttribute('type', 'button')
@@ -109,20 +123,31 @@ export default class extends Controller {
           addButton.onclick = () => {
             const selectedItemsContainer = document.getElementById('selected_items');
             const selectedItem = document.createElement('div');
-            selectedItem.className = 'flex items-center py-1 text-accent justify-between w-full mb-1';
-
-            let title = item.title.name.length > 10 ? item.title.name.substring(0, 10) + '...　' : item.title.name;
-            let artistName = item.artist_name.name.length > 8 ? item.artist_name.name.substring(0, 8) + '...' : item.artist_name.name;
-
-            const actualTitleLength = item.title.name.length > 10 ? 14 : title.length + 1;
-            const spaceToAdd = 13 - actualTitleLength;
-            let spaces = '';
-            if (spaceToAdd > 0) {
-              spaces = '　'.repeat(spaceToAdd);
-            }
-
-            selectedItem.textContent = `♪ ${title}${spaces}${artistName}`;
-            selectedItemsContainer.appendChild(selectedItem);
+            selectedItem.className = 'flex items-center py-1 justify-between w-full mb-1'
+  
+            const noteIcon = document.createElement('span')
+            noteIcon.className = 'i-bi-music-note bg-primary w-4 h-4'
+            noteIcon.setAttribute('aria-hidden', 'true')
+            selectedItem.appendChild(noteIcon)
+          
+            const titleContainer = document.createElement('div')
+            titleContainer.className = 'w-[200px]'
+          
+            const titleElement = document.createElement('p')
+            titleElement.className = 'truncate'
+            titleElement.textContent = item.title.name
+            titleContainer.appendChild(titleElement)
+          
+            const artistContainer = document.createElement('div')
+            artistContainer.className = 'w-[120px]'
+          
+            const artistElement = document.createElement('p')
+            artistElement.className = 'truncate'
+            artistElement.textContent = item.artist_name.name
+            artistContainer.appendChild(artistElement)
+          
+            selectedItem.appendChild(titleContainer)
+            selectedItem.appendChild(artistContainer)
 
             const removeButton = document.createElement('button');
             removeButton.innerHTML = '<span class="i-bi-x-lg bg-accent w-4 h-4 mr-4" aria-hidden="true"></span>';
@@ -152,7 +177,7 @@ export default class extends Controller {
             }
           };
 
-          itemContainer.appendChild(addButton);
+          itemContainer.appendChild(addButton)
           this.resultsContainerTarget.appendChild(itemContainer)
         })
       }).catch(error => {
