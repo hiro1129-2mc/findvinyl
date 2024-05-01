@@ -1,9 +1,19 @@
-import { Application } from "@hotwired/stimulus"
-import MenuController from "./menu_controller"
-import ItemNewController from "./item_new_controller"
-import ItemEditController from "./item_edit_controller"
+import { application } from "./application"
 
-const application = Application.start()
+import ItemEditController from "./item_edit_controller"
+application.register("item-edit", ItemEditController)
+
+import ItemNewController from "./item_new_controller"
+application.register("item-new", ItemNewController)
+
+import MenuController from "./menu_controller"
 application.register("menu", MenuController)
-application.register("item_new", ItemNewController)
-application.register("item_edit", ItemEditController)
+
+import RecordEditController from "./record_edit_controller"
+application.register("record-edit", RecordEditController)
+
+import RecordNewController from "./record_new_controller"
+application.register("record-new", RecordNewController)
+
+import SwiperController from "./swiper_controller"
+application.register("swiper", SwiperController)

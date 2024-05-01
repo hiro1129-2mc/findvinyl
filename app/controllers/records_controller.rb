@@ -1,12 +1,14 @@
 class RecordsController < ApplicationController
   before_action :require_login
+  before_action :set_record, only: %i[show edit update destroy]
 
   def index
     @records_by_date = current_user.records.group_by { |record| record.created_at.to_date }
   end
 
   def search
-    @items_search = Item.ransack(title_name_or_artist_name_name_cont: params[:q], user_id_eq: current_user.id)
+    items = current_user.items
+    @items_search = items.ransack(title_name_or_artist_name_name_cont: params[:q])
     @items = @items_search.result.includes(:title, :artist_name)
 
     items_json = @items.as_json(include: %i[title artist_name])
@@ -73,6 +75,11 @@ class RecordsController < ApplicationController
   end
 
   private
+
+  def set_record
+    @record = current_user.records.find_by(id: params[:id])
+    redirect_to records_path, alert: 'Record not found.' if @record.nil?
+  end
 
   def record_params
     params.require(:record).permit(:content, item_ids: [])
