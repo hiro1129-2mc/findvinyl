@@ -1,69 +1,83 @@
-<div class="flex justify-center items-center py-8">
-  <div class="w-full max-w-md mx-auto">
-    <h1 class="text-2xl font-bold text-center mt-4 mb-4"><%= t('my_page.title') %></h1>
-    <h2 class="text-lg text-gray-400 mt-2 mb-4"><%= t('my_page.what_to_listen') %></h2>
+<div class="container mx-auto py-8">
+  <div class="flex flex-wrap">
+    <div class="w-full lg:w-10/12 lg:mx-auto">
+      <h1 class="text-2xl font-bold text-center mt-4 mb-6"><%= t('my_page.title') %></h1>
 
-    <div class="card bg-base-200 py-5">
-      <% if @random.empty? %>
-        <div class="text-center p-4">
-          <%= t('my_page.add_to_collection') %>
-        </div>
-      <% else %>
-        <div data-controller="swiper">
-          <div class="swiper">
-            <div class="swiper-wrapper">
-              <% @random.each do |item| %>
-                <div class="swiper-slide">
-                  <div class="flex items-center font-bold text-white mb-1 px-4">
-                    <span class="i-bi-music-note bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
-                    <%= item.title.name %>
-                  </div>
-                  <div class="ml-6 px-4">
-                      <%= item.artist_name.name %>
+      <div class="flex justify-between mt-4 mb-8">
+        <div class="w-1/2 px-4">
+          <h2 class="text-lg text-gray-400 mt-2 mb-4"><%= t('my_page.what_to_listen') %></h2>
+          <div class="card bg-base-200 py-5">
+            <% if @random.empty? %>
+              <div class="text-center p-4">
+                <%= t('my_page.add_to_collection') %>
+              </div>
+            <% else %>
+              <div data-controller="swiper">
+                <div class="swiper">
+                  <div class="swiper-wrapper">
+                    <% @random.each do |item| %>
+                      <div class="swiper-slide">
+                        <div class="flex items-center font-bold text-white mb-1 px-4">
+                          <span class="i-bi-music-note bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
+                          <%= item.title.name %>
+                        </div>
+                        <div class="ml-6 px-4">
+                            <%= item.artist_name.name %>
+                        </div>
+                      </div>
+                    <% end %>
                   </div>
                 </div>
-              <% end %>
-            </div>
+              </div>
+            <% end %>
           </div>
         </div>
-      <% end %>
-    </div>
 
-    <div class="flex justify-between mt-8">
-      <div class="w-1/2 pr-2">
-        <%= link_to collection_items_path, class: "block w-full bg-secondary py-4 rounded shadow hover:bg-base-200" do %>
-          <div class="flex items-center justify-center">
-            <span class="i-bi-vinyl bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
-            <span><%= t('my_interests.collection_list') %></span>
+        <div class="w-1/2 px-4">
+          <div class="flex justify-end mr-4 py-4">
+            <div>
+              <div>
+                <%= image_tag current_user.avatar_url, class: 'rounded-circle mb-2', width: '100', height: '100'%>
+              </div>
+              <div class="text-right mb-1">
+                <%= current_user.name %>
+              </div>
+              <div class="text-right text-sm text-primary">
+                <%= link_to t('my_page.details'), "#" %>
+              </div>
+            </div>
           </div>
-        <% end %>
-      </div>
-      <div class="w-1/2 pl-2">
-        <%= link_to want_items_path, class: "block w-full bg-secondary py-4 rounded shadow hover:bg-base-200" do %>
-          <div class="flex items-center justify-center">
-            <span class="i-bi-arrow-through-heart bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
-            <span><%= t('my_interests.want_list') %></span>
-          </div>
-        <% end %>
-      </div>
-    </div>
 
-    <div class="flex justify-between mt-4 mb-8">
-      <div class="w-1/2 pr-2">
-        <%= link_to records_path, class: "block w-full bg-secondary py-4 rounded shadow hover:bg-base-200" do %>
-          <div class="flex items-center justify-center">
-            <span class="i-bi-bar-chart bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
-            <span><%= t('my_interests.records_reports') %></span>
+          <div class="mt-8 mb-8 ml-4">
+            <%= link_to collection_items_path, class: "block w-full bg-secondary py-4 rounded shadow hover:bg-base-200" do %>
+              <div class="flex items-center justify-center">
+                <span class="i-bi-vinyl bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
+                <span><%= t('my_interests.collection_list') %></span>
+              </div>
+            <% end %>
+          
+            <%= link_to want_items_path, class: "block w-full bg-secondary py-4 rounded shadow hover:bg-base-200 mt-4" do %>
+              <div class="flex items-center justify-center">
+                <span class="i-bi-arrow-through-heart bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
+                <span><%= t('my_interests.want_list') %></span>
+              </div>
+            <% end %>
+          
+            <%= link_to records_path, class: "block w-full bg-secondary py-4 rounded shadow hover:bg-base-200 mt-4" do %>
+              <div class="flex items-center justify-center">
+                <span class="i-bi-bar-chart bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
+                <span><%= t('my_interests.records_reports') %></span>
+              </div>
+            <% end %>
+          
+            <%= link_to "#", class: "block w-full bg-secondary py-4 rounded shadow hover:bg-base-200 mt-4" do %>
+              <div class="flex items-center justify-center">
+                <span class="i-bi-bookmark bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
+                <span><%= t('my_interests.bookmarked_shops') %></span>
+              </div>
+            <% end %>
           </div>
-        <% end %>
-      </div>
-      <div class="w-1/2 pl-2">
-        <%= link_to "#", class: "block w-full bg-secondary py-4 rounded shadow hover:bg-base-200" do %>
-          <div class="flex items-center justify-center">
-            <span class="i-bi-bookmark bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
-            <span><%= t('my_interests.bookmarked_shops') %></span>
-          </div>
-        <% end %>
+        </div>
       </div>
     </div>
   </div>
