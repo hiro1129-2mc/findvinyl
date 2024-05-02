@@ -66,7 +66,7 @@ gem 'kaminari', '~> 1.2'
 gem 'meta-tags'
 
 # 画像のアップロード
-gem 'carrierwave', '~> 2.0'
+gem 'carrierwave'
 gem 'mini_magick'
 
 # ショップ画像の保存

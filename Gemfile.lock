@@ -402,7 +402,7 @@ DEPENDENCIES
   aws-sdk-s3
   bootsnap
   capybara
-  carrierwave (~> 2.0)
+  carrierwave
   cssbundling-rails
   debug
   dotenv-rails
