@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :artists, only: %i[show]
   resources :releases, only: %i[show]
   resource :my_page, only: %i[show]
+  resource :profile, only: %i[show edit update]
   resources :records do
     collection do
       get :search

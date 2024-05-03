@@ -1,5 +1,8 @@
 import { application } from "./application"
 
+import AvatarPreviewController from "./avatar_preview_controller"
+application.register("avatar-preview", AvatarPreviewController)
+
 import ItemEditController from "./item_edit_controller"
 application.register("item-edit", ItemEditController)
 

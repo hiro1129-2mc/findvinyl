@@ -10,8 +10,7 @@ ja:
       edit: 編集
       delete: 削除
       move_to_collection: コレクションに移動
-      back: 戻る
-      cancel: キャンセル
+      select_file: ファイルを選択
     label:
       email: メールアドレス
       password: パスワード
@@ -141,3 +140,13 @@ ja:
     title: マイページ
     what_to_listen: 何を聞きますか？
     add_to_collection: コレクションをリストに追加しましょう。
+    details: 詳細
+  profile:
+    show:
+      title: アカウント詳細
+    edit:
+      title: アカウント編集
+      edit: アカウント情報を更新しました
+      not_edited: アカウント情報を更新できませんでした
+      change_email: メールアドレスを変更する
+      change_password: パスワードを変更する

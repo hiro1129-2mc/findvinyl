@@ -1,0 +1,40 @@
+<div class="flex justify-center items-center py-8">
+  <div class="w-full max-w-lg mx-auto bg-base-200 rounded-lg p-6">
+    <h1 class="text-2xl font-bold text-center mt-4 mb-6"><%= t('profile.edit.title') %></h1>
+    <%= form_with model: @user, url: profile_path, method: :put do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+      <div class="flex justify-between">
+        <div class="w-2/3 px-4">
+          <div class="form-control mb-6">
+            <%= f.label :name, class: "font-bold text-white mb-2"%>
+            <%= f.text_field :name, class: "rounded-sm bg-white text-base-100"%>
+          </div>
+          <div class="form-control">
+            <%= f.label :email, class: "font-bold text-white mb-2" %>
+            <div class="pl-2"><%= current_user.email %></div>
+          </div>
+        </div>
+        <div class="w-1/3 px-4">
+          <div class="flex flex-col justify-center items-center">
+            <div data-controller="avatar-preview">
+              <%= image_tag @user.avatar.url, data: { avatar_preview_target: "preview" }, class: 'rounded-full mb-2', id: 'preview'%>
+              <label class="btn btn-accent text-xs mb-2">
+                <%= t('helpers.submit.select_file') %>
+                <%= f.file_field :avatar, data: { avatar_preview_target: "input", action: "change->avatar-preview#preview" }, class: 'hidden', accept: 'image/*' %>
+              </label>
+            </div>
+            <%= f.hidden_field :avatar_cache %>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <%= f.submit class: "btn btn-primary text-white"%>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="text-center">
+  <%= link_to t('profile.edit.change_email'), "#", class: 'text-sm text-text-accent mr-4' %>
+  <%= link_to t('profile.edit.change_password'), '#', class: 'text-sm text-text-accent' %>
+</div>
