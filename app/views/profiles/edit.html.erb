@@ -7,17 +7,17 @@
         <div class="w-2/3 px-4">
           <div class="form-control mb-6">
             <%= f.label :name, class: "font-bold text-white mb-2"%>
-            <%= f.text_field :name, class: "rounded-sm bg-white text-base-100"%>
+            <%= f.text_field :name, class: "rounded-sm bg-white text-base-100", required: true %>
           </div>
           <div class="form-control">
             <%= f.label :email, class: "font-bold text-white mb-2" %>
             <div class="pl-2"><%= current_user.email %></div>
           </div>
         </div>
-        <div class="w-1/3 px-4">
+        <div class="w-1/3 pl-2 pr-1">
           <div class="flex flex-col justify-center items-center">
             <div data-controller="avatar-preview">
-              <%= image_tag @user.avatar.url, data: { avatar_preview_target: "preview" }, class: 'rounded-full mb-2', id: 'preview'%>
+              <%= image_tag @user.avatar.url, data: { avatar_preview_target: "preview" }, class: 'rounded-full mt-2 mb-2 ', id: 'preview', width: '120', height: '120'%>
               <label class="btn btn-accent text-xs mb-2">
                 <%= t('helpers.submit.select_file') %>
                 <%= f.file_field :avatar, data: { avatar_preview_target: "input", action: "change->avatar-preview#preview" }, class: 'hidden', accept: 'image/*' %>
