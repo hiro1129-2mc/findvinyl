@@ -69,7 +69,8 @@ gem 'meta-tags'
 gem 'carrierwave'
 gem 'mini_magick'
 
-# ショップ画像の保存
+# 画像の保存
+gem 'fog-aws'
 gem 'aws-sdk-s3', require: false
 
 # デバッグ
