@@ -1,5 +1,6 @@
 ja:
   defaults:
+    password_reset: パスワードリセット
     flash_message:
       require_login: ログインしてください
   helpers:
@@ -150,3 +151,13 @@ ja:
       not_edited: アカウント情報を更新できませんでした
       change_email: メールアドレスを変更する
       change_password: パスワードを変更する
+  password_resets:
+    new:
+      title: パスワードリセット申請
+      submit: 送信
+    edit:
+      title: パスワードリセット
+    create:
+      success: パスワードリセット手順を送信しました
+    update:
+      success: パスワードを変更しました
