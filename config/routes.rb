@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :releases, only: %i[show]
   resource :my_page, only: %i[show]
   resource :profile, only: %i[show edit update]
+  resources :password_resets, only: %i[new create edit update]
   resources :records do
     collection do
       get :search
