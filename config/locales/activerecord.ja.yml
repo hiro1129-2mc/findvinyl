@@ -6,6 +6,7 @@ ja:
     attributes:
       user:
         email: メールアドレス
+        new_email: 新しいメールアドレス
         name: ニックネーム
         password: パスワード
         password_confirmation: パスワード確認

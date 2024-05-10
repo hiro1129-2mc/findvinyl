@@ -11,4 +11,15 @@ class User < ApplicationRecord
 
   has_many :items, dependent: :destroy
   has_many :records, dependent: :destroy
+
+  def generate_confirmation_token
+    self.confirmation_token = SecureRandom.urlsafe_base64.to_s
+    self.confirmation_sent_at = Time.current
+    save!
+    confirmation_token
+  end
+
+  def confirmation_token_expires?
+    confirmation_sent_at > 2.hours.ago
+  end
 end
