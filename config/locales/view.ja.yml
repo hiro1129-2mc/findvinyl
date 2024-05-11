@@ -1,6 +1,7 @@
 ja:
   defaults:
     password_reset: パスワードリセット
+    confirm_change_email: メールアドレス変更確認
     flash_message:
       require_login: ログインしてください
   helpers:
@@ -161,3 +162,12 @@ ja:
       success: パスワードリセット手順を送信しました
     update:
       success: パスワードを変更しました
+  emails:
+    edit:
+      title: メールアドレス変更
+      submit: 送信
+      edit: メールアドレスを更新しました
+      not_edited: メールアドレスを更新できませんでした
+      invalid_token: 無効または期限切れのトークンです
+    email_change_confirmation:
+      title: 送信完了

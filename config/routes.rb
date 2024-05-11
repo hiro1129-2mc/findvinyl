@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resource :my_page, only: %i[show]
   resource :profile, only: %i[show edit update]
   resources :password_resets, only: %i[new create edit update]
+  resource :email, only: %i[edit update]
+
   resources :records do
     collection do
       get :search
@@ -26,6 +28,8 @@ Rails.application.routes.draw do
   get 'want_items', to: 'items#index', defaults: { view_type: 'want_items' }
   get 'search', to: 'search#index'
   get 'login', to: 'user_sessions#new'
+  get 'confirm_email/:token', to: 'emails#confirm_email', as: 'confirm_email'
+  get 'email_change_confirmation', to: 'emails#email_change_confirmation'
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
 end
