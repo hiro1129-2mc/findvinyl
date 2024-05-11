@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'static_pages#top'
-  resources :users, only: %i[new create]
+  resources :users, only: %i[new create destroy]
   resources :artists, only: %i[show]
   resources :releases, only: %i[show]
   resource :my_page, only: %i[show]
