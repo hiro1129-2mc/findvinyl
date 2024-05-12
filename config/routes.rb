@@ -14,9 +14,10 @@ Rails.application.routes.draw do
       get 'daily_records/:date', to: 'records#daily_records', as: :daily_records
     end
   end
-  resources :items, only: %i[new create show edit update destroy] do
+  resources :items, only: %i[new create show edit update] do
     member do
       patch :move_to_collection
+      patch :soft_delete
     end
   end
 

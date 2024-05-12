@@ -1,17 +1,17 @@
 class ItemsController < ApplicationController
   before_action :require_login
-  before_action :set_item, only: %i[show edit update destroy move_to_collection]
+  before_action :set_item, only: %i[show edit update move_to_collection soft_delete]
   before_action :set_select_collections, only: %i[new create edit update]
 
   def index
     case params[:view_type]
     when 'collection_items'
-      items = current_user.items.collection_items
+      items = current_user.items.collection_items.active
       @items_search = items.ransack(params[:q])
       @items = @items_search.result.page(params[:page]).per(20)
       render 'collection_items'
     when 'want_items'
-      items = current_user.items.want_items
+      items = current_user.items.want_items.active
       @items_search = items.ransack(params[:q])
       @items = @items_search.result.page(params[:page]).per(20)
       render 'want_items'
@@ -106,10 +106,11 @@ class ItemsController < ApplicationController
     end
   end
 
-  def destroy
+  def soft_delete
     @item = current_user.items.find(params[:id])
     role = @item.role
-    @item.destroy!
+    @item.update(status: :deleted)
+  
     if role == 'collection'
       redirect_to collection_items_path, notice: t('items.delete.success.collection')
     else
