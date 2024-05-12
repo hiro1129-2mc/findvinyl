@@ -34,6 +34,10 @@ ja:
     create:
       success: ユーザー登録が完了しました
       failure: ユーザー登録に失敗しました
+    destroy:
+      success: アカウントを削除しました
+      delete_account: アカウントを削除する
+      confirm_delete: 本当に削除しますか？
   header:
     login: ログイン
     logout: ログアウト
@@ -152,6 +156,7 @@ ja:
       not_edited: アカウント情報を更新できませんでした
       change_email: メールアドレスを変更する
       change_password: パスワードを変更する
+
   password_resets:
     new:
       title: パスワードリセット申請
