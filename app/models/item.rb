@@ -20,6 +20,7 @@ class Item < ApplicationRecord
   validates :user_note, length: { maximum: 500 }
 
   enum role: { collection: 0, want: 1 }
+  enum status: { active: 0, deleted: 1 }
 
   scope :tagged_with, ->(tag_id) { joins(:tags).where(tags: { id: tag_id }) }
   scope :collection_items, -> { where(role: 0).joins(:artist_name).order('artist_names.name ASC') }
