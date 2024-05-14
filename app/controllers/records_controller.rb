@@ -7,7 +7,7 @@ class RecordsController < ApplicationController
   end
 
   def search
-    items = current_user.items
+    items = current_user.items.where(status: :active)
     @items_search = items.ransack(title_name_or_artist_name_name_cont: params[:q])
     @items = @items_search.result.includes(:title, :artist_name)
 
