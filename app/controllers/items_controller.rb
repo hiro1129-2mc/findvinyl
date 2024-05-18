@@ -110,7 +110,7 @@ class ItemsController < ApplicationController
     @item = current_user.items.find(params[:id])
     role = @item.role
     @item.update(status: :deleted)
-  
+
     if role == 'collection'
       redirect_to collection_items_path, notice: t('items.delete.success.collection')
     else

@@ -3,7 +3,13 @@ class RecordsController < ApplicationController
   before_action :set_record, only: %i[show edit update destroy]
 
   def index
-    @records_by_date = current_user.records.group_by { |record| record.created_at.to_date }
+    date = determine_date
+    record_item_service = RecordItemService.new(current_user)
+
+    @records_by_date = group_records_by_date
+    @monthly_creation_count = record_item_service.monthly_creation_count(date)
+    @artist_name_distribution = record_item_service.artist_name_distribution(date)
+    @data_for_month = record_item_service.fetch_data_for_month(date)
   end
 
   def search
@@ -83,5 +89,13 @@ class RecordsController < ApplicationController
 
   def record_params
     params.require(:record).permit(:content, item_ids: [])
+  end
+
+  def determine_date
+    params[:month] ? Date.parse(params[:month]) : Date.current
+  end
+
+  def group_records_by_date
+    current_user.records.group_by { |record| record.created_at.to_date }
   end
 end
