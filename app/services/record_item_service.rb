@@ -12,7 +12,17 @@ class RecordItemService
     from_date, to_date = month_range(date)
     results = base_query(from_date, to_date).joins(item: :artist_name)
                                             .group('artist_names.name').count
-    results.sort_by { |_, count| -count }.to_h
+    sorted_results = results.sort_by { |_, count| -count }
+
+    if sorted_results.length > 13
+      top_results = sorted_results.first(12).to_h
+      etc_count = sorted_results.drop(12).sum { |_, count| count }
+      top_results['etc.'] = etc_count
+    else
+      top_results = sorted_results.to_h
+    end
+
+    top_results
   end
 
   def fetch_data_for_month(date)

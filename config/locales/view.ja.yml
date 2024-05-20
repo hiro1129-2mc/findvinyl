@@ -132,6 +132,7 @@ ja:
       edit_record: 記録編集
     index:
       record_report: 記録・レポート
+      monthly_report: 月間レポート
     daily_records:
       title: 記録一覧（%{date}）
       listened_records: 聴いたレコード
@@ -156,7 +157,6 @@ ja:
       not_edited: アカウント情報を更新できませんでした
       change_email: メールアドレスを変更する
       change_password: パスワードを変更する
-
   password_resets:
     new:
       title: パスワードリセット申請
