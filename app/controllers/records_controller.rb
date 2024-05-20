@@ -3,13 +3,13 @@ class RecordsController < ApplicationController
   before_action :set_record, only: %i[show edit update destroy]
 
   def index
-    date = determine_date
+    @date = params[:month] ? Date.strptime(params[:month], '%Y-%m') : Date.current
     record_item_service = RecordItemService.new(current_user)
 
     @records_by_date = group_records_by_date
-    @monthly_creation_count = record_item_service.monthly_creation_count(date)
-    @artist_name_distribution = record_item_service.artist_name_distribution(date)
-    @data_for_month = record_item_service.fetch_data_for_month(date)
+    @monthly_creation_count = record_item_service.monthly_creation_count(@date)
+    @artist_name_distribution = record_item_service.artist_name_distribution(@date)
+    @data_for_month = record_item_service.fetch_data_for_month(@date)
   end
 
   def search
