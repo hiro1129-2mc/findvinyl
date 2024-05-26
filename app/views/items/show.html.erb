@@ -67,7 +67,7 @@
           <span class="i-bi-pencil bg-primary w-5 h-5 mr-2" aria-hidden="true"></span>
         </div>
       <% end %>
-      <%= link_to soft_delete_item_path(item), data: { turbo_method: :patch, turbo_confirm: t('items.confirm_delete') } do %>
+      <%= link_to soft_delete_item_path(@item), data: { turbo_method: :patch, turbo_confirm: t('items.confirm_delete') } do %>
         <div class="tooltip" data-tip="<%= t('helpers.submit.delete') %>">
           <span class="i-bi-trash3 bg-primary w-5 h-5 mr-2" aria-hidden="true"></span>
         </div>
