@@ -1,4 +1,6 @@
 class RecordItemService
+  require 'ostruct'
+
   def initialize(user)
     @user = user
   end
@@ -23,6 +25,23 @@ class RecordItemService
     end
 
     top_results
+  end
+
+  def top_titles_by_month(date)
+    from_date, to_date = month_range(date)
+    results = base_query(from_date, to_date)
+              .joins(item: %i[title artist_name])
+              .select('titles.name AS title_name, artist_names.name AS artist_name, COUNT(*) AS count')
+              .group('titles.name', 'artist_names.name')
+              .order(Arel.sql('COUNT(*) DESC'))
+              .limit(10)
+    results.map do |result|
+      OpenStruct.new(
+        title_name: result.title_name,
+        artist_name: result.artist_name,
+        count: result.count
+      )
+    end
   end
 
   def fetch_data_for_month(date)

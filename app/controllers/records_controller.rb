@@ -7,7 +7,6 @@ class RecordsController < ApplicationController
     record_item_service = RecordItemService.new(current_user)
 
     @records_by_date = group_records_by_date
-    @monthly_creation_count = record_item_service.monthly_creation_count(@date)
     @artist_name_distribution = record_item_service.artist_name_distribution(@date)
     @data_for_month = record_item_service.fetch_data_for_month(@date)
   end
@@ -78,6 +77,15 @@ class RecordsController < ApplicationController
     @record = current_user.records.find(params[:id])
     @record.destroy!
     redirect_to records_path, success: t('records.delete.success')
+  end
+
+  def report_show
+    @date = params[:month] ? Date.strptime(params[:month], '%Y-%m') : Date.current
+    record_item_service = RecordItemService.new(current_user)
+
+    @artist_name_distribution = record_item_service.artist_name_distribution(@date)
+    @monthly_creation_count = record_item_service.monthly_creation_count(@date)
+    @top_titles = record_item_service.top_titles_by_month(@date)
   end
 
   private

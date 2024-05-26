@@ -33,11 +33,11 @@
           </div>
           <div class="max-w-lg p-6 mx-auto bg-base-200 rounded-2xl">
             <h2 class="text-center mb-2"><%= t('records.index.monthly_report') %></h2>
-            <div class="py-8">
+            <div class="py-6">
               <%= render 'shared/pie_chart' %>
             </div>
             <div class="text-right text-sm text-primary">
-              <%= link_to t('my_page.details'), "#" %>
+              <%= link_to t('my_page.details'), report_show_records_path %>
             </div>
           </div>
         </div>

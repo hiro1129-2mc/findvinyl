@@ -1,0 +1,46 @@
+<div class="container mx-auto py-8">
+  <div class="flex flex-wrap">
+    <div class="w-full lg:w-10/12 lg:mx-auto">
+      <h1 class="text-2xl font-bold text-center mb-8"><%= t('records.report_show.title') %></h1>
+      <div class="flex justify-start mx-4 mb-8">
+        <%= link_to '◀︎', report_show_records_path(month: (@date.prev_month).strftime('%Y-%m')), class: "text-lg" %>
+        <time datetime="<%= @date.strftime('%Y-%m') %>" class="text-xl mx-6"><%= t('date.month_names')[@date.month] %> <%= @date.year %></time>
+        <%= link_to '▶︎', report_show_records_path(month: (@date.next_month).strftime('%Y-%m')), class: "text-lg" %>
+      </div>
+      <div class="flex justify-between mb-4">
+        <div class="w-1/2">
+          <div class="max-w-lg p-6 mx-auto bg-base-200 rounded-2xl">
+            <h1 class="text-center font-bold mb-7"><%= t('records.report_show.top_artists') %></h1>
+            <%= render 'shared/pie_chart' %>
+          </div>
+        </div>
+        <div class="w-1/2">
+          <div class="max-w-lg p-6 mx-auto bg-base-200 rounded-2xl">
+            <h1 class="text-center font-bold mb-2"><%= t('records.report_show.top_records') %></h1>
+            <% if @top_titles.any? %>
+              <% @top_titles.each do |result| %>
+                <div class="flex items-center py-1 font-medium justify-between w-full">
+                  <div class="w-[200px]">
+                    <p class="truncate">
+                      <span class="i-bi-music-note bg-primary w-4 h-4 me-2" aria-hidden="true"></span>
+                      <%= result.title_name %>
+                    </p>
+                  </div>
+                  <div class="w-[200px]">
+                    <p class="truncate"><%= result.artist_name %></p>
+                  </div>
+                </div>
+              <% end %>
+            <% else %>
+              <p class="text-center text-sm m-40 text-neutral-400">No data</p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="mx-2 p-6 mx-auto bg-base-200 rounded-2xl">
+        <h1 class="text-center font-bold mb-2"><%= t('records.report_show.daily_record_plays') %></h1>
+        <%= line_chart @monthly_creation_count %>
+      </div>
+    </div>
+  </div>
+</div>

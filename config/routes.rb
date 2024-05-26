@@ -12,6 +12,9 @@ Rails.application.routes.draw do
     collection do
       get :search
       get 'daily_records/:date', to: 'records#daily_records', as: :daily_records
+      get 'report_show', as: :report_show
+      get :change_month
+      get 'report_show', to: 'records#report_show', as: :report_show_records
     end
   end
   resources :items, only: %i[new create show edit update] do
