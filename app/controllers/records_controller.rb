@@ -3,11 +3,16 @@ class RecordsController < ApplicationController
   before_action :set_record, only: %i[show edit update destroy]
 
   def index
-    @records_by_date = current_user.records.group_by { |record| record.created_at.to_date }
+    @date = params[:month] ? Date.strptime(params[:month], '%Y-%m') : Date.current
+    record_item_service = RecordItemService.new(current_user)
+
+    @records_by_date = group_records_by_date
+    @artist_name_distribution = record_item_service.artist_name_distribution(@date)
+    @data_for_month = record_item_service.fetch_data_for_month(@date)
   end
 
   def search
-    items = current_user.items
+    items = current_user.items.where(status: :active)
     @items_search = items.ransack(title_name_or_artist_name_name_cont: params[:q])
     @items = @items_search.result.includes(:title, :artist_name)
 
@@ -74,6 +79,15 @@ class RecordsController < ApplicationController
     redirect_to records_path, success: t('records.delete.success')
   end
 
+  def report_show
+    @date = params[:month] ? Date.strptime(params[:month], '%Y-%m') : Date.current
+    record_item_service = RecordItemService.new(current_user)
+
+    @artist_name_distribution = record_item_service.artist_name_distribution(@date)
+    @monthly_creation_count = record_item_service.monthly_creation_count(@date)
+    @top_titles = record_item_service.top_titles_by_month(@date)
+  end
+
   private
 
   def set_record
@@ -83,5 +97,13 @@ class RecordsController < ApplicationController
 
   def record_params
     params.require(:record).permit(:content, item_ids: [])
+  end
+
+  def determine_date
+    params[:month] ? Date.parse(params[:month]) : Date.current
+  end
+
+  def group_records_by_date
+    current_user.records.group_by { |record| record.created_at.to_date }
   end
 end

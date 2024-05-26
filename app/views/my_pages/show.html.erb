@@ -6,7 +6,7 @@
       <div class="flex justify-between mt-4 mb-8">
         <div class="w-1/2 px-4">
           <h2 class="text-lg text-gray-400 mt-2 mb-4"><%= t('my_page.what_to_listen') %></h2>
-          <div class="card bg-base-200 py-5">
+          <div class="card bg-base-200 py-5 mb-4">
             <% if @random.empty? %>
               <div class="text-center p-4">
                 <%= t('my_page.add_to_collection') %>
@@ -30,6 +30,15 @@
                 </div>
               </div>
             <% end %>
+          </div>
+          <div class="max-w-lg p-6 mx-auto bg-base-200 rounded-2xl">
+            <h2 class="text-center mb-2"><%= t('records.index.monthly_report') %></h2>
+            <div class="py-6">
+              <%= render 'shared/pie_chart' %>
+            </div>
+            <div class="text-right text-sm text-primary">
+              <%= link_to t('my_page.details'), report_show_records_path %>
+            </div>
           </div>
         </div>
 
