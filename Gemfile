@@ -93,6 +93,11 @@ gem 'groupdate'
 # ショップ情報取得
 gem 'google_places'
 
+# 管理画面
+gem 'rails_admin', '~> 3.0'
+gem 'cancancan'
+gem "sassc-rails"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows]
