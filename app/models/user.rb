@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :items, dependent: :destroy
   has_many :records, dependent: :destroy
 
+  enum role: { general: 0, admin: 1 }
+
   def generate_confirmation_token
     self.confirmation_token = SecureRandom.urlsafe_base64.to_s
     self.confirmation_sent_at = Time.current
