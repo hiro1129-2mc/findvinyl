@@ -3,9 +3,9 @@ require 'uri'
 require 'json'
 
 namespace :shop do
-  desc "Import record shops from Google Places API"
+  desc 'Import record shops from Google Places API'
   task import: :environment do
-    api_base_url = "https://maps.googleapis.com/maps/api/place"
+    api_base_url = 'https://maps.googleapis.com/maps/api/place'
     api_key = ENV['API_KEY']
 
     search_uri = URI("#{api_base_url}/textsearch/json")
@@ -25,7 +25,7 @@ namespace :shop do
         place_id = result['place_id']
         details_uri = URI("#{api_base_url}/details/json")
         details_params = {
-          place_id: place_id,
+          place_id:,
           key: api_key,
           language: 'ja',
           fields: 'formatted_address,name,formatted_phone_number,opening_hours,website,geometry,photo'
@@ -36,11 +36,11 @@ namespace :shop do
           details_response = Net::HTTP.get_response(details_uri)
           details = JSON.parse(details_response.body)['result']
 
-          Shop.find_or_create_by(place_id: place_id) do |shop|
+          Shop.find_or_create_by(place_id:) do |shop|
             shop.name = details['name']
             shop.address = details['formatted_address'].sub(/^日本、\s*〒\d{3}-\d{4}\s*/, '')
             shop.phone_number = details['formatted_phone_number']
-            shop.opening_hours = details['opening_hours']['weekday_text'].join(", ") if details['opening_hours']
+            shop.opening_hours = details['opening_hours']['weekday_text'].join(', ') if details['opening_hours']
             shop.web_site = details['website']
             shop.shop_image = fetch_photo_url(details.dig('photos', 0, 'photo_reference'), api_key, api_base_url) if details['photos']&.any?
             shop.latitude = details.dig('geometry', 'location', 'lat')
@@ -48,7 +48,7 @@ namespace :shop do
             shop.postal_code = extract_postal_code(details['formatted_address'])
           end
           puts "#{details['name']}の保存が完了しました。"
-        rescue => e
+        rescue StandardError => e
           puts "#{details['name']}の保存に失敗しました。#{e.message}"
         end
       end
