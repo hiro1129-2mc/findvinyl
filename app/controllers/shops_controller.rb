@@ -1,3 +1,5 @@
 class ShopsController < ApplicationController
-  def map; end
+  def map
+    @shops = Shop.all
+  end
 end

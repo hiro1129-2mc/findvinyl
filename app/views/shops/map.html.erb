@@ -1,3 +1,6 @@
 <div data-controller="map">
-  <div id="map" style="height: 700px; width: 100%;"></div>
+  <div data-map-target="map" style="height: 700px; width: 100%;"></div>
 </div>
+<%= javascript_tag do %>
+  window.shops = <%= raw @shops.to_json(only: [:id, :name, :latitude, :longitude]) %>;
+<% end %>
