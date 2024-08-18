@@ -8,7 +8,7 @@
     <%= stylesheet_link_tag "application", media: 'all', "data-turbo-track": "reload" %>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.css">
-    <script async src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['MAP_API_KEY'] %>&language=ja"></script>
+    <script defer async src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['MAP_API_KEY'] %>&language=ja"></script>
   </head>
 
   <body class="flex flex-col min-h-screen">

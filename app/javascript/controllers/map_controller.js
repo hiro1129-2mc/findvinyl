@@ -22,12 +22,14 @@ export default class extends Controller {
   }
 
   addMarkers() {
+    const image = '/img/marker.png';
     if (typeof window.shops !== 'undefined') {
       window.shops.forEach(shop => {
         new google.maps.Marker({
           position: { lat: parseFloat(shop.latitude), lng: parseFloat(shop.longitude) },
           map: this.map,
-          title: shop.name
+          title: shop.name,
+          icon: image
         });
       });
     }
