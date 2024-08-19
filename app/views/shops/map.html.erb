@@ -4,3 +4,6 @@
 <%= javascript_tag do %>
   window.shops = <%= raw @shops.to_json(only: [:id, :name, :latitude, :longitude]) %>;
 <% end %>
+<script>
+  window.shops = <%= raw @shops.to_json(only: [:name, :latitude, :longitude, :postal_code, :address, :shop_image]) %>
+</script>
