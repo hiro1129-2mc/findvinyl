@@ -13,6 +13,9 @@ application.register("item-edit", ItemEditController)
 import ItemNewController from "./item_new_controller"
 application.register("item-new", ItemNewController)
 
+import MapController from "./map_controller"
+application.register("map", MapController)
+
 import MenuController from "./menu_controller"
 application.register("menu", MenuController)
 
