@@ -10,7 +10,7 @@ namespace :shop do
 
     search_uri = URI("#{api_base_url}/textsearch/json")
     search_params = {
-      query: 'record shops in Ikebukuro',
+      query: 'record shops in Ginza',
       language: 'ja',
       type: 'store',
       key: api_key
@@ -42,7 +42,7 @@ namespace :shop do
             shop.phone_number = details['formatted_phone_number']
             shop.opening_hours = details['opening_hours']['weekday_text'].join(', ') if details['opening_hours']
             shop.web_site = details['website']
-            shop.shop_image = fetch_photo_url(details.dig('photos', 0, 'photo_reference'), api_key, api_base_url) if details['photos']&.any?
+            shop.shop_image = details.dig('photos', 0, 'photo_reference') if details['photos']&.any?
             shop.latitude = details.dig('geometry', 'location', 'lat')
             shop.longitude = details.dig('geometry', 'location', 'lng')
             shop.postal_code = extract_postal_code(details['formatted_address'])
@@ -60,16 +60,5 @@ namespace :shop do
   def self.extract_postal_code(address)
     match = address.match(/〒(\d{3}-\d{4})/)
     match ? match[1] : nil
-  end
-
-  def self.fetch_photo_url(photo_reference, api_key, api_base_url)
-    uri = URI("#{api_base_url}/photo")
-    params = {
-      maxwidth: 400,
-      photoreference: photo_reference,
-      key: api_key
-    }
-    uri.query = URI.encode_www_form(params)
-    uri.to_s
   end
 end
