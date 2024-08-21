@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   get 'confirm_email/:token', to: 'emails#confirm_email', as: 'confirm_email'
   get 'email_change_confirmation', to: 'emails#email_change_confirmation'
   get 'shops/map'
+  get 'shops/image', to: 'shops#shop_image'
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
 end

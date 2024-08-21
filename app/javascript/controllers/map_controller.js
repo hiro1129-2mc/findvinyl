@@ -1,3 +1,4 @@
+// app/javascript/controllers/map_controller.js
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
@@ -34,25 +35,38 @@ export default class extends Controller {
           icon: image
         });
 
-        const contentString = `
-          <div id="content">
-            ${shop.shop_image ? `<img src="${shop.shop_image}" alt="${shop.name}" class="w-96 h-48 mb-4 block rounded-md mx-auto">` : ''}
-            <h2 class="text-xl mb-2 text-gray-800">${shop.name}</h2>
-            <div id="bodyContent" class="text-gray-800 mb-2">
-              <p>〒 ${shop.postal_code}</P>
-              <p>${shop.address}</p>
-            </div>
-          </div>
-        `;
-
         marker.addListener('click', () => {
-          infoWindow.setContent(contentString);
-          infoWindow.open({
-            anchor: marker,
-            map: this.map,
-          });
+          this.fetchShopImage(shop.shop_image)
+            .then(imageUrl => {
+              const contentString = `
+                <div id="content">
+                  <img src="${imageUrl}" class="object-cover aspect-[16/9] max-w-[400px] max-h-[200px] mx-auto">
+                  <h2 class="text-xl mb-2 text-gray-800">${shop.name}</h2>
+                  <div id="bodyContent" class="text-gray-800 mb-2">
+                    <p>〒 ${shop.postal_code}</p>
+                    <p>${shop.address}</p>
+                  </div>
+                </div>
+              `;
+              infoWindow.setContent(contentString);
+              infoWindow.open({
+                anchor: marker,
+                map: this.map,
+              });
+            })
+            .catch(error => console.error('Error fetching shop image:', error));
         });
       });
     }
+  }
+
+  async fetchShopImage(photoReference) {
+    const proxyUrl = '/shops/image';
+    const response = await fetch(`${proxyUrl}?photo_reference=${photoReference}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch shop image');
+    }
+    const data = await response.json();
+    return data.imageUrl;
   }
 }
