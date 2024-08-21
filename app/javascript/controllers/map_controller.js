@@ -40,7 +40,7 @@ export default class extends Controller {
             .then(imageUrl => {
               const contentString = `
                 <div id="content">
-                  <img src="${imageUrl}" class="object-cover aspect-[16/9] max-w-[400px] max-h-[200px] mx-auto">
+                  <img src="${imageUrl}" class="object-cover aspect-[16/9] max-w-[400px] max-h-[200px] mx-auto mb-2">
                   <h2 class="text-xl mb-2 text-gray-800">${shop.name}</h2>
                   <div id="bodyContent" class="text-gray-800 mb-2">
                     <p>〒 ${shop.postal_code}</p>
