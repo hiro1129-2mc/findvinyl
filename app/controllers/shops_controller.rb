@@ -1,6 +1,7 @@
 class ShopsController < ApplicationController
   def map
-    @shops = Shop.all
+    @shops_search = Shop.ransack(params[:q])
+    @shops = @shops_search.result(distinct: true)
   end
 
   def shop_image
