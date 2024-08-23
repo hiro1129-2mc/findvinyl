@@ -17,10 +17,11 @@
 <div data-controller="map">
   <div data-map-target="map" style="height: 600px; width: 100%;"></div>
 </div>
+
 <%= javascript_tag do %>
+  if (typeof window.originalShops === 'undefined') {
+    window.originalShops = <%= raw @shops.to_json(only: [:id, :name, :latitude, :longitude, :postal_code, :address, :shop_image]) %>;
+  }
+  window.isSearchPerformed = <%= params[:q].present?.to_json %>;
   window.shops = <%= raw @shops.to_json(only: [:id, :name, :latitude, :longitude, :postal_code, :address, :shop_image]) %>;
 <% end %>
-
-<script>
-  window.shops = <%= raw @shops.to_json(only: [:name, :latitude, :longitude, :postal_code, :address, :shop_image]) %>
-</script>

@@ -31,7 +31,7 @@ export default class extends Controller {
           position: { lat: parseFloat(shop.latitude), lng: parseFloat(shop.longitude) },
           map: this.map,
           title: shop.name,
-          icon: image
+          icon: window.isSearchPerformed ? null : image
         });
 
         marker.addListener('click', () => {

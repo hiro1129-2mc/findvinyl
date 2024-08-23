@@ -82,6 +82,8 @@ Rails.application.configure do
   config.assets.debug = true
   config.assets.digest = false
 
+  config.web_console.permissions = '192.168.0.0/16'
+
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
