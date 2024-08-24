@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["map", "searchField"]
+  static targets = ["map"]
 
   connect() {
     if (window.google && window.google.maps) {
@@ -67,13 +67,6 @@ export default class extends Controller {
         this.map.fitBounds(bounds);
       }
     }
-  }
-
-  resetSearch() {
-    this.searchFieldTarget.value = "";
-    window.isSearchPerformed = false;
-    window.shops = JSON.parse(sessionStorage.getItem('originalShops'));
-    this.initMap();
   }
 
   async fetchShopImage(photoReference) {
