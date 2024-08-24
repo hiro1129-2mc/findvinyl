@@ -64,7 +64,8 @@ ja:
       artist: アーティスト
       release_title: リリースタイトル
     placeholder:
-      keyword: "検索ワード"
+      keyword: 検索ワード
+      name_or_address: 店名・住所で検索
   results:
     columns:
       title: タイトル

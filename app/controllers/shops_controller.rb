@@ -4,6 +4,10 @@ class ShopsController < ApplicationController
   def map
     @shops_search = Shop.ransack(params[:q])
     @shops = @shops_search.result(distinct: true)
+
+    if @shops.empty?
+      redirect_to shops_map_path, notice: t('search.no_results')
+    end
   end
 
   def shop_image
