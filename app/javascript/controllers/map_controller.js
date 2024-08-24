@@ -14,7 +14,7 @@ export default class extends Controller {
   initMap() {
     const mapOptions = {
       center: { lat: 35.6811673, lng: 139.7670516 },
-      zoom: 14,
+      zoom: 15,
     };
 
     this.map = new google.maps.Map(this.mapTarget, mapOptions);
@@ -24,15 +24,19 @@ export default class extends Controller {
   addMarkers() {
     const image = '/img/marker.png';
     const infoWindow = new google.maps.InfoWindow();
+    const bounds = new google.maps.LatLngBounds();
 
     if (typeof window.shops !== 'undefined') {
       window.shops.forEach(shop => {
+        const position = { lat: parseFloat(shop.latitude), lng: parseFloat(shop.longitude) };
         const marker = new google.maps.Marker({
           position: { lat: parseFloat(shop.latitude), lng: parseFloat(shop.longitude) },
           map: this.map,
           title: shop.name,
           icon: window.isSearchPerformed ? null : image
         });
+
+        bounds.extend(position);
 
         marker.addListener('click', () => {
           this.fetchShopImage(shop.shop_image)
@@ -56,6 +60,12 @@ export default class extends Controller {
             .catch(error => console.error('Error fetching shop image:', error));
         });
       });
+      if (window.shops.length === 1) {
+        this.map.setCenter(bounds.getCenter());
+        this.map.setZoom(16);
+      } else {
+        this.map.fitBounds(bounds);
+      }
     }
   }
 
