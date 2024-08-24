@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["map"]
+  static targets = ["map", "searchField"]
 
   connect() {
     if (window.google && window.google.maps) {
@@ -14,7 +14,7 @@ export default class extends Controller {
   initMap() {
     const mapOptions = {
       center: { lat: 35.6811673, lng: 139.7670516 },
-      zoom: 15,
+      zoom: 14,
     };
 
     this.map = new google.maps.Map(this.mapTarget, mapOptions);
@@ -57,6 +57,13 @@ export default class extends Controller {
         });
       });
     }
+  }
+
+  resetSearch() {
+    this.searchFieldTarget.value = "";
+    window.isSearchPerformed = false;
+    window.shops = window.originalShops;
+    this.initMap();
   }
 
   async fetchShopImage(photoReference) {
