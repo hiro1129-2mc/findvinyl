@@ -72,7 +72,7 @@ export default class extends Controller {
   resetSearch() {
     this.searchFieldTarget.value = "";
     window.isSearchPerformed = false;
-    window.shops = window.originalShops;
+    window.shops = JSON.parse(sessionStorage.getItem('originalShops'));
     this.initMap();
   }
 
