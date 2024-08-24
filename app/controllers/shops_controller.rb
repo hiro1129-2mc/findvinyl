@@ -1,4 +1,6 @@
 class ShopsController < ApplicationController
+  skip_before_action :require_login, only: %i[map shop_image]
+
   def map
     @shops_search = Shop.ransack(params[:q])
     @shops = @shops_search.result(distinct: true)
