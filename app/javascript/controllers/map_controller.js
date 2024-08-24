@@ -1,4 +1,3 @@
-// app/javascript/controllers/map_controller.js
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
@@ -25,15 +24,19 @@ export default class extends Controller {
   addMarkers() {
     const image = '/img/marker.png';
     const infoWindow = new google.maps.InfoWindow();
+    const bounds = new google.maps.LatLngBounds();
 
     if (typeof window.shops !== 'undefined') {
       window.shops.forEach(shop => {
+        const position = { lat: parseFloat(shop.latitude), lng: parseFloat(shop.longitude) };
         const marker = new google.maps.Marker({
           position: { lat: parseFloat(shop.latitude), lng: parseFloat(shop.longitude) },
           map: this.map,
           title: shop.name,
-          icon: image
+          icon: window.isSearchPerformed ? null : image
         });
+
+        bounds.extend(position);
 
         marker.addListener('click', () => {
           this.fetchShopImage(shop.shop_image)
@@ -57,6 +60,12 @@ export default class extends Controller {
             .catch(error => console.error('Error fetching shop image:', error));
         });
       });
+      if (window.shops.length === 1) {
+        this.map.setCenter(bounds.getCenter());
+        this.map.setZoom(16);
+      } else {
+        this.map.fitBounds(bounds);
+      }
     }
   }
 
