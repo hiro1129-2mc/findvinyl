@@ -5,38 +5,63 @@ export default class extends Controller {
 
   connect() {
     if (window.google && window.google.maps) {
-      this.initMap();
+      this.initGeolocation();
     } else {
-      window.initMap = this.initMap.bind(this);
+      window.initMap = this.initGeolocation.bind(this);
     }
   }
 
-  initMap() {
-    const mapOptions = {
-      center: { lat: 35.6811673, lng: 139.7670516 },
-      zoom: 15,
-    };
-
-    this.map = new google.maps.Map(this.mapTarget, mapOptions);
-    this.addMarkers();
+  initGeolocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        this.handleLocationSuccess.bind(this),
+        this.handleLocationError.bind(this)
+      );
+    } else {
+      this.initMap({ lat: 35.6811673, lng: 139.7670516 });
+    }
   }
 
-  addMarkers() {
+  handleLocationSuccess(position) {
+    const userLocation = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude
+    };
+    this.initMap(userLocation);
+  }
+
+  handleLocationError(error) {
+    console.warn(`ERROR(${error.code}): ${error.message}`);
+    this.initMap({ lat: 35.6811673, lng: 139.7670516 });
+  }
+
+  initMap(center) {
+    const mapOptions = {
+      center: center,
+      zoom: 15,
+    };
+    this.map = new google.maps.Map(this.mapTarget, mapOptions);
+    this.addMarkers(center);
+  }
+
+  addMarkers(center) {
     const image = '/img/marker.png';
     const infoWindow = new google.maps.InfoWindow();
     const bounds = new google.maps.LatLngBounds();
+    let markersCount = 0;
 
     if (typeof window.shops !== 'undefined') {
       window.shops.forEach(shop => {
         const position = { lat: parseFloat(shop.latitude), lng: parseFloat(shop.longitude) };
         const marker = new google.maps.Marker({
-          position: { lat: parseFloat(shop.latitude), lng: parseFloat(shop.longitude) },
+          position: position,
           map: this.map,
           title: shop.name,
           icon: window.isSearchPerformed ? null : image
         });
 
         bounds.extend(position);
+        markersCount++;
 
         marker.addListener('click', () => {
           this.fetchShopImage(shop.shop_image)
@@ -60,11 +85,17 @@ export default class extends Controller {
             .catch(error => console.error('Error fetching shop image:', error));
         });
       });
-      if (window.shops.length === 1) {
-        this.map.setCenter(bounds.getCenter());
-        this.map.setZoom(16);
+
+      if (window.isSearchPerformed) {
+        if (markersCount === 1) {
+          this.map.setCenter(bounds.getCenter());
+          this.map.setZoom(16);
+        } else if (markersCount > 1) {
+          this.map.fitBounds(bounds);
+        }
       } else {
-        this.map.fitBounds(bounds);
+        this.map.setCenter(center);
+        this.map.setZoom(15);
       }
     }
   }
