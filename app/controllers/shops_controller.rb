@@ -1,5 +1,5 @@
 class ShopsController < ApplicationController
-  skip_before_action :require_login, only: %i[map shop_image]
+  skip_before_action :require_login, only: %i[map shop_image show]
 
   def map
     @shops_search = Shop.ransack(params[:q])
@@ -7,13 +7,16 @@ class ShopsController < ApplicationController
 
     return unless @shops.empty?
 
-    redirect_to shops_map_path, notice: t('search.no_results')
+    redirect_to map_shops_path, notice: t('search.no_results')
   end
 
   def shop_image
     photo_reference = params[:photo_reference]
     image_url = fetch_image_from_google(photo_reference)
     render json: { imageUrl: image_url }
+  end
+
+  def show
   end
 
   private
