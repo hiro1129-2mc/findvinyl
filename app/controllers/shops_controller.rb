@@ -17,6 +17,10 @@ class ShopsController < ApplicationController
   end
 
   def show
+    @shop = Shop.find(params[:id])
+
+    photo_reference = @shop.shop_image
+    @image_url = fetch_image_from_google(photo_reference)
   end
 
   private

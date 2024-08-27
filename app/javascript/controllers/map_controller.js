@@ -74,6 +74,9 @@ export default class extends Controller {
                     <p>〒 ${shop.postal_code}</p>
                     <p>${shop.address}</p>
                   </div>
+                  <div class="link link-hover text-blue-600 mb-2">
+                    <a href="/shops/${shop.id}">詳細を見る</a>
+                  </div>
                 </div>
               `;
               infoWindow.setContent(contentString);

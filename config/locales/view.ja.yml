@@ -182,3 +182,8 @@ ja:
       invalid_token: 無効または期限切れのトークンです
     email_change_confirmation:
       title: 送信完了
+  shops:
+    opening_hours: 営業時間
+    web_site: 公式サイト
+    phone_number: 電話番号
+    address: 住所
