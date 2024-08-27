@@ -33,9 +33,17 @@
         <div>〒<%= @shop.postal_code %></div>
         <div><%= @shop.address %></div>
       </div>
+      <div class="flex justify-end">
+        <%= link_to "https://www.google.com/maps/dir/?api=1&destination=#{@shop.latitude},#{@shop.longitude}", target: :_blank, rel: "noopener", class: "btn btn-primary text-white rounded-full flex items-center" do %>
+          <p class="flex items-center">
+            <span class="i-ic-round-directions bg-white w-6 h-6 mr-2" aria-hidden="true"></span>
+            <%= t('shops.routes_transfers') %>
+          </p>
+        <% end %>
+      </div>
       <div data-controller="show-map">
         <div id="map" 
-          class="w-full h-[250px] rounded-lg mt-6" 
+          class="w-full h-[250px] rounded-lg mt-2" 
           data-show-map-target="map"
           data-latitude="<%= @shop.latitude %>"
           data-longitude="<%= @shop.longitude %>"
