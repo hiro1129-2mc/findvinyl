@@ -1,0 +1,2 @@
+class ShopBookmark < ApplicationRecord
+end
