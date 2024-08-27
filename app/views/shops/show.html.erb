@@ -33,6 +33,15 @@
         <div>〒<%= @shop.postal_code %></div>
         <div><%= @shop.address %></div>
       </div>
+      <div data-controller="show-map">
+        <div id="map" 
+          class="w-full h-[250px] rounded-lg mt-6" 
+          data-show-map-target="map"
+          data-latitude="<%= @shop.latitude %>"
+          data-longitude="<%= @shop.longitude %>"
+          data-name="<%= @shop.name %>">
+        </div>
+      </div>
     </div>
   </div>
 </div>
