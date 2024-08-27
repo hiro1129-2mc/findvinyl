@@ -11,6 +11,8 @@ class User < ApplicationRecord
 
   has_many :items, dependent: :destroy
   has_many :records, dependent: :destroy
+  has_many :shop_bookmarks, dependent: :destroy
+  has_many :bookmarked_shops, through: :shop_bookmarks, source: :shop
 
   enum role: { general: 0, admin: 1 }
 
