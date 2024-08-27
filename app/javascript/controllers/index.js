@@ -25,5 +25,8 @@ application.register("record-edit", RecordEditController)
 import RecordNewController from "./record_new_controller"
 application.register("record-new", RecordNewController)
 
+import ShowMapController from "./show_map_controller"
+application.register("show-map", ShowMapController)
+
 import SwiperController from "./swiper_controller"
 application.register("swiper", SwiperController)

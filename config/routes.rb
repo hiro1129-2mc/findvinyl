@@ -18,10 +18,18 @@ Rails.application.routes.draw do
       get 'report_show', to: 'records#report_show', as: :report_show_records
     end
   end
+
   resources :items, only: %i[new create show edit update] do
     member do
       patch :move_to_collection
       patch :soft_delete
+    end
+  end
+
+  resources :shops, only: %i[show] do
+    collection do
+      get 'map'
+      get 'image', to: 'shops#shop_image'
     end
   end
 
@@ -35,8 +43,6 @@ Rails.application.routes.draw do
   get 'login', to: 'user_sessions#new'
   get 'confirm_email/:token', to: 'emails#confirm_email', as: 'confirm_email'
   get 'email_change_confirmation', to: 'emails#email_change_confirmation'
-  get 'shops/map'
-  get 'shops/image', to: 'shops#shop_image'
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
 end
