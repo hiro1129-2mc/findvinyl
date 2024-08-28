@@ -1,0 +1,5 @@
+<%= link_to shop_bookmarks_path(shop_id: shop.id), id: "bookmark-button-for-shop-#{shop.id}", data: { turbo_method: :post } do %>
+  <div class="tooltip" data-tip="<%= t('shops.bookmark') %>">
+    <span class="i-bi-bookmark bg-primary" aria-hidden="true"></span>
+  </div>
+<% end %>

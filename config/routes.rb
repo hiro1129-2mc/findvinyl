@@ -4,9 +4,10 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create destroy]
   resources :artists, only: %i[show]
   resources :releases, only: %i[show]
+  resources :password_resets, only: %i[new create edit update]
+  resources :shop_bookmarks, only: %i[create destroy]
   resource :my_page, only: %i[show]
   resource :profile, only: %i[show edit update]
-  resources :password_resets, only: %i[new create edit update]
   resource :email, only: %i[edit update]
 
   resources :records do
@@ -30,6 +31,7 @@ Rails.application.routes.draw do
     collection do
       get 'map'
       get 'image', to: 'shops#shop_image'
+      get :bookmarks
     end
   end
 
