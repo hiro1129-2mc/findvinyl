@@ -23,16 +23,28 @@ class ShopsController < ApplicationController
     @image_url = fetch_image_from_google(photo_reference)
   end
 
+  def bookmarks
+    @bookmark_shops = current_user.bookmark_shops.order(:address).page(params[:page]).per(10)
+    @shop_images = {}
+    @bookmark_shops.each do |shop|
+      @shop_images[shop.id] = fetch_image_from_google(shop.shop_image)
+    end
+  end
+
   private
 
   def fetch_image_from_google(photo_reference)
     key = ENV['MAP_API_KEY']
-    url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=#{photo_reference}&key=#{key}"
-    begin
-      image_data = URI.open(url).read
-      "data:image/jpeg;base64,#{Base64.encode64(image_data)}"
-    rescue StandardError
-      '/img/noimage.png'
+    cache_key = "shop_image_#{photo_reference}"
+
+    Rails.cache.fetch(cache_key, expires_in: 24.hours) do
+      url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=#{photo_reference}&key=#{key}"
+      begin
+        image_data = URI.open(url).read
+        "data:image/jpeg;base64,#{Base64.encode64(image_data)}"
+      rescue StandardError
+        '/img/noimage.png'
+      end
     end
   end
 end
