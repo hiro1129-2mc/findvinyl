@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_27_224107) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_29_090532) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -134,6 +134,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_27_224107) do
     t.index ["name"], name: "index_releases_on_name"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "shop_id", null: false
+    t.text "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shop_id"], name: "index_reviews_on_shop_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "shop_bookmarks", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "shop_id", null: false
@@ -205,6 +215,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_27_224107) do
   add_foreign_key "record_items", "records"
   add_foreign_key "records", "users"
   add_foreign_key "releases", "artist_credits"
+  add_foreign_key "reviews", "shops"
+  add_foreign_key "reviews", "users"
   add_foreign_key "shop_bookmarks", "shops"
   add_foreign_key "shop_bookmarks", "users"
 end
