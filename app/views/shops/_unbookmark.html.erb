@@ -1,0 +1,5 @@
+<%= link_to shop_bookmark_path(current_user.shop_bookmarks.find_by(shop_id: shop.id)), id: "unbookmark-button-for-shop-#{shop.id}", data: { turbo_method: :delete } do %>
+  <div class="tooltip" data-tip="<%= t('shops.unbookmark') %>">
+    <span class="i-bi-bookmark-fill bg-primary" aria-hidden="true"></span>
+  </div>
+<% end %>

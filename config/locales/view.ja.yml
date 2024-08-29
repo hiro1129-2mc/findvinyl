@@ -188,3 +188,6 @@ ja:
     phone_number: 電話番号
     address: 住所
     routes_transfers: ルート・乗換
+    bookmark: ブックマークする
+    unbookmark: ブックマークを外す
+    no_bookmark: ブックマークしたお店がありません。

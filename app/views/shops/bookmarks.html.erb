@@ -1,0 +1,29 @@
+<div class="container mx-auto py-6">
+  <div class="flex flex-wrap">
+    <div class="w-full lg:w-8/12 lg:mx-auto bg-base-200 rounded-lg p-8">
+     <h1 class="text-2xl font-bold text-center mb-8"><%= t('my_interests.bookmarked_shops') %></h1>
+
+      <% if @bookmark_shops.present? %>
+        <% @bookmark_shops.each do |shop| %>
+          <%= link_to shop_path(shop), class: "block card bg-secondary mb-4 p-4 shadow-xl hover:bg-base-200" do %>
+            <div class="flex">
+              <div class="flex-shrink-0 mr-4">
+                <img src="<%= @shop_images[shop.id] %>" class="object-cover w-[200px] h-[100px] rounded-lg" alt="<%= shop.name %>" />
+              </div>
+              <div class="flex flex-col justify-center ml-2">
+                <h2 class="text-white text-lg font-bold mb-2"><%= shop.name %></h2>
+                <p class="text-accent">〒<%= shop.postal_code %></p>
+                <p class="text-accent"><%= shop.address %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+        <div class="mt-8">
+          <%= paginate @bookmark_shops %>
+        </div>
+      <% else %>
+        <p class="text-center"><%= t('shops.no_bookmark') %></p>
+      <% end %>
+    </div>
+  </div>
+</div>

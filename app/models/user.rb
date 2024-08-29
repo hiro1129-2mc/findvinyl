@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :items, dependent: :destroy
   has_many :records, dependent: :destroy
   has_many :shop_bookmarks, dependent: :destroy
-  has_many :bookmarked_shops, through: :shop_bookmarks, source: :shop
+  has_many :bookmark_shops, through: :shop_bookmarks, source: :shop
 
   enum role: { general: 0, admin: 1 }
 
@@ -25,5 +25,17 @@ class User < ApplicationRecord
 
   def confirmation_token_expires?
     confirmation_sent_at > 2.hours.ago
+  end
+
+  def bookmark(shop)
+    bookmark_shops << shop
+  end
+
+  def unbookmark(shop)
+    bookmark_shops.destroy(shop)
+  end
+
+  def bookmark?(shop)
+    bookmark_shops.include?(shop)
   end
 end
