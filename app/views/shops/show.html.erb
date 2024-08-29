@@ -7,7 +7,9 @@
 
       <div class="flex justify-between items-center text-2xl text-white font-bold my-8">
         <span><%= @shop.name %></span>
-        <span class="w-6 h-6"><%= render 'bookmark_buttons', { shop: @shop } %></span>
+        <% if current_user %>
+          <span class="w-6 h-6"><%= render 'bookmark_buttons', { shop: @shop } %></span>
+        <% end %>
       </div>
 
       <div class="text-white font-bold mb-2">
