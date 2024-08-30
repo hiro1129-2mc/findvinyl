@@ -25,6 +25,9 @@ application.register("record-edit", RecordEditController)
 import RecordNewController from "./record_new_controller"
 application.register("record-new", RecordNewController)
 
+import ReviewModalController from "./review_modal_controller"
+application.register("review-modal", ReviewModalController)
+
 import ShowMapController from "./show_map_controller"
 application.register("show-map", ShowMapController)
 

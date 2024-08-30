@@ -48,12 +48,36 @@
       </div>
       <div data-controller="show-map">
         <div id="map" 
-          class="w-full h-[250px] rounded-lg mt-2" 
+          class="w-full h-[250px] rounded-lg mt-2 mb-8" 
           data-show-map-target="map"
           data-latitude="<%= @shop.latitude %>"
           data-longitude="<%= @shop.longitude %>"
           data-name="<%= @shop.name %>">
         </div>
+      </div>
+
+      <div class="flex justify-between items-center border-b mb-8"></div>
+      <div class="flex">
+        <div class="text-white font-bold mb-2">
+          <span class="i-ic-baseline-rate-review bg-primary w-5 h-5 mr-1" aria-hidden="true"></span>
+          <%= t('shops.review') %> (<%= @reviews.count %><%= t('shops.review_count_suffix') %>)
+        </div>
+        <div class="flex ml-auto mb-4">
+          <% if current_user %>
+            <%= link_to t('shops.write_review'), new_shop_review_path(@shop), class: 'btn btn-primary text-white rounded-full flex items-center', data: { turbo_frame: 'review_modal' } %>
+          <% else %>
+            <%= link_to t('shops.write_review_after_login'), login_path, class: 'btn btn-primary text-white rounded-full flex items-center' %>
+          <% end %>
+        </div>
+      </div>
+      <div id="reviews">
+        <% if @reviews.present? %>
+          <%= turbo_frame_tag 'review_modal' do %>
+            <%= render @reviews %>
+          <% end %>
+        <% else %>
+          <p class="text-center m-6"><%= t('shops.no_review') %></p>
+        <% end %>
       </div>
     </div>
   </div>

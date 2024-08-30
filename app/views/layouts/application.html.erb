@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.css">
     <script defer async src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['MAP_API_KEY'] %>&language=ja"></script>
+    <%= turbo_frame_tag 'review_modal' %>
   </head>
 
   <body class="flex flex-col min-h-screen">
@@ -17,7 +18,9 @@
     <% else %>
       <%= render 'shared/before_login_header' %>
     <% end %>
-    <%= render 'shared/flash_message' %>
+    <div id="flash">
+      <%= render 'shared/flash_message' %>
+    </div>
     <div class="flex-grow">
       <%= yield %>
     </div>

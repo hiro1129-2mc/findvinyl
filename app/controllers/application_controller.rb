@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :require_login
+  before_action :store_location
   before_action :set_search
   add_flash_types :success, :danger
 
@@ -28,5 +29,11 @@ class ApplicationController < ActionController::Base
     else
       Artist.none.ransack
     end
+  end
+
+  def store_location
+    return unless !logged_in? && request.get? && !request.xhr? && !request.fullpath.match?(%r{/login|/signup})
+
+    session[:previous_url] = request.fullpath
   end
 end
