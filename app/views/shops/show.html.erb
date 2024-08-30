@@ -60,7 +60,7 @@
       <div class="flex">
         <div class="text-white font-bold mb-2">
           <span class="i-ic-baseline-rate-review bg-primary w-5 h-5 mr-1" aria-hidden="true"></span>
-          <%= t('shops.review') %>
+          <%= t('shops.review') %> (<%= @reviews.count %><%= t('shops.review_count_suffix') %>)
         </div>
         <div class="flex ml-auto mb-4">
           <% if current_user %>
@@ -71,8 +71,12 @@
         </div>
       </div>
       <div id="reviews">
-        <%= turbo_frame_tag 'review_modal' do %>
-          <%= render @reviews %>
+        <% if @reviews.present? %>
+          <%= turbo_frame_tag 'review_modal' do %>
+            <%= render @reviews %>
+          <% end %>
+        <% else %>
+          <p class="text-center m-6"><%= t('shops.no_review') %></p>
         <% end %>
       </div>
     </div>

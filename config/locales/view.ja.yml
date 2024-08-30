@@ -195,6 +195,8 @@ ja:
     review: レビュー
     write_review: レビューを書く
     write_review_after_login: ログインしてレビューを書く
+    review_count_suffix: 件
+    no_review: まだレビューがありません
     reviews:
       content: レビュー内容
       new:
