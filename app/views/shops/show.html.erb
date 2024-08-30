@@ -63,7 +63,11 @@
           <%= t('shops.review') %>
         </div>
         <div class="flex ml-auto mb-4">
-          <%= link_to t('shops.write_review'), new_shop_review_path(@shop), class: 'btn btn-primary text-white rounded-full flex items-center', data: { turbo_frame: 'review_modal' } %>
+          <% if current_user %>
+            <%= link_to t('shops.write_review'), new_shop_review_path(@shop), class: 'btn btn-primary text-white rounded-full flex items-center', data: { turbo_frame: 'review_modal' } %>
+          <% else %>
+            <%= link_to t('shops.write_review_after_login'), login_path, class: 'btn btn-primary text-white rounded-full flex items-center' %>
+          <% end %>
         </div>
       </div>
       <div id="reviews">
