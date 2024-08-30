@@ -62,9 +62,14 @@
           <span class="i-ic-baseline-rate-review bg-primary w-5 h-5 mr-1" aria-hidden="true"></span>
           <%= t('shops.review') %>
         </div>
-        <div class="flex ml-auto">
+        <div class="flex ml-auto mb-4">
           <%= link_to t('shops.write_review'), new_shop_review_path(@shop), class: 'btn btn-primary text-white rounded-full flex items-center', data: { turbo_frame: 'review_modal' } %>
         </div>
+      </div>
+      <div id="reviews">
+        <%= turbo_frame_tag 'review_modal' do %>
+          <%= render @reviews %>
+        <% end %>
       </div>
     </div>
   </div>

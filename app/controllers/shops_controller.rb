@@ -18,6 +18,7 @@ class ShopsController < ApplicationController
 
   def show
     @shop = Shop.find(params[:id])
+    @reviews = @shop.review.includes(:user).order(created_at: :desc)
 
     photo_reference = @shop.shop_image
     @image_url = fetch_image_from_google(photo_reference)

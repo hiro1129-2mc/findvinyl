@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
       flash.now.notice = 'レビューを投稿しました'
       render turbo_stream: [
         turbo_stream.prepend('reviews', @review),
-        turbo_stream.update('flash', partial: 'shared/flash')
+        turbo_stream.update('flash', partial: 'shared/flash_message')
       ]
     else
       render :new, status: :unprocessable_entity
