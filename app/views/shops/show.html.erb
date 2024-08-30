@@ -48,11 +48,22 @@
       </div>
       <div data-controller="show-map">
         <div id="map" 
-          class="w-full h-[250px] rounded-lg mt-2" 
+          class="w-full h-[250px] rounded-lg mt-2 mb-8" 
           data-show-map-target="map"
           data-latitude="<%= @shop.latitude %>"
           data-longitude="<%= @shop.longitude %>"
           data-name="<%= @shop.name %>">
+        </div>
+      </div>
+
+      <div class="flex justify-between items-center border-b mb-8"></div>
+      <div class="flex">
+        <div class="text-white font-bold mb-2">
+          <span class="i-ic-baseline-rate-review bg-primary w-5 h-5 mr-1" aria-hidden="true"></span>
+          <%= t('shops.review') %>
+        </div>
+        <div class="flex ml-auto">
+          <%= link_to t('shops.write_review'), new_shop_review_path(@shop), class: 'btn btn-primary text-white rounded-full flex items-center', data: { turbo_frame: 'review_modal' } %>
         </div>
       </div>
     </div>

@@ -13,6 +13,7 @@ ja:
       delete: 削除
       move_to_collection: コレクションに移動
       select_file: ファイルを選択
+      post: 投稿する
     label:
       email: メールアドレス
       password: パスワード
@@ -191,3 +192,9 @@ ja:
     bookmark: ブックマークする
     unbookmark: ブックマークを外す
     no_bookmark: ブックマークしたお店がありません。
+    review: レビュー
+    write_review: レビューを書く
+    reviews:
+      content: レビュー内容
+      new:
+        saved: レビューを投稿しました

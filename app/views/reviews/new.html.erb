@@ -1,0 +1,27 @@
+<%= turbo_frame_tag "review_modal" do %>
+  <div data-controller="review-modal">
+    <div class="fixed inset-0 flex items-center justify-center z-50 bg-gray-500 bg-opacity-50" data-review-modal-target="backGround" data-action="click->review-modal#closeBackground">
+      <div class="modal-content bg-secondary rounded-xl shadow-lg p-6 w-18 md:w-[450px]" data-review-modal-target="reviewModal">
+        <div class="flex justify-end items-center">
+          <i class="i-bi-x-lg bg-accent w-4 h-4 mr-4" data-action="click->review-modal#closeModal"></i>
+        </div>
+        <div class="flex justify-center items-center text-white font-bold my-6">
+          <span><%= @shop.name %></span>
+        </div>
+        <div class="flex justify-start">
+          <%= image_tag current_user.avatar_url, class: 'rounded-full ml-8 mr-2', width: '40', height: '40'%>
+          <div class="my-2"><%= current_user.name %></div>
+        </div>
+        <%= form_with model: @review, url: shop_reviews_path(@shop), data: { action: "turbo:submit-end->review-modal#close" }, method: :post do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
+          <div class="max-w-lg mx-auto p-2 md:p-6 bg-secondary rounded-xl space-y-2 md:space-y-4">
+            <div class="form-control">
+              <%= f.text_area :content, class: 'w-full rounded-xl p-4 text-base-100', rows: 4, placeholder: t('shops.reviews.content') %>
+            </div>
+            <%= f.submit t('helpers.submit.post'), class: 'w-full py-2 px-4 btn btn-primary text-white rounded-full' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
