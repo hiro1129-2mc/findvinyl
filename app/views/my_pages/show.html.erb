@@ -85,6 +85,13 @@
                 <span><%= t('my_interests.bookmarked_shops') %></span>
               </div>
             <% end %>
+
+            <%= link_to review_shops_shops_path, class: "block w-full bg-secondary py-4 rounded shadow hover:bg-base-200 mt-4" do %>
+              <div class="flex items-center justify-center">
+                <span class="i-ic-outline-rate-review bg-primary w-5 h-5 mr-2" aria-hidden="true"></span>
+                <span><%= t('my_interests.reviewed_shops') %></span>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>

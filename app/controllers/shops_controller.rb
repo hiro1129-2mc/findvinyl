@@ -32,6 +32,18 @@ class ShopsController < ApplicationController
     end
   end
 
+  def review_shops
+    @review_shops = current_user.review_shops
+                                .select('DISTINCT ON (shops.id) shops.*, reviews.created_at as review_created_at')
+                                .order('shops.id, reviews.created_at DESC')
+                                .page(params[:page])
+                                .per(10)
+    @shop_images = {}
+    @review_shops.each do |shop|
+      @shop_images[shop.id] = fetch_image_from_google(shop.shop_image)
+    end
+  end
+
   private
 
   def fetch_image_from_google(photo_reference)

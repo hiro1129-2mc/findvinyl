@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = current_user.review.build(review_params)
+    @review = current_user.reviews.build(review_params)
     @shop = @review.shop
     if @review.save
       @reviews_count = @shop.review.count
