@@ -8,12 +8,11 @@ class ReviewsController < ApplicationController
 
   def create
     @review = current_user.review.build(review_params)
+    @shop = @review.shop
     if @review.save
+      @reviews_count = @shop.review.count
       flash.now.notice = t('shops.reviews.new.saved')
-      render turbo_stream: [
-        turbo_stream.prepend('reviews', @review),
-        turbo_stream.update('flash', partial: 'shared/flash_message')
-      ]
+      render :create
     else
       render :new, status: :unprocessable_entity
     end
@@ -36,12 +35,11 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
+    @shop = @review.shop
     @review.destroy!
+    @reviews_count = @shop.review.count
     flash.now.notice = t('shops.reviews.delete.success')
-    render turbo_stream: [
-      turbo_stream.remove(@review),
-      turbo_stream.update('flash', partial: 'shared/flash_message')
-    ]
+    render :destroy
   end
 
   private

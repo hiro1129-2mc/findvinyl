@@ -1,0 +1,3 @@
+<%= turbo_stream.remove @review %>
+<%= turbo_stream.update 'review-count', partial: 'shops/review_count', locals: { reviews_count: @reviews_count } %>
+<%= turbo_stream.update 'flash', partial: 'shared/flash_message' %>
