@@ -39,4 +39,8 @@ class User < ApplicationRecord
   def bookmark?(shop)
     bookmark_shops.include?(shop)
   end
+
+  def own?(object)
+    id == object&.user_id
+  end
 end

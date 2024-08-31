@@ -13,7 +13,7 @@ ja:
       delete: 削除
       move_to_collection: コレクションに移動
       select_file: ファイルを選択
-      post: 投稿する
+      post: 投稿
     label:
       email: メールアドレス
       password: パスワード
@@ -201,3 +201,7 @@ ja:
       content: レビュー内容
       new:
         saved: レビューを投稿しました
+      edit:
+        edit: レビューを編集しました
+      delete:
+        success: レビューを削除しました
