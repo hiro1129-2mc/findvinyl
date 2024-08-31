@@ -13,7 +13,7 @@ ja:
       delete: 削除
       move_to_collection: コレクションに移動
       select_file: ファイルを選択
-      post: 投稿する
+      post: 投稿
     label:
       email: メールアドレス
       password: パスワード
@@ -52,6 +52,7 @@ ja:
     want_list: 欲しいものリスト
     records_reports: 記録・レポート
     bookmarked_shops: ブックマークしたお店
+    reviewed_shops: レビューしたお店
   footer:
     contact_us: お問い合わせ
     terms_of_use: 利用規約
@@ -191,13 +192,18 @@ ja:
     routes_transfers: ルート・乗換
     bookmark: ブックマークする
     unbookmark: ブックマークを外す
-    no_bookmark: ブックマークしたお店がありません。
+    no_bookmark: ブックマークしたお店はありません
     review: レビュー
     write_review: レビューを書く
     write_review_after_login: ログインしてレビューを書く
     review_count_suffix: 件
     no_review: まだレビューがありません
+    no_review_shop: レビューしたお店はありません
     reviews:
       content: レビュー内容
       new:
         saved: レビューを投稿しました
+      edit:
+        edit: レビューを編集しました
+      delete:
+        success: レビューを削除しました

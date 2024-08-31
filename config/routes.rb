@@ -32,8 +32,9 @@ Rails.application.routes.draw do
       get 'map'
       get 'image', to: 'shops#shop_image'
       get :bookmarks
+      get :review_shops
     end
-    resources :reviews, only: %i[new create], shallow: true
+    resources :reviews, only: %i[new create edit update destroy], shallow: true
   end
 
   get 'terms', to: 'static_pages#terms', as: 'terms'

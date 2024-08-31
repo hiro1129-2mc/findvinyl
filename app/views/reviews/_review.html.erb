@@ -11,9 +11,23 @@
         </div>
       </div>
       <div class="border-b border-zinc-600 mb-2"></div>
-      <div class="flex flex-col my-2 p-2 mx-2">
-        <p class="text-[10px] md:text-sm text-white"><%= review.content %></p>
+      <div class="flex flex-col my-2 p-2 mx-2 text-[10px] md:text-sm text-white">
+        <p><%= simple_format(review.content) %></p>
       </div>
     </div>
+    <% if current_user && current_user.own?(review) %>
+      <div class="flex justify-end space-x-2 mb-4 mr-2">
+        <%= link_to edit_review_path(review), data: { turbo_frame: 'review_modal' } do %>
+          <div class="tooltip" data-tip="<%= t('helpers.submit.edit') %>">
+            <span class="i-bi-pencil bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
+          </div>
+        <% end %>
+        <%= link_to review_path(review), data: { turbo_method: :delete, turbo_confirm: t('items.confirm_delete') } do %>
+          <div class="tooltip" data-tip="<%= t('helpers.submit.delete') %>">
+            <span class="i-bi-trash3 bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 <% end %>
