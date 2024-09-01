@@ -7,6 +7,7 @@ export default class extends Controller {
     this.resultsContainerTarget.style.display = 'none'
     this.searchInputTarget.addEventListener('keypress', this.handleKeypress.bind(this))
     this.searchInputTarget.addEventListener('input', this.handleInput.bind(this))
+    this.formTarget.addEventListener('submit', this.handleSubmit.bind(this))
   }
 
   handleKeypress(event) {
@@ -139,6 +140,13 @@ export default class extends Controller {
         input.remove()
         break
       }
+    }
+  }
+
+  handleSubmit(event) {
+    if (this.selectedItemsTarget.children.length === 0) {
+      event.preventDefault()
+      alert("レコードが選択されていません。")
     }
   }
 }
