@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :require_login
   before_action :set_item, only: %i[show edit update move_to_collection soft_delete]
   before_action :set_select_collections, only: %i[new create edit update]
+  before_action :store_previous_url, only: [:new]
 
   def index
     case params[:view_type]
@@ -49,10 +50,10 @@ class ItemsController < ApplicationController
 
     if @item.save
       if @item.role == 'collection'
-        redirect_to collection_items_path, notice: t('items.new.saved')
+        redirect_to session.delete(:previous_url) || collection_items_path, notice: t('items.new.saved')
       else
         @item.role
-        redirect_to want_items_path, notice: t('items.new.saved')
+        redirect_to session.delete(:previous_url) || want_items_path, notice: t('items.new.saved')
       end
     else
       flash.now[:danger] = t('items.new.not_created')
@@ -133,5 +134,9 @@ class ItemsController < ApplicationController
     @press_countries = PressCountry.all
     @conditions = Condition.all
     @accessories = Accessory.all
+  end
+
+  def store_previous_url
+    session[:previous_url] = request.referer unless request.referer == request.original_url
   end
 end
