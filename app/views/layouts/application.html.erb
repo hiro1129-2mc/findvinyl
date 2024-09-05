@@ -12,7 +12,7 @@
     <%= turbo_frame_tag 'review_modal' %>
   </head>
 
-  <body class="min-h-screen">
+  <body class="flex flex-col min-h-screen">
     <% if logged_in? %>
       <%= render 'shared/header' %>
     <% else %>
@@ -21,7 +21,7 @@
     <div id="flash">
       <%= render 'shared/flash_message' %>
     </div>
-    <div class="flex-grow">
+    <div class="flex-grow pt-16 md:pt-24">
       <%= yield %>
     </div>
     <%= render 'shared/footer' %>
