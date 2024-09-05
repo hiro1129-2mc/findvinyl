@@ -18,10 +18,10 @@
     <% else %>
       <%= render 'shared/before_login_header' %>
     <% end %>
-    <div id="flash">
+    <div id="flash" class="pt-16 md:pt-24">
       <%= render 'shared/flash_message' %>
     </div>
-    <div class="flex-grow pt-16 md:pt-24">
+    <div class="flex-grow">
       <%= yield %>
     </div>
     <%= render 'shared/footer' %>

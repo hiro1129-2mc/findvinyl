@@ -1,28 +1,21 @@
-<div class="flex flex-col justify-center">
-  <div class="flex items-center">
-    <%= search_form_for @q, url: search_path, html: { class: "search-container p-4" } do |f| %>
-      <div class="flex items-center">
-        <%= f.search_field :name_cont, placeholder: t('search.placeholder.keyword'), class: "input input-bordered bg-secondary w-full max-w-xs" %>
-        <%= select_tag :type, options_for_select(
-          [
-            [t('search.form.artist'), 'artist'], 
-            [t('search.form.release_title'), 'release']
-          ], selected: params[:type]), 
-          class: "select select-bordered bg-secondary" 
-        %>
-        <button type="submit" class="btn btn-primary">
+<div class="flex justify-center items-center">
+  <%= search_form_for @q, url: search_path, html: { class: "join p-2" } do |f| %>
+    <div class="join mr-52 md:mr-0">
+      <div>
+        <%= f.search_field :name_cont, placeholder: t('search.placeholder.keyword'), class: "input input-bordered join-item md:w-72" %>
+      </div>
+      <%= select_tag :type, options_for_select(
+        [
+          ["artist", 'artist'], 
+          ["release", 'release']
+        ], selected: params[:type]), 
+        class: "select select-bordered join-item" 
+      %>
+      <div class="indicator">
+        <button type="submit" class="btn join-item bg-primary">
           <span class="i-bi-search bg-white w-4 h-4" aria-hidden="true"></span>
         </button>
       </div>
-    <% end %>
-    <div class="dropdown dropdown-end">
-      <button tabindex="0">
-        <span class="i-bi-plus-circle-fill bg-accent w-10 h-10" aria-hidden="true"></span>
-      </button> 
-      <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52" style="z-index: 1000;">
-        <li><%= link_to t('items.new.create_collection'), new_item_path(role: 'collection') %></li>
-        <li><%= link_to t('items.new.create_want'), new_item_path(role: 'want') %></li>
-      </ul>
     </div>
-  </div>
+  <% end %>
 </div>

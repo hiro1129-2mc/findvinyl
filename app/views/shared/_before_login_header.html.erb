@@ -5,7 +5,7 @@
     </div>
 
     <!-- md以上の画面サイズで表示 -->
-    <div class="hidden md:block">
+    <div class="hidden md:block ml-16">
       <%= render 'shared/search_form', q: @q, url: search_path %>
     </div>
     <div class="hidden md:flex">
@@ -21,7 +21,7 @@
         </div>
         <div tabindex="0" class="dropdown-content menu z-[1] fixed w-full">
           <div class="container mx-auto">
-            <%= render 'shared/before_login_search_form', q: @q, url: search_path %>
+            <%= render 'shared/search_form', q: @q, url: search_path %>
           </div>
         </div>
       </div>
