@@ -7,7 +7,7 @@ ja:
       user:
         email: メールアドレス
         new_email: 新しいメールアドレス
-        name: ニックネーム
+        name: ユーザー名
         password: パスワード
         password_confirmation: パスワード確認
       item:
