@@ -31,18 +31,18 @@
             <% @items.each do |item| %>
               <div class="flex justify-between items-center border-b border-neutral-700 py-2 mb-4">
                 <div class="flex-1 w-1/4">
-                  <div class="truncate mr-2">
+                  <div class="truncate link link-hover mr-2">
                       <%= link_to item.title.name, item_path(item) %>
                     </div>
                 </div>
                 <div class="flex-1 w-1/4">
-                  <div class="truncate mr-2">
+                  <div class="truncate link link-hover mr-2">
                     <%= link_to item.artist_name.name, item_path(item) %>
                   </div>
                 </div>
                 <div class="flex-1 w-1/4">
                   <% item.tags.each do |tag| %>
-                    <%= link_to tag.name, collection_tag_items_path(tag_id: tag.id), class: 'badge badge-primary text-accent' %>
+                    <%= link_to tag.name, collection_tag_items_path(tag_id: tag.id), class: 'btn btn-xs btn-primary text-accent rounded-full' %>
                   <% end %>
                 </div>
                 <div class="flex space-x-2">
