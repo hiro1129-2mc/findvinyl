@@ -4,19 +4,19 @@
 
     <div class="flex flex-col px-3 md:px-0 md:grid gap-4 grid-cols-2">
       <div class="p-6 md:p-10 w-full mx-auto bg-base-200 rounded-2xl">
-      <%= month_calendar start_date: @date.beginning_of_month do |date| %>
-        <div class="flex flex-col justify-center items-center">
-          <div  class="mb-1">
-            <%= date.day %>
-          </div>
-          <% if @records_by_date.include?(date) %>
-            <div class="flex justify-center items-center">
-              <span class="i-bi-music-note bg-primary w-4 h-4" aria-hidden="true"></span>
+        <%= month_calendar start_date: @date.beginning_of_month do |date| %>
+          <div class="flex flex-col justify-center items-center">
+            <div  class="mb-1">
+              <%= date.day %>
             </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
+            <% if @records_by_date.include?(date) %>
+              <div class="flex justify-center items-center">
+                <span class="i-bi-music-note bg-primary w-4 h-4" aria-hidden="true"></span>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
 
       <div class="p-6 md:p-10 w-full mx-auto bg-base-200 rounded-2xl">
         <h2 class="text-center md:mb-2"><%= t('records.index.monthly_report') %></h2>
