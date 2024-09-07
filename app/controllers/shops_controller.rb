@@ -25,7 +25,7 @@ class ShopsController < ApplicationController
   end
 
   def bookmarks
-    @bookmark_shops = current_user.bookmark_shops.order(:address).page(params[:page]).per(10)
+    @bookmark_shops = current_user.bookmark_shops.order(:address).page(params[:page]).per(6)
     @shop_images = {}
     @bookmark_shops.each do |shop|
       @shop_images[shop.id] = fetch_image_from_google(shop.shop_image)
