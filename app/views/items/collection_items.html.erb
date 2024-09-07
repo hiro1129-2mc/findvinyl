@@ -65,7 +65,9 @@
           <%= paginate @items %>
         </div>
       <% else %>
-        <p class="text-center"><%= t('items.index.no_items') %></p>
+        <div class="flex items-center justify-center py-20">
+          <p class="text-center"><%= t('items.index.no_items') %></p>
+        </div>
       <% end %>
     </div>
   </div>
