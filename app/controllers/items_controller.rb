@@ -9,12 +9,12 @@ class ItemsController < ApplicationController
     when 'collection_items'
       items = current_user.items.collection_items.active
       @items_search = items.ransack(params[:q])
-      @items = @items_search.result.page(params[:page]).per(20)
+      @items = @items_search.result.page(params[:page]).per(10)
       render 'collection_items'
     when 'want_items'
       items = current_user.items.want_items.active
       @items_search = items.ransack(params[:q])
-      @items = @items_search.result.page(params[:page]).per(20)
+      @items = @items_search.result.page(params[:page]).per(10)
       render 'want_items'
     end
   end

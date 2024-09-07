@@ -1,62 +1,72 @@
-<div class="container mx-auto py-8">
-  <h1 class="text-2xl font-bold text-center mb-8"><%= t('my_interests.collection_list') %></h1>
+<div class="container mx-auto">
+  <div class="py-8 px-2">
+    <h1 class="text-2xl font-bold text-center mt-2 mb-8"><%= t('my_interests.collection_list') %></h1>
 
-  <%= search_form_for @items_search , url: collection_items_path, method: :get, class: "space-y-4 mb-8" do |f| %>
-    <div class="flex justify-center items-center mx-4">
-      <%= f.search_field :title_name_or_artist_name_name_cont, placeholder: t('search.in_collection_list'), class: "input input-bordered bg-secondary w-full max-w-xs" %>
-      <button type="submit" class="btn btn-primary">
-        <span class="i-bi-search bg-white w-4 h-4" aria-hidden="true"></span>
+    <%= search_form_for @items_search , url: collection_items_path, method: :get, class: "input input-bordered flex items-center w-full mx-2 md:w-1/3 mx-auto bg-accent text-base-200 mb-8" do |f| %>
+      <%= f.search_field :title_name_or_artist_name_name_cont, class: "grow", placeholder: t('search.in_collection_list') %>
+      <button type="submit">
+        <span class="i-bi-search bg-secondary w-4 h-4" aria-hidden="true"></span>
       </button>
-    </div>
-  <% end %>
-
-  <% if @items.any? %>
-    <div class="flex justify-between items-center border-b py-2 mb-4">
-      <div class="flex-1">
-        <span class="font-semibold"><%= t('results.columns.title') %></span>
-      </div>
-      <div class="flex-1">
-        <span class="font-semibold"><%= t('results.columns.artist') %></span>
-      </div>
-      <div class="flex-1">
-        <span class="font-semibold"><%= t('items.index.tag') %></span>
-      </div>
-      <div class="flex space-x-2">
-        <span class="w-24 h-4"></span>
-      </div>
-    </div>
-
-    <% @items.each do |item| %>
-      <div class="flex justify-between items-center border-b py-2 mb-4">
-        <div class="flex-1">
-          <%= link_to item.title.name, item_path(item) %>
-        </div>
-        <div class="flex-1">
-          <%= link_to item.artist_name.name, item_path(item) %>
-        </div>
-        <div class="flex-1">
-          <% item.tags.each do |tag| %>
-            <%= link_to tag.name, collection_tag_items_path(tag_id: tag.id), class: 'badge badge-primary text-accent' %>
-          <% end %>
-        </div>
-        <div class="flex space-x-2">
-          <%= link_to edit_item_path(item) do %>
-            <div class="tooltip ml-8" data-tip="<%= t('helpers.submit.edit') %>">
-              <span class="i-bi-pencil bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
-            </div>
-          <% end %>
-          <%= link_to soft_delete_item_path(item), data: { turbo_method: :patch, turbo_confirm: t('items.confirm_delete') } do %>
-            <div class="tooltip" data-tip="<%= t('helpers.submit.delete') %>">
-              <span class="i-bi-trash3 bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
-            </div>
-          <% end %>
-        </div>
-      </div>
     <% end %>
-    <div class="mt-6">
-      <%= paginate @items %>
+
+    <div class="mx-2 md:mx-0">
+      <% if @items.any? %>
+        <div class="overflow-x-auto md:overflow-x-visible">
+          <div class="min-w-[800px] md:w-full">
+            <div class="flex justify-between items-center border-b py-2 mb-4">
+              <div class="flex-1">
+                <p class="font-semibold"><%= t('results.columns.title') %></p>
+              </div>
+              <div class="flex-1">
+                <p class="font-semibold"><%= t('results.columns.artist') %></p>
+              </div>
+              <div class="flex-1">
+                <p class="font-semibold"><%= t('items.index.tag') %></p>
+              </div>
+              <div class="flex space-x-2">
+                <span class="w-24 h-4"></span>
+              </div>
+            </div>
+    
+            <% @items.each do |item| %>
+              <div class="flex justify-between items-center border-b border-neutral-700 py-2 mb-4">
+                <div class="flex-1 w-1/4">
+                  <div class="truncate mr-2">
+                      <%= link_to item.title.name, item_path(item) %>
+                    </div>
+                </div>
+                <div class="flex-1 w-1/4">
+                  <div class="truncate mr-2">
+                    <%= link_to item.artist_name.name, item_path(item) %>
+                  </div>
+                </div>
+                <div class="flex-1 w-1/4">
+                  <% item.tags.each do |tag| %>
+                    <%= link_to tag.name, collection_tag_items_path(tag_id: tag.id), class: 'badge badge-primary text-accent' %>
+                  <% end %>
+                </div>
+                <div class="flex space-x-2">
+                  <%= link_to edit_item_path(item) do %>
+                    <div class="tooltip ml-8" data-tip="<%= t('helpers.submit.edit') %>">
+                      <span class="i-bi-pencil bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
+                    </div>
+                  <% end %>
+                  <%= link_to soft_delete_item_path(item), data: { turbo_method: :patch, turbo_confirm: t('items.confirm_delete') } do %>
+                    <div class="tooltip" data-tip="<%= t('helpers.submit.delete') %>">
+                      <span class="i-bi-trash3 bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="mt-6 flex flex-wrap justify-center">
+          <%= paginate @items %>
+        </div>
+      <% else %>
+        <p class="text-center"><%= t('items.index.no_items') %></p>
+      <% end %>
     </div>
-  <% else %>
-    <p class="text-center"><%= t('items.index.no_items') %></p>
-  <% end %>
+  </div>
 </div>
