@@ -1,34 +1,40 @@
-<div class="flex justify-center items-center py-8">
-  <div class="w-full max-w-md mx-auto bg-base-200 rounded-lg p-6">
-    <div class="flex justify-center items-center">
+<div class="container mx-auto py-8 px-3 md:px-0">
+  <div class="w-full md:max-w-md mx-auto bg-base-200 rounded-lg p-8">
     <h1 class="text-2xl font-bold text-center mb-8"><%= t('records.show.title') %></h1>
-    </div>
 
     <% if @record.items.any? %>
-      <div class="mb-4">
-        <h3 class="text-lg font-bold mb-4"><%= t('records.daily_records.listened_records') %></h3>
-        <ul>
+      <div class="mb-6">
+        <div class="text-lg font-bold mb-4"><%= t('records.daily_records.listened_records') %></div>
           <% @record.items.each do |item| %>
-            <li class="mb-4">
-              <div class="flex items-center mb-1">
-                <span class="i-bi-music-note bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
-                <span class="font-bold text-white"><%= item.title.name %></span>
+            <div class="mb-4">
+              <div class="flex items-start mb-1">
+                <span class="i-bi-music-note bg-primary w-4 h-4 mr-2 flex-shrink-0 mt-1" aria-hidden="true"></span>
+                <div class="min-w-0 flex-1">
+                  <div class="font-bold text-white break-words"><%= item.title.name %></div>
+                  <div class="break-words">
+                    <%= item.artist_name.name %>
+                  </div>
+                </div>
               </div>
-              <div class="ml-6">
-                <%= item.artist_name.name %>
-              </div>
-            </li>
+            </div>
           <% end %>
-        </ul>
       </div>
     <% end %>
 
-    <h3 class="text-lg font-bold mb-2"><%= t('records.new.comment') %></h3>
-    <div class="p-2 rounded min-h-[2rem] mb-2">
-      <%= simple_format(@record.content) %>
-    </div>
+    <div class="text-lg font-bold mb-2"><%= t('records.new.comment') %></div>
+    <% if @record.content.present? %>
+      <div class="flex flex-wrap p-2 mb-4">
+        <div class="w-full break-words">
+          <%= simple_format(@record.content) %>
+        </div>
+      </div>
+    <% else %>
+      <div class="flex items-center justify-center p-2 mb-4">
+        <div class="text-center text-accent text-sm"><%= t('records.show.no_content') %></div>
+      </div>
+    <% end %>
 
-    <h2 class="text-right mb-4"><%= @record.created_at.strftime("%Y/%m/%d %H:%M") %></h2>
+    <div class="text-right mb-6"><%= @record.created_at.strftime("%Y/%m/%d %H:%M") %></div>
 
     <div class="flex justify-end space-x-2 mt-4">
       <%= link_to edit_record_path(@record) do %>

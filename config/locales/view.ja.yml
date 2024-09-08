@@ -142,6 +142,7 @@ ja:
       details_button: 詳細を見る
     show:
       title: 記録詳細
+      no_content: コメントがありません
     delete:
       success: 記録を削除しました。
     update:
