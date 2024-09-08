@@ -70,7 +70,7 @@ class RecordsController < ApplicationController
 
   def daily_records
     date = Date.parse(params[:date])
-    @records = current_user.records.where('DATE(created_at) = ?', date)
+    @records = current_user.records.where('DATE(created_at) = ?', date).page(params[:page]).per(6)
   end
 
   def destroy
