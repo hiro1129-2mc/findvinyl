@@ -2,10 +2,10 @@
   <div class="font-semibold"><%= t('results.columns.artist') %></div>
 </div>
 
-<div class="mx-auto overflow-x-auto">
-  <% results.each do |artist| %>
-    <div class="scroll flex items-center justify-start p-4 hover:bg-base-200 rounded-lg w-full whitespace-nowrap">
+<% results.each do |artist| %>
+  <div class="flex items-center justify-start p-4 hover:bg-base-200 rounded-lg w-full">
+    <div class="truncate">
       <%= link_to artist.name, artist_path(artist) %>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>
