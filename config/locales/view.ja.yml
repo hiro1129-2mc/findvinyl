@@ -119,6 +119,7 @@ ja:
       condition: コンディション
       accessory: 付属品
       user_note: メモ
+      no_user_note: メモがありません
     delete:
       success:
         collection: コレクションを削除しました。
