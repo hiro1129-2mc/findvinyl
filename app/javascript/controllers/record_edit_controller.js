@@ -41,19 +41,21 @@ export default class extends Controller {
       selectedItem.className = 'flex items-center py-1 justify-between w-full mb-1'
 
       const noteIcon = document.createElement('span')
-      noteIcon.className = 'i-bi-music-note bg-primary w-4 h-4'
+      noteIcon.className = 'i-bi-music-note bg-primary w-4 h-4 flex-shrink-0'
       noteIcon.setAttribute('aria-hidden', 'true')
       selectedItem.appendChild(noteIcon)
 
       const titleContainer = document.createElement('div')
-      titleContainer.className = 'w-[200px]'
+      titleContainer.className = 'w-[160px] md:w-[200px]'
+
       const titleElement = document.createElement('p')
       titleElement.className = 'truncate'
       titleElement.textContent = item.title
       titleContainer.appendChild(titleElement)
 
       const artistContainer = document.createElement('div')
-      artistContainer.className = 'w-[120px]'
+      artistContainer.className = 'w-[90px] md:w-[120px]'
+
       const artistElement = document.createElement('p')
       artistElement.className = 'truncate'
       artistElement.textContent = item.artist_name
@@ -97,17 +99,19 @@ export default class extends Controller {
 
         data.forEach(item => {
           const itemContainer = document.createElement('div')
-          itemContainer.className = 'flex justify-between items-center py-1'
+          itemContainer.className = 'flex items-center py-1 justify-between w-full mb-1'
 
           const titleContainer = document.createElement('div')
-          titleContainer.className = 'w-[200px]'
+          titleContainer.className = 'w-[160px] md:w-[200px]'
+
           const titleElement = document.createElement('p')
           titleElement.className = 'truncate'
           titleElement.textContent = item.title.name
           titleContainer.appendChild(titleElement)
 
           const artistContainer = document.createElement('div')
-          artistContainer.className = 'w-[120px]'
+          artistContainer.className = 'w-[100px] md:w-[130px]'
+
           const artistElement = document.createElement('p')
           artistElement.className = 'truncate'
           artistElement.textContent = item.artist_name.name
@@ -127,12 +131,12 @@ export default class extends Controller {
             selectedItem.className = 'flex items-center py-1 justify-between w-full mb-1'
   
             const noteIcon = document.createElement('span')
-            noteIcon.className = 'i-bi-music-note bg-primary w-4 h-4'
+            noteIcon.className = 'i-bi-music-note bg-primary w-4 h-4 flex-shrink-0'
             noteIcon.setAttribute('aria-hidden', 'true')
             selectedItem.appendChild(noteIcon)
           
             const titleContainer = document.createElement('div')
-            titleContainer.className = 'w-[200px]'
+            titleContainer.className = 'w-[160px] md:w-[200px]'
           
             const titleElement = document.createElement('p')
             titleElement.className = 'truncate'
@@ -140,7 +144,7 @@ export default class extends Controller {
             titleContainer.appendChild(titleElement)
           
             const artistContainer = document.createElement('div')
-            artistContainer.className = 'w-[120px]'
+            artistContainer.className = 'w-[90px] md:w-[120px]'
           
             const artistElement = document.createElement('p')
             artistElement.className = 'truncate'
