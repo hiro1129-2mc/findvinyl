@@ -3,9 +3,9 @@
 </div>
 
 <% results.each do |artist| %>
-  <div class="flex items-center justify-start p-4 hover:bg-base-200 rounded-lg w-full">
+  <%= link_to artist_path(artist), class: "flex items-center justify-start p-4 hover:bg-base-200 rounded-lg w-full" do %>
     <div class="truncate">
-      <%= link_to artist.name, artist_path(artist) %>
+      <%= artist.name %>
     </div>
-  </div>
+  <% end %>
 <% end %>
