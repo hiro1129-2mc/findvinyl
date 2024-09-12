@@ -1,48 +1,49 @@
-<div class="container mx-auto py-8">
-  <div class="flex flex-wrap">
-    <div class="w-full lg:w-10/12 lg:mx-auto">
+<div class="container mx-auto py-8 px-3 md:px-0">
+  <div class="w-full md:w-10/12 mx-auto">
 
-      <h1 class="text-3xl font-bold text-white mt-4 mb-4"><%= @artist.name %></h1>
+    <h1 class="text-xl md:text-2xl font-bold text-white mt-4 mb-4"><%= @artist.name %></h1>
 
-      <% if @data.present? %>
-        <p><strong><%= t('artists.show.life_span') %></strong> : <%= @data["life-span"]["begin"] %> ~ <%= @data["life-span"]["end"] %></p>
-        <p><strong><%= t('artists.show.country') %></strong> : <%= @data["country"] %></p>
-      <% else %>
-        <p><%= t('artists.show.details_not_available') %></p>
-      <% end %>
+    <% if @data.present? %>
+      <p><strong><%= t('artists.show.life_span') %></strong> : <%= @data["life-span"]["begin"] %> ~ <%= @data["life-span"]["end"] %></p>
+      <p><strong><%= t('artists.show.country') %></strong> : <%= @data["country"] %></p>
+    <% else %>
+      <p><%= t('artists.show.details_not_available') %></p>
+    <% end %>
 
-      <h2 class="text-xl font-semibold mt-6 mb-2"><%= t('artists.show.releases') %></h2>
+    <div class="text-lg md:text-xl font-semibold mt-6 mb-4"><%= t('artists.show.releases') %></div>
 
-      <div class="flex justify-between items-center border-b p-4 mb-4">
-        <div class="flex-1">
-          <span class="font-semibold mr-8"><%= t('results.columns.title') %></span>
+    <div class="overflow-x-auto md:overflow-x-visible">
+      <div class="min-w-[800px] md:w-full">
+        <div class="flex justify-between items-center border-b p-2 mb-4">
+          <div class="flex-1 mr-4">
+            <div class="font-semibold mr-8"><%= t('results.columns.title') %></div>
+          </div>
+          <div class="flex-1">
+            <div class="font-semibold"><%= t('results.columns.format') %></div>
+          </div>
         </div>
-        <div class="flex-1">
-          <span class="font-semibold"><%= t('results.columns.format') %></span>
-        </div>
-      </div>
 
-      <ul class="space-y-2">
-        <% @releases.each do |release| %>
-          <li class="p-2">
-            <div class="flex items-center gap-x-8">
-              <p class="flex-1 link link-hover">
-                <%= link_to release.name, release_path(release) %>
-              </p>
-              <p class="flex-1">
+        <% if @releases.present? %>
+          <% @releases.each do |release| %>
+            <%= link_to release_path(release), class: 'flex justify-between items-center w-full hover:bg-base-200 rounded-lg p-2' do %>
+              <div class="flex-1 mr-4">
+                <%= release.name %>
+              </div>
+              <div class="flex-1">
                 <% release.mediums.each_with_index do |medium, index| %>
                   <%= medium.medium_format ? medium.medium_format.name : " " %>
                   <%= "," unless index == release.mediums.size - 1 %>
-                 <% end %>
-              </p>
-            </div>
-          </li>
+                  <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        <% else %>
+          <p class="text-center text-sm md:text-base py-20"><%= t('artists.show.no_vinyl_release') %></p>
         <% end %>
-      </ul>
-
-      <div class="mt-6">
-        <%= paginate @releases %>
       </div>
+    </div>
+    <div class="mt-6 flex flex-wrap justify-center md:justify-start">
+      <%= paginate @releases %>
     </div>
   </div>
 </div>

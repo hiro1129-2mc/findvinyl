@@ -80,6 +80,7 @@ ja:
       disambiguation: 認識情報
       country: 国籍
       details_not_available: アーティストの詳細情報はありません。
+      no_vinyl_release: レコードのリリース情報が見つかりませんでした
   releases:
     show:
       release_date: リリース日
