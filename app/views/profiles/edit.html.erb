@@ -1,13 +1,14 @@
-<div class="flex justify-center items-center py-8">
+<div class="container mx-auto py-8 px-3 md:px-0">
   <div class="w-full max-w-lg mx-auto bg-base-200 rounded-lg p-6">
     <h1 class="text-2xl font-bold text-center mt-4 mb-6"><%= t('profile.edit.title') %></h1>
+
     <%= form_with model: @user, url: profile_path, method: :put do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-      <div class="flex justify-between">
-        <div class="w-2/3 px-4">
+      <div class="flex justify-between mb-4">
+        <div class="w-2/3 px-2 md:px-4">
           <div class="form-control mb-6">
             <%= f.label :name, class: "font-bold text-white mb-2"%>
-            <%= f.text_field :name, class: "rounded-sm bg-white text-base-100", required: true %>
+            <%= f.text_field :name, class: "rounded-sm bg-white text-base-100 px-1", required: true %>
           </div>
           <div class="form-control">
             <%= f.label :email, class: "font-bold text-white mb-2" %>
@@ -28,16 +29,16 @@
         </div>
       </div>
       <div class="text-center">
-        <%= f.submit class: "btn btn-primary text-white"%>
+        <%= f.submit class: "btn btn-primary text-white w-full rounded-full"%>
       </div>
     <% end %>
   </div>
 </div>
 
 <div class="text-center mb-4">
-  <%= link_to t('profile.edit.change_email'), edit_email_path, class: 'text-sm text-text-accent mr-4'%>
-  <%= link_to t('profile.edit.change_password'), new_password_reset_path, class: 'text-sm text-text-accent'%>
+  <%= link_to t('profile.edit.change_email'), edit_email_path, class: 'text-sm text-text-accent mr-4 link link-hover'%>
+  <%= link_to t('profile.edit.change_password'), new_password_reset_path, class: 'text-sm text-text-accent link link-hover'%>
 </div>
-<div class="text-center">
-  <%= link_to t('users.destroy.delete_account'),user_path(current_user.id), class: 'text-sm text-text-accent', data: { turbo_method: :delete, turbo_confirm: t('users.destroy.confirm_delete') } %>
+<div class="text-center mb-8">
+  <%= link_to t('users.destroy.delete_account'),user_path(current_user.id), class: 'text-sm text-text-accent link link-hover', data: { turbo_method: :delete, turbo_confirm: t('users.destroy.confirm_delete') } %>
 </div>
