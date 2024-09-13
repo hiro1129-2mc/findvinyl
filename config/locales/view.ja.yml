@@ -80,6 +80,7 @@ ja:
       disambiguation: 認識情報
       country: 国籍
       details_not_available: アーティストの詳細情報はありません。
+      no_vinyl_release: レコードのリリース情報が見つかりませんでした
   releases:
     show:
       release_date: リリース日
@@ -119,6 +120,7 @@ ja:
       condition: コンディション
       accessory: 付属品
       user_note: メモ
+      no_user_note: メモがありません
     delete:
       success:
         collection: コレクションを削除しました。
@@ -142,6 +144,7 @@ ja:
       details_button: 詳細を見る
     show:
       title: 記録詳細
+      no_content: コメントがありません
     delete:
       success: 記録を削除しました。
     update:

@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag 'custom_styles', media: 'all', 'data-turbolinks-track': 'reload' %>
-<div class="flex justify-center items-center py-8">
-  <div class="w-full max-w-md mx-auto bg-base-200 rounded-lg p-6">
+<div class="container mx-auto py-8 px-3 md:px-0">
+  <div class="w-full max-w-md mx-auto bg-base-200 rounded-lg p-6 md:p-8">
     <% if @item.collection? %>
         <h2 class="text-2xl font-bold text-center mb-4"><%= t('items.edit.edit_collection') %></h2>
     <% elsif @item.want? %>
@@ -12,14 +12,20 @@
 
       <div class="form-control">
         <%= form.label :title, class: "label" do %>
-          <%= form.object.class.human_attribute_name(:title) %> <span class="text-red-500">*</span>
+        <div class="flex items-center">
+          <%= form.object.class.human_attribute_name(:title) %>
+          <span class="text-red-500 ml-2">*</span>
+        </div>
         <% end %>
         <%= form.text_field :title, value: @item.title&.name || params[:item]&.fetch(:title, nil), class: "input input-bordered text-base-100", required: true %>
       </div>
 
       <div class="form-control">
         <%= form.label :artist_name, class: "label" do %>
-          <%= form.object.class.human_attribute_name(:artist_name) %> <span class="text-red-500">*</span>
+          <div class="flex items-center">
+            <%= form.object.class.human_attribute_name(:artist_name) %>
+            <span class="text-red-500 ml-2">*</span>
+          </div>
         <% end %>
         <%= form.text_field :artist_name, value: @item.artist_name&.name || params[:item]&.fetch(:artist_name, nil), class: "input input-bordered text-base-100", required: true %>
       </div>
@@ -65,8 +71,8 @@
         <%= form.text_area :user_note, value: @item.user_note, class: "textarea textarea-bordered text-base-100" %>
       </div>
 
-      <div class="flex justify-end space-x-2 mt-4">
-        <%= form.submit t('helpers.submit.submit'), class: "btn btn-primary text-white" %>
+      <div class="flex justify-center mt-6">
+        <%= form.submit t('helpers.submit.submit'), class: "btn btn-primary text-white w-full rounded-full" %>
       </div>
     <% end %>
   </div>

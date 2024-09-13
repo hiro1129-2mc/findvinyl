@@ -13,7 +13,7 @@ module.exports = {
   plugins: [
     require('daisyui'),
     iconsPlugin({
-      collections: getIconCollections(["bi", "ion", "majesticons", "ic"]),
+      collections: getIconCollections(["bi", "ion", "majesticons", "ic", "material-symbols", "ph"]),
     }),
   ],
   daisyui: {
@@ -25,7 +25,7 @@ module.exports = {
           "accent": "rgb(214 211 209)",
           "neutral": "rgb(24 24 27)",
           "base-100": "rgb(38 38 38)",
-          "base-200": "rgb(42, 42, 42)",
+          "base-200": "rgb(42 42 42)",
         },
       },
     ],

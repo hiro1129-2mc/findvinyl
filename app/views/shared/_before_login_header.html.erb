@@ -1,15 +1,34 @@
-<header>
-  <div class="navbar bg-base-100">
-    <div class="flex-1">
-      <%= link_to "VinylLog", root_path, class: "btn btn-ghost text-xl" %>
+<header class="fixed top-0 left-0 w-full z-50">
+  <div class="navbar justify-between bg-base-100 opacity-85">
+    <div>
+      <%= link_to "VinylLog", root_path, class: "font-sans font-bold text-xl pl-6" %>
     </div>
-    <div class="flex justify-center items-center mx-4">
+
+    <!-- md以上の画面サイズで表示 -->
+    <div class="hidden md:block ml-16">
       <%= render 'shared/search_form', q: @q, url: search_path %>
     </div>
-    <div class="flex-1 justify-end flex">
-      <%= link_to t('header.search_shops'), map_shops_path, class: "btn btn-ghost" %>
+    <div class="hidden md:flex">
       <%= link_to t('header.to_register_page'), new_user_path, class: "btn btn-ghost" %>
       <%= link_to t('header.login'), login_path, class: "btn btn-ghost" %>
+    </div>
+
+    <!-- md以下の画面サイズで表示 -->
+    <div class="md:hidden flex items-center">
+      <div class="dropdown dropdown-bottom dropdown-end">
+        <div tabindex="0" role="button" class="btn btn-ghost">
+          <span class="i-bi-search bg-accent w-4 h-4" aria-hidden="true"></span>
+        </div>
+        <div tabindex="0" class="dropdown-content menu z-[1] fixed w-full">
+          <div class="container mx-auto">
+            <%= render 'shared/search_form', q: @q, url: search_path %>
+          </div>
+        </div>
+      </div>
+
+      <%= link_to login_path, class: "btn btn-ghost" do %>
+        <span class="i-material-symbols-login bg-accent w-5 h-5" aria-hidden="true"></span>
+      <% end %>
     </div>
   </div>
 </header>

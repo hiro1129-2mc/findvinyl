@@ -1,25 +1,50 @@
-<div class="flex justify-center items-center py-8">
+<div class="container mx-auto py-8 px-3 md:px-0">
   <div class="w-full max-w-md mx-auto bg-base-200 rounded-lg p-6">
     <h1 class="text-2xl font-bold text-center"><%= t('.title') %></h1>
-    <%= form_with url: login_path, class: 'px-8 pt-6 pb-8' do |f| %>
-      <div class="form-control">
-        <%= f.label :email, class: 'block text-gray-accent mb-2' %>
-        <%= f.text_field :email, class: 'input input-bordered bg-white text-base-100 mb-2', required: true %>
+
+    <%= form_with url: login_path, class: 'px-4 md:px-8 pt-6' do |f| %>
+      <div class="form-control mb-2">
+        <%= f.label :email, class: 'block text-accent mb-2' %>
+        <div class="relative">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            class="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 opacity-70 text-gray-500">
+            <path
+              d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" />
+            <path
+              d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
+          </svg>
+          <%= f.text_field :email, class: 'input input-bordered bg-white text-base-100 w-full pl-10', placeholder: 'Email', required: true %>
+        </div>
       </div>
 
-      <div class="form-control">
+      <div class="form-control mb-6">
         <%= f.label :password, class: 'block text-accent mb-2' %>
-        <%= f.password_field :password, class: 'input input-bordered bg-white text-base-100 mb-6', required: true %>
+        <div class="relative">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            class="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 opacity-70 text-gray-500">
+            <path
+              fill-rule="evenodd"
+              d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
+              clip-rule="evenodd" />
+          </svg>
+          <%= f.password_field :password, class: 'input input-bordered bg-white text-base-100 w-full pl-10', placeholder: 'Password', required: true %>
+        </div>
       </div>
 
       <div class="text-center">
-        <%= f.submit t('.login'), class: 'btn btn-primary text-white' %>
+        <%= f.submit t('.login'), class: 'btn btn-primary text-white w-full rounded-full' %>
       </div>
     <% end %>
   </div>
 </div>
 
-<div class="text-center">
-  <%= link_to t('.to_register_page'), new_user_path, class: 'text-sm text-text-accent mr-4' %>
-  <%= link_to t('.password_forget'), new_password_reset_path, class: 'text-sm text-text-accent' %>
+<div class="text-center mb-8">
+  <%= link_to t('.to_register_page'), new_user_path, class: 'text-sm text-text-accent mr-4 link link-hover' %>
+  <%= link_to t('.password_forget'), new_password_reset_path, class: 'text-sm text-text-accent link link-hover' %>
 </div>

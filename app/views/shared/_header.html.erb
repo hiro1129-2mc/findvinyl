@@ -1,62 +1,96 @@
 <div data-controller="menu">
-  <header>
-    <div class="navbar bg-base-100">
-      <div class="flex-1">
-        <%= link_to "VinylLog", root_path, class: "btn btn-ghost text-xl" %>
-      </div>
-      <div class="flex justify-center items-center mx-4">
-        <%= render 'shared/search_form', q: @q, url: search_path %>
+  <header class="fixed top-0 left-0 w-full z-50">
+    <div class="navbar justify-between bg-base-100 opacity-85">
+      <div>
+        <%= link_to "VinylLog", root_path, class: "font-sans font-bold text-xl pl-6" %>
       </div>
 
-      <div class="flex-1 justify-end flex">
-        <button data-action="menu#toggleMenu" class="btn btn-square btn-ghost" id="menuToggle">
-          <span class="i-bi-justify bg-accent w-7 h-7" aria-hidden="true"></span>
-        </button>
+      <!-- md以上の画面サイズで表示 -->
+      <div class="hidden md:flex items-center mr-10">
+        <%= render 'shared/search_form', q: @q, url: search_path %>
+        <div class="btn btn-circle">
+          <%= render 'shared/add_btn' %>
+        </div>
+      </div>
+
+      <!-- md以下の画面サイズで表示 -->
+      <div>
+        <div class="md:hidden flex justify-end">
+          <div class="btn btn-ghost">
+           <%= render 'shared/add_btn' %>
+          </div>
+          <div class="dropdown dropdown-bottom dropdown-end">
+            <div tabindex="0" role="button" class="btn btn-ghost ml-auto">
+              <span class="i-bi-search bg-accent w-4 h-4" aria-hidden="true"></span>
+            </div>
+            <div tabindex="0" class="dropdown-content menu z-[1] fixed w-full">
+              <div class="container mx-auto">
+                <%= render 'shared/search_form', q: @q, url: search_path %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <button data-action="menu#toggleMenu" class="btn btn-square btn-ghost md:mr-4" id="menuToggle">
+            <span class="i-bi-justify bg-accent w-7 h-7" aria-hidden="true"></span>
+          </button>
+        </div>
       </div>
     </div>
   </header>
-  <div id="sidebar" class="fixed top-0 right-0 w-64 h-full bg-secondary transform translate-x-full transition-transform duration-300 ease-in-out z-50" data-menu-target="sidebar">
+
+  <div id="sidebar" class="fixed top-0 right-0 w-full md:w-72 h-full bg-secondary transform translate-x-full transition-transform duration-300 ease-in-out z-50" data-menu-target="sidebar">
     <button data-action="menu#closeMenu" class="btn btn-square btn-ghost absolute right-2 top-2" id="closeMenu">
       <span class="i-bi-x-lg bg-accent w-4 h-4" aria-hidden="true"></span>
     </button>
-    <div class="p-5">
-      <ul>
-        <li class="flex items-center p-2 pt-8">
+    <div class="p-8">
+      <ul class="w-full px-0 flex flex-col items-center md:items-start">
+        <li class="flex items-center py-4 mt-10">
           <span class="i-bi-house bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
           <%= link_to t('header.home'), root_path, class: "block" %>
         </li>
-        <li class="flex items-center p-2">
-          <span class="i-bi-shop bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
+        <li class="w-full">
+          <div class="border-b border-neutral-600"></div>
+        </li>
+        <li class="flex items-center py-4">
+          <span class="i-ph-map-pin-light bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
           <%= link_to t('header.search_shops'), map_shops_path, class: "block" %>
         </li>
-        <li class="flex items-center p-2 pt-4">
+        <li class="w-full">
+          <div class="border-b border-neutral-600"></div>
+        </li>
+        <li class="flex items-center py-4 mt-4">
           <span class="i-bi-person bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
           <%= link_to t('header.my_page'), my_page_path, class: "block" %>
         </li>
           <ul class="pl-4">
-            <li class="flex items-center p-2">
+            <li class="flex items-center py-3">
               <span class="i-bi-vinyl bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
               <%= link_to t('my_interests.collection_list'), collection_items_path, class: "block" %>
             </li>
-            <li class="flex items-center p-2">
+            <li class="flex items-center py-3">
               <span class="i-bi-arrow-through-heart bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
               <%= link_to t('my_interests.want_list'), want_items_path, class: "block" %>
             </li>
-            <li class="flex items-center p-2">
+            <li class="flex items-center py-3">
               <span class="i-bi-bar-chart bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
               <%= link_to t('my_interests.records_reports'), records_path, class: "block" %>
             </li>
-            <li class="flex items-center p-2">
+            <li class="flex items-center py-3">
               <span class="i-bi-bookmark bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
               <%= link_to t('my_interests.bookmarked_shops'), bookmarks_shops_path, class: "block" %>
             </li>
-            <li class="flex items-center p-2">
-              <span class="i-ic-outline-rate-review bg-primary w-5 h-5 mr-2" aria-hidden="true"></span>
+            <li class="flex items-center py-3 mb-6">
+              <span class="i-ic-outline-rate-review bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
               <%= link_to t('my_interests.reviewed_shops'), review_shops_shops_path, class: "block" %>
             </li>
           </ul>
         </li>
-        <li class="flex items-center p-2 pt-4">
+        <li class="w-full">
+          <div class="border-b border-neutral-600"></div>
+        </li>
+        <li class="flex items-center py-4">
           <span class="i-bi-box-arrow-up-right bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
           <%= link_to t('header.logout'), logout_path, method: :delete, data: { turbo_method: :delete }, class: "block" %>
         </li>

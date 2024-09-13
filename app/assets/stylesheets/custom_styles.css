@@ -39,8 +39,11 @@
 
 .select2-results__option {
   background-color: rgb(64 64 64) !important;
+  font-size: small !important;
 }
 
 .select2-selection__choice {
-  background-color: rgb(64 64 64) !important;
+  background-color: rgb(255 255 255) !important;
+  color: rgb(38 38 38) !important;
+  font-size: small !important;
 }

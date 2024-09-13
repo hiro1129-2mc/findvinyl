@@ -1,0 +1,9 @@
+<div class="dropdown dropdown-bottom dropdown-end">
+  <dev tabindex="0" role="button">
+    <span class="i-bi-plus-circle-fill bg-accent w-5 h-5 md:w-10 md:h-10" aria-hidden="true"></span>
+  </dev> 
+  <ul tabindex="0" class="dropdown-content menu p-2 bg-base-100 rounded-box w-52 z-[10]">
+    <li><%= link_to t('items.new.create_collection'), new_item_path(role: 'collection') %></li>
+    <li><%= link_to t('items.new.create_want'), new_item_path(role: 'want') %></li>
+  </ul>
+</div>

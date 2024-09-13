@@ -1,25 +1,23 @@
-<div class="container mx-auto py-8">
-  <div class="flex flex-wrap">
-    <div class="w-full lg:w-10/12 lg:mx-auto">
+<div class="container mx-auto py-8 px-3 md:px-0">
+  <div class="flex flex-col w-full md:w-10/12 mx-auto">
 
-      <div class="mt-4">
-        <% if @results.blank? %>
-          <% if params[:q].present? %>
-            <p class="text-center"><%= t('search.no_results') %></p>
-          <% end %>
-        <% else %>
-          <% case @type %>
-          <% when 'artist' %>
-            <%= render 'artists_results', results: @results %>
-          <% when 'release' %>
-            <%= render 'releases_results', results: @results %>
-          <% end %>
+    <div class="mt-4">
+      <% if @results.blank? %>
+        <% if params[:q].present? %>
+          <p class="text-center"><%= t('search.no_results') %></p>
         <% end %>
-      </div>
+      <% else %>
+        <% case @type %>
+        <% when 'artist' %>
+          <%= render 'artists_results', results: @results %>
+        <% when 'release' %>
+          <%= render 'releases_results', results: @results %>
+        <% end %>
+      <% end %>
+    </div>
 
-      <div class="mt-6">
-        <%= paginate @results %>
-      </div>
+    <div class="mt-6 flex flex-wrap justify-center md:justify-start">
+      <%= paginate @results %>
     </div>
   </div>
 </div>

@@ -1,54 +1,52 @@
-<div class="flex flex-col justify-center">
-  <div class="max-w-lg px-8 py-6 mx-auto bg-base-200 rounded-2xl">
-    <div class="flex justify-between pb-4">
-      <nav class="flex items-center justify-between w-full">
-        <div>
-          <%= link_to t('simple_calendar.previous', default: '◀︎'), records_path(month: (@date.prev_month).strftime('%Y-%m')), class: "cursor-pointer" %>
-        </div>
-        
-        <div class="flex-grow text-center">
-          <time datetime="<%= @date.strftime('%Y-%m') %>" class="calendar-title"><%= t('date.month_names')[@date.month] %> <%= @date.year %></time>
-        </div>
-        
-        <div>
-          <%= link_to t('simple_calendar.next', default: '▶︎'), records_path(month: (@date.next_month).strftime('%Y-%m')), class: "cursor-pointer" %>
-        </div>
-      </nav>
-    </div>
+<div class="flex flex-col justify-center item-center">
+  <div class="flex justify-between md:mb-4">
+    <nav class="flex items-center justify-between w-full">
+      <div>
+        <%= link_to t('simple_calendar.previous', default: '◀︎'), records_path(month: (@date.prev_month).strftime('%Y-%m')), class: "cursor-pointer" %>
+      </div>
+      
+      <div class="flex-grow text-center">
+        <time datetime="<%= @date.strftime('%Y-%m') %>" class="calendar-title"><%= t('date.month_names')[@date.month] %> <%= @date.year %></time>
+      </div>
+      
+      <div>
+        <%= link_to t('simple_calendar.next', default: '▶︎'), records_path(month: (@date.next_month).strftime('%Y-%m')), class: "cursor-pointer" %>
+      </div>
+    </nav>
+  </div>
 
-    <table class="w-full mt-3 table-auto">
-      <thead class="text-left">
+  <table class="w-full mt-3 table-auto">
+    <thead class="text-center">
+      <tr>
+        <% date_range.slice(0, 7).each do |day| %>
+          <th class="py-3 text-sm font-semibold text-accent"><%= t('date.abbr_day_names')[day.wday] %></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% date_range.each_slice(7) do |week| %>
         <tr>
-          <% date_range.slice(0, 7).each do |day| %>
-            <th class="px-5 py-2 text-sm font-semibold text-accent"><%= t('date.abbr_day_names')[day.wday] %></th>
-          <% end %>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% date_range.each_slice(7) do |week| %>
-          <tr>
-            <% week.each do |day| %>
-              <%= content_tag :td, class: "w-14 h-14 px-4 py-2 border hover:bg-gray-100 text-xs text-left align-top #{calendar.td_classes_for(day)}" do %>
-                <% if @records_by_date[day].present? %>
-                  <%= link_to daily_records_records_path(date: day.to_s), class: "block w-full h-full" do %>
-                    <% instance_exec(day, @records_by_date[day] || [], &passed_block) %>
-                  <% end %>
-                <% else %>
-                  <div class="block w-full h-full">
-                    <% instance_exec(day, [], &passed_block) %>
-                  </div>
+          <% week.each do |day| %>
+            <%= content_tag :td, class: "w-7 h-12 px-1 py-1 md:w-14 md:h-14 md:px-4 md:py-2 border hover:bg-gray-100 text-xs align-top #{calendar.td_classes_for(day)}" do %>
+              <% if @records_by_date[day].present? %>
+                <%= link_to daily_records_records_path(date: day.to_s), class: "block" do %>
+                  <% instance_exec(day, @records_by_date[day] || [], &passed_block) %>
                 <% end %>
+              <% else %>
+                <div class="block">
+                  <% instance_exec(day, [], &passed_block) %>
+                </div>
               <% end %>
             <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <div class="flex justify-end w-full mt-4">
-      <%= link_to new_record_path, class: "btn btn-primary text-white" do %>
-        <%= t('記録する') %>
+          <% end %>
+        </tr>
       <% end %>
-    </div>
+    </tbody>
+  </table>
+  <div class="flex justify-end mt-6">
+    <%= link_to new_record_path, class: "btn btn-primary text-white" do %>
+      <%= t('記録する') %>
+    <% end %>
   </div>
 </div>

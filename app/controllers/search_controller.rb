@@ -5,7 +5,7 @@ class SearchController < ApplicationController
     @type = params[:type]
     @q = get_search_query(@type, params[:q])
 
-    @results = preload_associations(@q.result(distinct: true)).page(params[:page]).per(10)
+    @results = preload_associations(@q.result(distinct: true)).page(params[:page]).per(15)
   end
 
   private

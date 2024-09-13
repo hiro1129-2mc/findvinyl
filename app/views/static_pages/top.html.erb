@@ -1,31 +1,38 @@
-<%= stylesheet_link_tag 'top', media: 'all', 'data-turbolinks-track': 'reload' %>
-<div class='top-wrapper'>
-  <div class='top-inner-text'>
-    <div class='mb-4'>
-      <h1>VinylLog</h1>
-    </div>
-    <div class='text-xl mb-8'>
-      <h2>VinylLogはアナログレコードのリスト作成・聴いたレコードの記録・レコードショップの検索ができるサービスです。</h2>
+<div
+  class="hero min-h-screen"
+  style="background-image: url('<%= asset_path('top.png') %>');">
+  <div class="hero-overlay bg-opacity-60"></div>
+  <div class="hero-content text-neutral-content text-center">
+    <div class="max-w-md">
+      <h1 class="mb-6 text-4xl md:text-5xl font-bold italic">VinylLog</h1>
+      <div class="text-sm md:text-base mb-8">
+        <p>VinylLogはレコードショップの検索</p>
+        <p>聴いたレコードの記録・レコードのリスト作成が</p>
+        <p>できるサービスです。</p>
+      </div>
+      <button class="btn btn-primary text-white rounded-full py-4 px-8">
+        <%= link_to t('header.search_shops'), map_shops_path %>
+      </button>
     </div>
   </div>
 </div>
 
-<div class='mt-10 mb-10 text-center'>
+<div class='m-10 text-center'>
   <h3 class='text-2xl mb-6'>VinylLogでできること</h3>
-  <div class='flex justify-center space-x-4'>
-    <div class='card w-96 bg-base-200 shadow-xl'>
+  <div class='flex flex-col md:flex-row justify-center space-y-4 md:space-x-4 md:space-y-0'>
+    <div class='card bg-base-200 md:w-1/3'>
       <div class='card-body'>
         <h4 class='justify-center text-center font-bold text-lg'>レコードのリスト作成</h4>
         <p>お持ちのレコードや欲しいレコードのリストを作成し、管理しやすくします。</p>
       </div>
     </div>
-    <div class='card w-96 bg-base-200 shadow-xl'>
+    <div class='card bg-base-200 md:w-1/3'>
       <div class='card-body'>
         <h4 class='justify-center text-center font-bold text-lg'>聴いたレコードの記録</h4>
         <p>聴いたレコードを記録して、いつでも振り返ることができます。</p>
       </div>
     </div>
-    <div class='card w-96 bg-base-200 shadow-xl'>
+    <div class='card bg-base-200 md:w-1/3'>
       <div class='card-body'>
         <h4 class='justify-center text-center font-bold text-lg'>レコードショップの検索</h4>
         <p>近くのレコードショップを探したり、新しいショップを発見することができます。</p>

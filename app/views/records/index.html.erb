@@ -1,26 +1,30 @@
 <div class="container mx-auto py-8">
-  <div class="flex flex-wrap">
-    <div class="w-full lg:w-10/12 lg:mx-auto">
-      <h1 class="text-2xl font-bold text-center mb-8"><%= t('records.index.record_report') %></h1>
-      <div class="flex justify-between">
-        <div class="w-1/2">
-          <%= month_calendar start_date: @date.beginning_of_month do |date| %>
-            <%= date.day %>
+  <div class="w-full md:w-10/12 mx-auto">
+    <h1 class="text-2xl font-bold text-center mt-2 mb-8"><%= t('records.index.record_report') %></h1>
+
+    <div class="flex flex-col px-3 md:px-0 md:grid gap-4 grid-cols-2">
+      <div class="p-6 md:p-10 w-full mx-auto bg-base-200 rounded-2xl">
+        <%= month_calendar start_date: @date.beginning_of_month do |date| %>
+          <div class="flex flex-col justify-center items-center">
+            <div  class="mb-1">
+              <%= date.day %>
+            </div>
             <% if @records_by_date.include?(date) %>
-              <span class="i-bi-music-note bg-primary w-4 h-4 ml-1" aria-hidden="true">
+              <div class="flex justify-center items-center">
+                <span class="i-bi-music-note bg-primary w-4 h-4" aria-hidden="true"></span>
+              </div>
             <% end %>
-          <% end %>
-        </div>
-        <div class="w-1/2">
-          <div class="max-w-lg p-6 mx-auto bg-base-200 rounded-2xl">
-            <h2 class="text-center mb-2"><%= t('records.index.monthly_report') %></h2>
-            <div class="py-10">
-              <%= render 'shared/pie_chart' %>
-            </div>
-            <div class="text-right text-primary">
-              <%= link_to t('my_page.details'), report_show_records_path(month: @date.strftime('%Y-%m')) %>
-            </div>
           </div>
+        <% end %>
+      </div>
+
+      <div class="p-6 md:p-10 w-full mx-auto bg-base-200 rounded-2xl">
+        <h2 class="text-center md:mb-2"><%= t('records.index.monthly_report') %></h2>
+        <div class="md:my-20">
+          <%= render 'shared/pie_chart' %>
+        </div>
+        <div class="text-right text-sm text-primary link link-hover">
+          <%= link_to t('my_page.details'), report_show_records_path %>
         </div>
       </div>
     </div>

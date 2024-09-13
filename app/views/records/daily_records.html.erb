@@ -1,32 +1,31 @@
-<div class="flex justify-center items-center py-8">
-  <div class="w-full max-w-md mx-auto p-6">
-    <h1 class="text-2xl font-bold text-center mb-8"><%= t('records.daily_records.title', date: params[:date]) %></h1>
-    <% @records.each do |record| %>
-      <%= link_to record_path(record), class: "block mb-4 bg-secondary shadow-md rounded-lg p-6" do %>
-        <div>
-          <% if record.items.any? %>
-            <div class="mb-4">
-              <ul>
-                <% record.items.each do |item| %>
-                  <div class="flex items-center bg-secondary py-1 font-medium text-white justify-between w-full mb-1">
-                    <span class="i-bi-music-note bg-primary w-4 h-4" aria-hidden="true"></span>
-                    <div class="w-[200px]">
-                      <p class="truncate"><%= item.title.name %></p>
-                    </div>
-                    <div class="w-[120px]">
-                      <p class="truncate"><%= item.artist_name.name %></p>
-                    </div>
+<div class="container mx-auto py-8 px-3 md:px-0">
+  <div class="flex flex-col">
+    <div class="w-full md:w-1/2 mx-auto bg-base-200 rounded-lg p-8 md:p-10">
+      <h1 class="text-2xl font-bold text-center mb-8"><%= t('records.daily_records.title', date: params[:date]) %></h1>
+
+      <% @records.each do |record| %>
+        <%= link_to record_path(record), class: "block card bg-secondary mb-4 p-4 md:p-8 shadow-xl hover:bg-base-200" do %>
+          <div class="flex flex-col">
+            <% if record.items.any? %>
+              <% record.items.each do |item| %>
+                <div class="flex flex-col md:flex-row items-start py-1 font-medium text-white w-full mb-2">
+                  <div class="w-[240px] flex flex-row mr-5">
+                    <span class="i-bi-music-note bg-primary w-4 h-4 me-2 flex-shrink-0" aria-hidden="true"></span>
+                    <div class="truncate"><%= item.title.name %></div>
                   </div>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
-          <div class=""w-[350px]">
-            <p class="truncate mb-4"><%= record.content %></p>
+                  <div class="w-[240px] mt-1 md:mt-0 ml-6 md:ml-0">
+                    <div class="truncate text-sm text-accent md:text-base md:text-white"><%= item.artist_name.name %></div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %> 
           </div>
-        </div>
-        <h2 class="text-right"><%= record.created_at.strftime("%Y/%m/%d %H:%M") %></h2>
+          <div class="text-right"><%= record.created_at.strftime("%Y/%m/%d %H:%M") %></div>
+        <% end %>
       <% end %>
-    <% end %>
+      <div class="mt-6 flex flex-wrap justify-center">
+        <%= paginate @records %>
+      </div>
+    </div>
   </div>
 </div>

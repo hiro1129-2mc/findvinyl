@@ -1,13 +1,26 @@
-<div class="flex justify-center items-center py-8">
+<div class="container mx-auto py-8 px-3 md:px-0">
   <div class="w-full max-w-md mx-auto bg-base-200 rounded-lg p-6">
     <h1 class="text-2xl font-bold text-center mb-6"><%= t('.title') %></h1>
-    <%= form_with model: @user, url: email_path, data: { turbo: false }, class: 'px-8' do |f| %>
-      <div class="form-control">
+
+    <%= form_with model: @user, url: email_path, data: { turbo: false }, class: 'px-4 md:px-8' do |f| %>
+      <div class="form-control mb-6">
         <%= f.label :new_email, class: "block text-accent mb-2" %>
-        <%= f.email_field :new_email, value: '', class: 'input input-bordered bg-white text-base-100 mb-6', required: true %>
+        <div class="relative">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            class="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 opacity-70 text-gray-500">
+            <path
+              d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" />
+            <path
+              d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
+          </svg>
+          <%= f.email_field :new_email, value: '', class: 'input input-bordered bg-white text-base-100 w-full pl-10', placeholder: 'Email', required: true %>
+        </div>
       </div>
       <div class="text-center">
-        <%= f.submit t('.submit'), class: "btn btn-primary text-white"%>
+        <%= f.submit t('.submit'), class: "btn btn-primary text-white w-full rounded-full"%>
       </div>
     <% end %>
   </div>

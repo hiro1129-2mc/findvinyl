@@ -1,84 +1,82 @@
-<div class="container mx-auto py-6">
-  <div class="flex flex-wrap">
-    <div class="w-full lg:w-8/12 lg:mx-auto bg-base-200 rounded-lg p-8">
-      <div class="text-center">
-        <img src="<%= @image_url %>" class="object-cover w-[780px] h-[400px] rounded-lg mx-auto mb-6" />
-      </div>
+<div class="container mx-auto py-8 px-3 md:px-0">
+  <div class="w-full md:w-8/12 md:mx-auto bg-base-200 rounded-lg p-8">
+    <div class="text-center">
+      <img src="<%= @image_url %>" class="object-cover w-[780px] h-[400px] rounded-lg mx-auto mb-6" />
+    </div>
 
-      <div class="flex justify-between items-center text-2xl text-white font-bold my-8">
-        <span><%= @shop.name %></span>
+    <div class="flex justify-between items-center text-xl md:text-2xl text-white font-bold my-8">
+      <div class="mr-2"><%= @shop.name %></div>
+      <% if current_user %>
+        <div class="w-6 h-6"><%= render 'bookmark_buttons', { shop: @shop } %></div>
+      <% end %>
+    </div>
+
+    <div class="text-white font-bold mb-2">
+      <span class="i-majesticons-clock bg-primary w-4 h-4 mr-1" aria-hidden="true"></span>
+      <%= t('shops.opening_hours') %>
+    </div>
+    <div class="text-accent mb-6"><%= @shop.opening_hours.gsub(', ', '<br>').html_safe %></div>
+
+    <div class="text-white font-bold mb-2">
+      <span class="i-bi-house-door-fill bg-primary w-4 h-4 mr-1" aria-hidden="true"></span>
+      <%= t('shops.web_site') %>
+    </div>
+    <div class="text-accent link link-hover mb-6"><%= link_to @shop.web_site, @shop.web_site, target: "_blank", rel: "noopener" %></div>
+
+    <div class="text-white font-bold mb-2">
+      <span class="i-bi-telephone-fill bg-primary w-4 h-4 mr-1" aria-hidden="true"></span>
+      <%= t('shops.phone_number') %>
+    </div>
+    <div class="text-accent mb-6"><%= @shop.phone_number %></div>
+
+    <div class="text-white font-bold mb-2">
+      <span class="i-ph-map-pin-fill bg-primary w-5 h-5 mr-1" aria-hidden="true"></span>
+      <%= t('shops.address') %>
+    </div>
+    <div class="text-accent mb-2 md:mb-0">
+      <div>〒<%= @shop.postal_code %></div>
+      <div><%= @shop.address %></div>
+    </div>
+    <div class="flex justify-end">
+      <%= link_to "https://www.google.com/maps/dir/?api=1&destination=#{@shop.latitude},#{@shop.longitude}", target: :_blank, rel: "noopener", class: "btn btn-primary text-white rounded-full flex items-center" do %>
+        <p class="flex items-center">
+          <span class="i-ic-round-directions bg-white w-6 h-6 mr-2" aria-hidden="true"></span>
+          <%= t('shops.routes_transfers') %>
+        </p>
+      <% end %>
+    </div>
+    <div data-controller="show-map">
+      <div id="map" 
+        class="w-full h-[250px] rounded-lg mt-2 mb-8" 
+        data-show-map-target="map"
+        data-latitude="<%= @shop.latitude %>"
+        data-longitude="<%= @shop.longitude %>"
+        data-name="<%= @shop.name %>">
+      </div>
+    </div>
+
+    <div class="border-b mb-8"></div>
+    <div class="flex justify-between items-center">
+      <div class="text-white font-bold mb-2">
+        <span class="i-ic-baseline-rate-review bg-primary w-5 h-5 mr-1" aria-hidden="true"></span>
+        <%= t('shops.review') %> <%= render 'review_count', reviews_count: @reviews.count %>
+      </div>
+      <div class="flex ml-auto mb-4">
         <% if current_user %>
-          <span class="w-6 h-6"><%= render 'bookmark_buttons', { shop: @shop } %></span>
-        <% end %>
-      </div>
-
-      <div class="text-white font-bold mb-2">
-        <span class="i-majesticons-clock bg-primary w-4 h-4 mr-1" aria-hidden="true"></span>
-        <%= t('shops.opening_hours') %>
-      </div>
-      <div class="text-accent mb-6"><%= @shop.opening_hours.gsub(', ', '<br>').html_safe %></div>
-
-      <div class="text-white font-bold mb-2">
-        <span class="i-bi-house-door-fill bg-primary w-4 h-4 mr-1" aria-hidden="true"></span>
-        <%= t('shops.web_site') %>
-      </div>
-      <div class="text-accent link link-hover mb-6"><%= link_to @shop.web_site, @shop.web_site, target: "_blank", rel: "noopener" %></div>
-
-      <div class="text-white font-bold mb-2">
-        <span class="i-bi-telephone-fill bg-primary w-4 h-4 mr-1" aria-hidden="true"></span>
-        <%= t('shops.phone_number') %>
-      </div>
-      <div class="text-accent mb-6"><%= @shop.phone_number %></div>
-
-      <div class="text-white font-bold mb-2">
-        <span class="i-ion-location-sharp bg-primary w-5 h-5 mr-1" aria-hidden="true"></span>
-        <%= t('shops.address') %>
-      </div>
-      <div class="text-accent">
-        <div>〒<%= @shop.postal_code %></div>
-        <div><%= @shop.address %></div>
-      </div>
-      <div class="flex justify-end">
-        <%= link_to "https://www.google.com/maps/dir/?api=1&destination=#{@shop.latitude},#{@shop.longitude}", target: :_blank, rel: "noopener", class: "btn btn-primary text-white rounded-full flex items-center" do %>
-          <p class="flex items-center">
-            <span class="i-ic-round-directions bg-white w-6 h-6 mr-2" aria-hidden="true"></span>
-            <%= t('shops.routes_transfers') %>
-          </p>
-        <% end %>
-      </div>
-      <div data-controller="show-map">
-        <div id="map" 
-          class="w-full h-[250px] rounded-lg mt-2 mb-8" 
-          data-show-map-target="map"
-          data-latitude="<%= @shop.latitude %>"
-          data-longitude="<%= @shop.longitude %>"
-          data-name="<%= @shop.name %>">
-        </div>
-      </div>
-
-      <div class="flex justify-between items-center border-b mb-8"></div>
-      <div class="flex">
-        <div class="text-white font-bold mb-2">
-          <span class="i-ic-baseline-rate-review bg-primary w-5 h-5 mr-1" aria-hidden="true"></span>
-          <%= t('shops.review') %> <%= render 'review_count', reviews_count: @reviews.count %>
-        </div>
-        <div class="flex ml-auto mb-4">
-          <% if current_user %>
-            <%= link_to t('shops.write_review'), new_shop_review_path(@shop), class: 'btn btn-primary text-white rounded-full flex items-center', data: { turbo_frame: 'review_modal' } %>
-          <% else %>
-            <%= link_to t('shops.write_review_after_login'), login_path, class: 'btn btn-primary text-white rounded-full flex items-center' %>
-          <% end %>
-        </div>
-      </div>
-      <div id="reviews">
-        <% if @reviews.present? %>
-          <%= turbo_frame_tag 'review_modal' do %>
-            <%= render @reviews %>
-          <% end %>
+          <%= link_to t('shops.write_review'), new_shop_review_path(@shop), class: 'btn btn-primary text-white rounded-full flex items-center', data: { turbo_frame: 'review_modal' } %>
         <% else %>
-          <p class="text-center m-6"><%= t('shops.no_review') %></p>
+          <%= link_to t('shops.write_review'), login_path, class: 'btn btn-primary text-white rounded-full flex items-center' %>
         <% end %>
       </div>
+    </div>
+    <div id="reviews">
+      <%= turbo_frame_tag 'review_modal' do %>
+        <% if @reviews.present? %>
+          <%= render @reviews %>
+        <% else %>
+          <p id="no_reviews" class="text-center text-sm md:text-base m-6"><%= t('shops.no_review') %></p>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>

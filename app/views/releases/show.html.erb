@@ -1,25 +1,24 @@
-<div class="container mx-auto py-8">
-  <div class="flex flex-wrap">
-    <div class="w-full lg:w-10/12 lg:mx-auto">
+<div class="container mx-auto py-8 px-3 md:px-0">
+  <div class="w-full md:w-10/12 mx-auto">
 
-      <h1 class="text-3xl font-bold text-white mt-4 mb-2"><%= @release.name %></h1>
-      <p class="text-xl mb-4"><%= @release.artist_credit.name %></p>
+    <h1 class="text-xl md:text-2xl font-bold text-white mt-4 mb-2"><%= @release.name %></h1>
+    <div class="text-lg md:text-xl mb-4"><%= @release.artist_credit.name %></div>
 
-      <% if @data.present? %>
-        <div class="mb-4 flex justify-between">
-          <div>
-            <% @release.mediums.each do |medium| %>
-              <% if medium.medium_format.present? %>
-                <p><strong><%= t('results.columns.format') %> : </strong> <%= medium.medium_format.name %>
-              <% else %>
-                <%= " " %>
-              <% end %>
+    <% if @data.present? %>
+      <div class="mb-4 flex justify-between">
+        <div>
+          <% @release.mediums.each do |medium| %>
+            <% if medium.medium_format.present? %>
+              <div class="text-sm md:text-base"><%= t('results.columns.format') %> : <%= medium.medium_format.name %></div>
+            <% else %>
+              <%= " " %>
             <% end %>
-            <p><strong><%= t('releases.show.release_date') %> : </strong> <%= @data["date"] %></p>
-            <p><strong><%= t('releases.show.press_country') %> : </strong> <%= @data["country"] %></p>
-            <p><strong><%= t('releases.show.status') %> : </strong> <%= @data["status"] %></p>
-          </div>
-          <div class="flex flex-col items-end space-y-2">
+          <% end %>
+          <div class="text-sm md:text-base"><%= t('releases.show.release_date') %> : <%= @data["date"] %></div>
+          <div class="text-sm md:text-base"><%= t('releases.show.press_country') %> : <%= @data["country"] %></div>
+          <div class="text-sm md:text-base"><%= t('releases.show.status') %> :  <%= @data["status"] %></div>
+        </div>
+        <div class="flex flex-col items-end space-y-2">
           <%= link_to new_item_path(role: 'collection', 
                                     title: @release.name, 
                                     artist_name: @release.artist_credit.name, 
@@ -29,38 +28,37 @@
             <%= t('items.new.add_to_collection') %>
           <% end %>
 
-            <%= link_to new_item_path(role: 'want', 
-                                      title: @release.name, 
-                                      artist_name: @release.artist_credit.name, 
-                                      release_format: @release.mediums.find { |m| m.medium_format.present? }.medium_format.name, 
-                                      press_country: @data["country"]), 
-                        class: "btn btn-primary btn-block text-white" do %>
-              <%= t('items.new.add_to_wishlist') %>
-            <% end %>
-          </div>
-        </div>
-
-        <% if @data["media"].present? %>
-          <% @data["media"].each do |media| %>
-            <div class="mb-4 border-b">
-              <p><strong><%= t('releases.show.track_count') %></strong> : <%= media["track-count"] %></p>
-            </div>
-
-            <div class="pl-4">
-              <h3 class="text-xl font-bold mb-2"><%= t('releases.show.track_list') %></h3>
-              <ol class="list-decimal ml-6"> <!-- 変更: ulをolにし、クラスをlist-discからlist-decimalに変更 -->
-                <% media["tracks"].each do |track| %>
-                  <li><%= track["title"] %></li> <!-- 変更: liタグのml-6クラスを削除 -->
-                <% end %>
-              </ol>
-            </div>
+          <%= link_to new_item_path(role: 'want', 
+                                    title: @release.name, 
+                                    artist_name: @release.artist_credit.name, 
+                                    release_format: @release.mediums.find { |m| m.medium_format.present? }.medium_format.name, 
+                                    press_country: @data["country"]), 
+                      class: "btn btn-primary btn-block text-white" do %>
+            <%= t('items.new.add_to_wishlist') %>
           <% end %>
-        <% else %>
-          <p><%= t('releases.show.track_not_available') %></p>
+        </div>
+      </div>
+
+      <% if @data["media"].present? %>
+        <% @data["media"].each do |media| %>
+          <div class="mb-4 border-b">
+            <p><strong><%= t('releases.show.track_count') %></strong> : <%= media["track-count"] %></p>
+          </div>
+
+          <div class="ml-2 md:ml-4 mb-2">
+            <div class="text-base md:text-lg font-bold mb-2"><%= t('releases.show.track_list') %></div>
+            <ol class="list-decimal ml-6">
+              <% media["tracks"].each do |track| %>
+                <li class="text-sm md:text-base"><%= track["title"] %></li>
+              <% end %>
+            </ol>
+          </div>
         <% end %>
       <% else %>
-        <p><%= t('releases.show.details_not_available') %></p>
+        <p class="text-center text-sm md:text-base py-20"><%= t('releases.show.track_not_available') %></p>
       <% end %>
-    </div>
+    <% else %>
+      <p class="text-center text-sm md:text-base py-20"><%= t('releases.show.details_not_available') %></p>
+    <% end %>
   </div>
 </div>

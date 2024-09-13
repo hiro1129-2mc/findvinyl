@@ -4,19 +4,16 @@ class ItemsController < ApplicationController
   before_action :set_select_collections, only: %i[new create edit update]
   before_action :store_previous_url, only: [:new]
 
-  def index
-    case params[:view_type]
-    when 'collection_items'
-      items = current_user.items.collection_items.active
-      @items_search = items.ransack(params[:q])
-      @items = @items_search.result.page(params[:page]).per(20)
-      render 'collection_items'
-    when 'want_items'
-      items = current_user.items.want_items.active
-      @items_search = items.ransack(params[:q])
-      @items = @items_search.result.page(params[:page]).per(20)
-      render 'want_items'
-    end
+  def collection_items
+    items = current_user.items.collection_items.active
+    @items_search = items.ransack(params[:q])
+    @items = @items_search.result.page(params[:page]).per(10)
+  end
+
+  def want_items
+    items = current_user.items.want_items.active
+    @items_search = items.ransack(params[:q])
+    @items = @items_search.result.page(params[:page]).per(10)
   end
 
   def new

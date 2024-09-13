@@ -25,7 +25,7 @@ class ShopsController < ApplicationController
   end
 
   def bookmarks
-    @bookmark_shops = current_user.bookmark_shops.order(:address).page(params[:page]).per(10)
+    @bookmark_shops = current_user.bookmark_shops.order(:address).page(params[:page]).per(6)
     @shop_images = {}
     @bookmark_shops.each do |shop|
       @shop_images[shop.id] = fetch_image_from_google(shop.shop_image)
@@ -37,7 +37,7 @@ class ShopsController < ApplicationController
                                 .select('DISTINCT ON (shops.id) shops.*, reviews.created_at as review_created_at')
                                 .order('shops.id, reviews.created_at DESC')
                                 .page(params[:page])
-                                .per(10)
+                                .per(6)
     @shop_images = {}
     @review_shops.each do |shop|
       @shop_images[shop.id] = fetch_image_from_google(shop.shop_image)

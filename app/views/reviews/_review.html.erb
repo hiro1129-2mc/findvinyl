@@ -1,18 +1,18 @@
 <%= turbo_frame_tag review do %>
   <div class="card bg-secondary my-2" >
-    <div class="py-5 mx-5">
-      <div class="flex mx-2 items-center mb-2">
-        <div class="ml-2 text-sm flex flex-1">
-          <%= image_tag review.user.avatar_url, class: 'rounded-full mr-2', width: '30', height: '30'%>
-          <p class="text-[10px] md:text-sm text-accent my-1"><%= review.user.name %></p>
-        </div>
-        <div class="text-[10px] md:text-sm text-accent my-1 text-right">
-          <%= review.created_at.strftime("%Y/%m/%d %H:%M") %>
-        </div>
+    <div class="py-5 mx-2 md:mx-5">
+      <div class="flex mx-2 items-center">
+        <%= image_tag review.user.avatar_url, class: 'rounded-full mr-2', style: 'width: 30px; height: 30px;' %>
+        <div class="text-[12px] md:text-sm text-accent break-words"><%= review.user.name %></div>
+      </div>
+      <div class="text-[10px] md:text-sm text-accent my-1 text-right mr-2">
+        <%= review.created_at.strftime("%Y/%m/%d %H:%M") %>
       </div>
       <div class="border-b border-zinc-600 mb-2"></div>
-      <div class="flex flex-col my-2 p-2 mx-2 text-[10px] md:text-sm text-white">
-        <p><%= simple_format(review.content) %></p>
+      <div class="flex flex-wrap my-2 p-2 mx-2 text-[12px] md:text-sm text-white">
+        <div class="w-full break-words">
+          <p><%= simple_format(review.content) %></p>
+        </div>
       </div>
     </div>
     <% if current_user && current_user.own?(review) %>
