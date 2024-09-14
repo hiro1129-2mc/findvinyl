@@ -15,16 +15,16 @@
 
     <!-- md以下の画面サイズで表示 -->
     <div class="md:hidden flex items-center">
-      <div class="dropdown dropdown-bottom dropdown-end">
-        <div tabindex="0" role="button" class="btn btn-ghost">
+      <details class="dropdown dropdown-bottom dropdown-end">
+        <summary tabindex="0" role="button" class="btn btn-ghost">
           <span class="i-bi-search bg-accent w-4 h-4" aria-hidden="true"></span>
-        </div>
+        </summary>
         <div tabindex="0" class="dropdown-content menu z-[1] fixed w-full">
           <div class="container mx-auto">
             <%= render 'shared/search_form', q: @q, url: search_path %>
           </div>
         </div>
-      </div>
+      </details>
 
       <%= link_to login_path, class: "btn btn-ghost" do %>
         <span class="i-material-symbols-login bg-accent w-5 h-5" aria-hidden="true"></span>
