@@ -19,16 +19,16 @@
           <div class="btn btn-ghost">
            <%= render 'shared/add_btn' %>
           </div>
-          <div class="dropdown dropdown-bottom dropdown-end">
-            <div tabindex="0" role="button" class="btn btn-ghost ml-auto">
+          <details class="dropdown dropdown-bottom dropdown-end">
+            <summary tabindex="0" role="button" class="btn btn-ghost ml-auto">
               <span class="i-bi-search bg-accent w-4 h-4" aria-hidden="true"></span>
-            </div>
+            </summary>
             <div tabindex="0" class="dropdown-content menu z-[1] fixed w-full">
               <div class="container mx-auto">
                 <%= render 'shared/search_form', q: @q, url: search_path %>
               </div>
             </div>
-          </div>
+          </details>
         </div>
 
         <div>

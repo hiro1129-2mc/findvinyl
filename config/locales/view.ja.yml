@@ -59,7 +59,7 @@ ja:
     privacy_policy: プライバシーポリシー
   search:
     button: 検索
-    no_results: 検索結果が見つかりませんでした。
+    no_results: 検索結果が見つかりませんでした
     in_collection_list: コレクション内検索
     in_want_list: 欲しいもの内検索
     form:
@@ -79,7 +79,7 @@ ja:
       life_span: 活動期間
       disambiguation: 認識情報
       country: 国籍
-      details_not_available: アーティストの詳細情報はありません。
+      details_not_available: アーティストの詳細情報はありません
       no_vinyl_release: レコードのリリース情報が見つかりませんでした
   releases:
     show:
@@ -87,10 +87,10 @@ ja:
       press_country: プレス国
       status: ステータス
       media_info: メディア情報
-      track_not_available: トラック情報はありません。
+      track_not_available: トラック情報はありません
       track_count: トラック数
       track_list: トラックリスト
-      details_not_available: リリースの詳細情報はありません。
+      details_not_available: リリースの詳細情報はありません
   items:
     confirm_delete: 本当に削除しますか？
     role_updated_to_collection: 欲しいものをコレクションに移動しました
@@ -111,8 +111,8 @@ ja:
       edit_want: 欲しいのもの編集
     index:
       tag: タグ
-      not_found: 指定されたアイテムが見つかりません。
-      no_items: アイテムがありません。
+      not_found: 指定されたアイテムが見つかりません
+      no_items: アイテムがありません
     show:
       collection_show: コレクション詳細
       want_show: 欲しいもの詳細
@@ -123,8 +123,8 @@ ja:
       no_user_note: メモがありません
     delete:
       success:
-        collection: コレクションを削除しました。
-        want: 欲しいものを削除しました。
+        collection: コレクションを削除しました
+        want: 欲しいものを削除しました
   records:
     confirm_delete: 本当に削除しますか？
     new:
@@ -146,7 +146,7 @@ ja:
       title: 記録詳細
       no_content: コメントがありません
     delete:
-      success: 記録を削除しました。
+      success: 記録を削除しました
     update:
       saved: 記録を編集しました
     report_show:
@@ -156,8 +156,8 @@ ja:
       top_records: よく聴いたレコード
   my_page:
     title: マイページ
-    what_to_listen: 何を聞きますか？
-    add_to_collection: コレクションをリストに追加しましょう。
+    what_to_listen: 何を聴きますか？
+    add_to_collection: コレクションをリストに追加しましょう
     details: 詳細
   profile:
     show:
