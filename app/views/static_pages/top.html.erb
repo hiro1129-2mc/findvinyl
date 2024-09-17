@@ -21,103 +21,81 @@
 
 <div class="w-full flex justify-center items-center py-8 px-3 md:px-0">
   <div class="card bg-base-200 p-6 md:p-8 w-full max-w-4xl mx-auto">
-    <div class="carousel w-full">
-      <div id="slide1" class="carousel-item relative w-full">
-        <div class='flex justify-center flex-col-reverse md:flex-row w-full'>
-          <div class="mockup-phone w-[300px] h-[600px] md:mx-6">
-            <div class="camera"></div>
-            <div class="display flex justify-center items-center">
-              <div class="artboard artboard-demo phone-1">
-                <img src="<%= asset_path('shop_search.png') %>" class="w-auto h-auto max-w-full max-h-full object-contain mt-10">
+    <div data-controller="carousel">
+      <div class="carousel w-full">
+
+        <div id="slide1" class="carousel-item relative w-full" data-carousel-target="slide">
+          <div class='flex justify-center flex-col-reverse md:flex-row w-full'>
+            <div class="mockup-phone w-[300px] h-[600px] md:mx-6">
+              <div class="camera"></div>
+              <div class="display flex justify-center items-center">
+                <div class="artboard artboard-demo phone-1">
+                  <img src="<%= asset_path('shop_search.png') %>" class="w-auto h-auto max-w-full max-h-full object-contain mt-10">
+                </div>
+              </div>
+            </div>
+            <div class="md:w-[320px] items-center md:mx-6 pt-2.5 md:pt-14">
+              <p class='text-center font-bold text-lg md:text-2xl mb-6 md:mb-8'>レコードショップの検索</p>
+              <p class='text-start mb-4'>マップから近くのレコードショップを検索！ログインすればショップをブックマークしたり、レビューを書くことも可能です！</p>
+              <div class="hidden md:flex justify-center mt-28">
+                <%= image_tag("search.svg") %>
               </div>
             </div>
           </div>
-          <div class="md:w-[320px] items-center md:mx-6 pt-2.5 md:pt-14">
-            <p class='text-center font-bold text-lg md:text-2xl mb-6 md:mb-8'>レコードショップの検索</p>
-            <p class='text-start mb-4'>マップから近くのレコードショップを検索！ログインすればショップをブックマークしたり、レビューを書くことも可能です！</p>
-            <div class="hidden md:flex justify-center mt-28">
-              <%= image_tag("search.svg") %>
-            </div>
+          <div class="absolute flex justify-between md:transform md:-translate-y-1/2 left-0 right-0 top-0 md:top-1/2">
+            <a href="#slide3" class="btn btn-circle" data-carousel-target="prevButton" data-action="click->carousel#prev">❮</a> 
+            <a href="#slide2" class="btn btn-circle" data-carousel-target="nextButton" data-action="click->carousel#next">❯</a>
           </div>
         </div>
-        <div class="absolute flex justify-between w-full md:w-auto md:transform md:-translate-y-1/2 left-0 right-0 top-0 md:top-1/2">
-          <a href="#slide3" class="btn btn-circle">❮</a> 
-          <a href="#slide2" class="btn btn-circle">❯</a>
-        </div>
-      </div> 
-      <div id="slide2" class="carousel-item relative w-full">
-        <div class='flex justify-center flex-col-reverse md:flex-row w-full'>
-          <div class="mockup-phone w-[300px] h-[600px] md:mx-6">
-            <div class="camera"></div>
-            <div class="display flex justify-center items-center">
-              <div class="artboard artboard-demo phone-1">
-                <img src="<%= asset_path('add_item.gif') %>" class="w-auto h-auto max-w-full max-h-full object-contain mt-10">
+
+        <div id="slide2" class="carousel-item relative w-full" data-carousel-target="slide">
+          <div class='flex justify-center flex-col-reverse md:flex-row w-full'>
+            <div class="mockup-phone w-[300px] h-[600px] md:mx-6">
+              <div class="camera"></div>
+              <div class="display flex justify-center items-center">
+                <div class="artboard artboard-demo phone-1">
+                  <img src="<%= asset_path('add_item.gif') %>" class="w-auto h-auto max-w-full max-h-full object-contain mt-10">
+                </div>
+              </div>
+            </div>
+            <div class="md:w-[320px] items-center md:mx-6 pt-2.5 md:pt-14">
+              <p class='text-center font-bold text-lg md:text-2xl mb-6 md:mb-8'>レコードのリスト作成</p>
+              <p class='text-start mb-4'>持っているレコードや欲しいレコードのリストを作成し、管理を簡単にします！お買い物の際にも便利です！</p>
+              <div class="hidden md:flex justify-center mt-16">
+                <%= image_tag("list.svg", style: "width: 300px; height: 300px;") %>
               </div>
             </div>
           </div>
-          <div class="md:w-[320px] items-center md:mx-6 pt-2.5 md:pt-14">
-            <p class='text-center font-bold text-lg md:text-2xl mb-6 md:mb-8'>レコードのリスト作成</p>
-            <p class='text-start mb-4'>持っているレコードや欲しいレコードのリストを作成し、管理を簡単にします！お買い物の際にも便利です！</p>
-            <div class="hidden md:flex justify-center mt-16">
-              <%= image_tag("list.svg", style: "width: 300px; height: 300px;") %>
-            </div>
+          <div class="absolute flex justify-between md:transform md:-translate-y-1/2 left-0 right-0 top-0 md:top-1/2">
+            <a href="#slide1" class="btn btn-circle" data-carousel-target="prevButton" data-action="click->carousel#prev">❮</a> 
+            <a href="#slide3" class="btn btn-circle" data-carousel-target="nextButton" data-action="click->carousel#next">❯</a>
           </div>
         </div>
-        <div class="absolute flex justify-between w-full md:w-auto md:transform md:-translate-y-1/2 left-0 right-0 top-0 md:top-1/2">
-          <a href="#slide1" class="btn btn-circle">❮</a>
-          <a href="#slide3" class="btn btn-circle">❯</a>
-        </div>
-      </div>
-      <div id="slide3" class="carousel-item relative w-full">
-        <div class='flex justify-center flex-col-reverse md:flex-row w-full'>
-          <div class="mockup-phone w-[300px] h-[600px] md:mx-6">
-            <div class="camera"></div>
-            <div class="display flex justify-center items-center">
-              <div class="artboard artboard-demo phone-1">
-                <img src="<%= asset_path('record_create.png') %>" class="w-auto h-auto max-w-full max-h-full object-contain mt-10">
+
+        <div id="slide3" class="carousel-item relative w-full" data-carousel-target="slide">
+          <div class='flex justify-center flex-col-reverse md:flex-row w-full'>
+            <div class="mockup-phone w-[300px] h-[600px] md:mx-6">
+              <div class="camera"></div>
+              <div class="display flex justify-center items-center">
+                <div class="artboard artboard-demo phone-1">
+                  <img src="<%= asset_path('record_create.png') %>" class="w-auto h-auto max-w-full max-h-full object-contain mt-10">
+                </div>
+              </div>
+            </div>
+            <div class="md:w-[320px] items-center md:mx-6 pt-2.5 md:pt-14">
+              <p class='text-center font-bold text-lg md:text-2xl mb-6 md:mb-8'>聴いたレコードの記録</p>
+              <p class='text-start mb-4'>聴いたレコードを記録して、振り返ることができます！よく聴いたアーティストやレコードのレポートを見ることも可能です！</p>
+              <div class="hidden md:flex justify-center mt-24">
+                <%= image_tag("charts.svg") %>
               </div>
             </div>
           </div>
-          <div class="md:w-[320px] items-center md:mx-6 pt-2.5 md:pt-14">
-            <p class='text-center font-bold text-lg md:text-2xl mb-6 md:mb-8'>聴いたレコードの記録</p>
-            <p class='text-start mb-4'>聴いたレコードを記録して、振り返ることができます！よく聴いたアーティストやレコードのレポートを見ることも可能です！</p>
-            <div class="hidden md:flex justify-center mt-24">
-              <%= image_tag("charts.svg") %>
-            </div>
+          <div class="absolute flex justify-between md:transform md:-translate-y-1/2 left-0 right-0 top-0 md:top-1/2">
+            <a href="#slide2" class="btn btn-circle" data-carousel-target="prevButton" data-action="click->carousel#prev">❮</a>
+            <a href="#slide1" class="btn btn-circle" data-carousel-target="nextButton" data-action="click->carousel#next">❯</a>
           </div>
-        </div>
-        <div class="absolute flex justify-between w-full md:w-auto md:transform md:-translate-y-1/2 left-0 right-0 top-0 md:top-1/2">
-          <a href="#slide2" class="btn btn-circle">❮</a> 
-          <a href="#slide1" class="btn btn-circle">❯</a>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const carousel = document.querySelector('.carousel');
-  const slides = carousel.querySelectorAll('.carousel-item');
-  const prevButtons = carousel.querySelectorAll('a[href^="#slide"]:first-child');
-  const nextButtons = carousel.querySelectorAll('a[href^="#slide"]:last-child');
-
-  function showSlide(slideId) {
-    slides.forEach(slide => {
-      slide.style.display = slide.id === slideId ? 'block' : 'none';
-    });
-  }
-
-  function handleNavClick(e) {
-    e.preventDefault();
-    const targetSlideId = e.currentTarget.getAttribute('href').substring(1);
-    showSlide(targetSlideId);
-  }
-
-  prevButtons.forEach(button => button.addEventListener('click', handleNavClick));
-  nextButtons.forEach(button => button.addEventListener('click', handleNavClick));
-
-  // 最初のスライドを表示
-  showSlide('slide1');
-});
-</script>
