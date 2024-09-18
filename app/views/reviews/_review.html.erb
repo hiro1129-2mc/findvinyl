@@ -2,7 +2,7 @@
   <div class="card bg-secondary my-2" >
     <div class="py-5 mx-2 md:mx-5">
       <div class="flex mx-2 items-center">
-        <%= image_tag review.user.avatar_url, class: 'rounded-full mr-2', style: 'width: 30px; height: 30px;' %>
+        <%= image_tag review.user.avatar_url, class: 'rounded-full mr-2', style: 'object-fit: cover; width: 30px; height: 30px;' %>
         <div class="text-[12px] md:text-sm text-accent break-words"><%= review.user.name %></div>
       </div>
       <div class="text-[10px] md:text-sm text-accent my-1 text-right mr-2">
