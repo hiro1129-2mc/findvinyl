@@ -7,7 +7,7 @@ class UserSessionsController < ApplicationController
     if @user
       redirect_to after_login_path_for(@user), notice: t('user_sessions.create.success')
     else
-      flash.now[:danger] = t('user_sessions.create.failure')
+      flash.now[:alert] = t('user_sessions.create.failure')
       render :new, status: :unprocessable_entity
     end
   end

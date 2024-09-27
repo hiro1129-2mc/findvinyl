@@ -5,9 +5,9 @@ class ProfilesController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to profile_path, success: t('profile.edit.edit')
+      redirect_to profile_path, notice: t('profile.edit.edit')
     else
-      flash.now['danger'] = t('profile.edit.not_edited')
+      flash.now[:alert] = t('profile.edit.not_edited')
       render :edit, status: :unprocessable_entity
     end
   end
@@ -17,7 +17,7 @@ class ProfilesController < ApplicationController
   private
 
   def set_user
-    @user = User.find(current_user.id)
+    @user = current_user
   end
 
   def user_params

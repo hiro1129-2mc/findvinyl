@@ -44,9 +44,9 @@ Rails.application.routes.draw do
   get 'collection_items', to: 'items#collection_items'
   get 'want_items', to: 'items#want_items'
   get 'search', to: 'search#index'
-  get 'login', to: 'user_sessions#new'
   get 'confirm_email/:token', to: 'emails#confirm_email', as: 'confirm_email'
   get 'email_change_confirmation', to: 'emails#email_change_confirmation'
+  get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
 end

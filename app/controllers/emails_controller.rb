@@ -4,25 +4,29 @@ class EmailsController < ApplicationController
   def edit; end
 
   def update
+    # 新しいメールアドレスをnew_emailカラムに一旦保存
     if @user.update(new_email_params)
       UserMailer.email_reconfirmation(@user).deliver_later
       redirect_to email_change_confirmation_path
     else
-      render :edit, status: :unprocessable_entity, alert: t('emails.edit.not_edited')
+      flash.now[:alert] = t('emails.edit.not_edited')
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def confirm_email
-    token_user = User.find_by(confirmation_token: params[:token])
+    token_user = User.find_by(email_change_token: params[:token])
 
-    if token_user&.confirmation_token_expires?
-      if token_user.update(email: token_user.new_email, new_email: nil, confirmation_token: nil)
-        redirect_to login_path, notice: t('emails.edit.edit')
-      else
-        redirect_to root_path, alert: t('emails.edit.not_edited')
-      end
-    else
+    unless token_user&.email_change_token_valid?
       redirect_to root_path, alert: t('emails.edit.invalid_token')
+      return
+    end
+
+    # ユーザーがメールアドレス確認メールのリンクを開くとemailを更新する
+    if token_user.update(email: token_user.new_email, new_email: nil, email_change_token: nil)
+      redirect_to login_path, notice: t('emails.edit.edit')
+    else
+      redirect_to root_path, alert: t('emails.edit.not_edited')
     end
   end
 
@@ -34,9 +38,5 @@ class EmailsController < ApplicationController
 
   def new_email_params
     params.require(:user).permit(:new_email)
-  end
-
-  def confirmation_token_expires?
-    @user.confirmation_sent_at >= 2.hours.ago
   end
 end
