@@ -10,7 +10,7 @@ class UserMailer < ApplicationMailer
 
   def email_reconfirmation(user)
     @user = User.find(user.id)
-    @token = user.generate_confirmation_token
+    @token = user.generate_email_change_token
     @url = confirm_email_url(token: @token)
     mail(to: @user.new_email,
          subject: t('defaults.confirm_change_email'))
