@@ -7,12 +7,14 @@
     <% if @data.present? %>
       <div class="mb-4 flex justify-between">
         <div>
-          <% @release.mediums.each do |medium| %>
-            <% if medium.medium_format.present? %>
-              <div class="text-sm md:text-base"><%= t('results.columns.format') %> : <%= medium.medium_format.name %></div>
-            <% else %>
-              <%= " " %>
+          <% if @release.mediums.any? %>
+            <% @release.mediums.each do |medium| %>
+              <% if medium.medium_format.present? %>
+                <div class="text-sm md:text-base"><%= t('results.columns.format') %> : <%= medium.medium_format.name %></div>
+              <% end %>
             <% end %>
+          <% else %>
+            <div class="text-sm md:text-base"><%= t('results.columns.format') %> : <%= " " %></div>
           <% end %>
           <div class="text-sm md:text-base"><%= t('releases.show.release_date') %> : <%= @data["date"] %></div>
           <div class="text-sm md:text-base"><%= t('releases.show.press_country') %> : <%= @data["country"] %></div>
@@ -22,7 +24,7 @@
           <%= link_to new_item_path(role: 'collection', 
                                     title: @release.name, 
                                     artist_name: @release.artist_credit.name, 
-                                    release_format: @release.mediums.find { |m| m.medium_format.present? }.medium_format.name, 
+                                    release_format: @release.mediums.find { |m| m.medium_format.present? }&.medium_format&.name, 
                                     press_country: @data["country"]), 
                       class: "btn btn-primary btn-block text-white" do %>
             <%= t('items.new.add_to_collection') %>
@@ -31,7 +33,7 @@
           <%= link_to new_item_path(role: 'want', 
                                     title: @release.name, 
                                     artist_name: @release.artist_credit.name, 
-                                    release_format: @release.mediums.find { |m| m.medium_format.present? }.medium_format.name, 
+                                    release_format: @release.mediums.find { |m| m.medium_format.present? }&.medium_format&.name, 
                                     press_country: @data["country"]), 
                       class: "btn btn-primary btn-block text-white" do %>
             <%= t('items.new.add_to_wishlist') %>
