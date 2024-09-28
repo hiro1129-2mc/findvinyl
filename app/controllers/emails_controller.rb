@@ -15,15 +15,15 @@ class EmailsController < ApplicationController
   end
 
   def confirm_email
-    token_user = User.find_by(email_change_token: params[:token])
+    token_user = User.find_by(confirmation_token: params[:token])
 
-    unless token_user&.email_change_token_valid?
+    unless token_user&.confirmation_token_valid?
       redirect_to root_path, alert: t('emails.edit.invalid_token')
       return
     end
 
     # ユーザーがメールアドレス確認メールのリンクを開くとemailを更新する
-    if token_user.update(email: token_user.new_email, new_email: nil, email_change_token: nil)
+    if token_user.update(email: token_user.new_email, new_email: nil, confirmation_token: nil)
       redirect_to login_path, notice: t('emails.edit.edit')
     else
       redirect_to root_path, alert: t('emails.edit.not_edited')
