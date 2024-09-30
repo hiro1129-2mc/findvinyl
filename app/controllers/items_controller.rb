@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[show edit update move_to_collection soft_delete]
   before_action :set_select_items, only: %i[new create edit update]
-  before_action :store_previous_url, only: [:new]
 
   def collection_items
     items = current_user.items.collection_items.active
