@@ -178,6 +178,7 @@ ja:
       success: パスワードリセット手順を送信しました
     update:
       success: パスワードを変更しました
+      fail: パスワードを変更できませんでした
   emails:
     edit:
       title: メールアドレス変更

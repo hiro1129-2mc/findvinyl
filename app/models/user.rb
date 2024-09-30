@@ -8,7 +8,7 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 255 }
   validates :email, presence: true, uniqueness: true
   validates :reset_password_token, uniqueness: true, allow_nil: true
-  validates :email_change_token, uniqueness: true, allow_nil: true
+  validates :confirmation_token, uniqueness: true, allow_nil: true
 
   has_many :items, dependent: :destroy
   has_many :records, dependent: :destroy
@@ -19,15 +19,15 @@ class User < ApplicationRecord
 
   enum role: { general: 0, admin: 1 }
 
-  def generate_email_change_token
-    self.email_change_token = SecureRandom.urlsafe_base64.to_s
-    self.email_change_token_sent_at = Time.current
+  def generate_confirmation_token
+    self.confirmation_token = SecureRandom.urlsafe_base64.to_s
+    self.confirmation_sent_at = Time.current
     save!
-    email_change_token
+    confirmation_token
   end
 
-  def email_change_token_valid?
-    email_change_token.present? && email_change_token_sent_at > 2.hours.ago
+  def confirmation_token_valid?
+    confirmation_token.present? && confirmation_sent_at > 2.hours.ago
   end
 
   def bookmark(shop)
