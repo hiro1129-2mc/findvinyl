@@ -1,8 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :require_login
   before_action :set_item, only: %i[show edit update move_to_collection soft_delete]
-  before_action :set_select_collections, only: %i[new create edit update]
-  before_action :store_previous_url, only: [:new]
+  before_action :set_select_items, only: %i[new create edit update]
 
   def collection_items
     items = current_user.items.collection_items.active
@@ -18,7 +16,6 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new(role: params[:role])
-    @press_countries = PressCountry.all
     @conditions = Condition.all
     @accessories = Accessory.all
 
@@ -29,29 +26,9 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = current_user.items.build(item_params.except(:title, :artist_name, :release_format, :press_country, :matrix_number, :tag, accessory_ids: []))
-
-    @item.find_or_create_related_objects({
-                                           title: params[:item][:title],
-                                           artist_name: params[:item][:artist_name],
-                                           release_format: params[:item][:release_format],
-                                           press_country: params[:item][:press_country],
-                                           matrix_number: params[:item][:matrix_number]
-                                         })
-
-    accessory_names = params[:item][:accessory]&.split(',') || []
-    @item.save_with_accessories(accessory_names:)
-
-    tag_names = params[:item][:tag]&.split(',') || []
-    @item.save_with_tags(tag_names:)
-
-    if @item.save
-      if @item.role == 'collection'
-        redirect_to session.delete(:previous_url) || collection_items_path, notice: t('items.new.saved')
-      else
-        @item.role
-        redirect_to session.delete(:previous_url) || want_items_path, notice: t('items.new.saved')
-      end
+    @item = build_item
+    if save_item
+      redirect_to item_path(@item), notice: t('items.new.saved')
     else
       flash.now[:danger] = t('items.new.not_created')
       render :new, status: :unprocessable_entity
@@ -67,29 +44,8 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item = current_user.items.find(params[:id])
-
-    @item.find_or_create_related_objects({
-                                           title: params[:item][:title],
-                                           artist_name: params[:item][:artist_name],
-                                           release_format: params[:item][:release_format],
-                                           press_country: params[:item][:press_country],
-                                           matrix_number: params[:item][:matrix_number]
-                                         })
-
-    accessory_names = params[:item][:accessory]&.split(',') || []
-    @item.save_with_accessories(accessory_names:)
-
-    tag_names = params[:item][:tag]&.split(',') || []
-    @item.save_with_tags(tag_names:)
-
-    if @item.update(item_params.except(:title, :artist_name, :release_format, :press_country, :matrix_number, :tag, accessory_ids: []))
-      if @item.role == 'collection'
-        redirect_to collection_items_path, notice: t('items.edit.edit')
-      else
-        @item.role
-        redirect_to want_items_path, notice: t('items.edit.edit')
-      end
+    if update_item
+      redirect_to item_path(@item), notice: t('items.edit.edit')
     else
       flash.now[:danger] = t('items.edit.not_edited')
       render :edit, status: :unprocessable_entity
@@ -127,13 +83,44 @@ class ItemsController < ApplicationController
     raise ActiveRecord::RecordNotFound, t('items.index.not_found') unless @item
   end
 
-  def set_select_collections
-    @press_countries = PressCountry.all
+  def set_select_items
     @conditions = Condition.all
     @accessories = Accessory.all
   end
 
-  def store_previous_url
-    session[:previous_url] = request.referer unless request.referer == request.original_url
+  def build_item
+    item = current_user.items.build(item_params.except(:title, :artist_name, :release_format, :press_country, :matrix_number, :tag, accessory_ids: []))
+    item.find_or_create_related_objects(item_association_params)
+    item
+  end
+
+  def save_item
+    accessory_names = params[:item][:accessory]&.split(',') || []
+    tag_names = params[:item][:tag]&.split(',') || []
+
+    @item.save_with_accessories(accessory_names:) &&
+      @item.save_with_tags(tag_names:) &&
+      @item.save
+  end
+
+  def update_item
+    @item.find_or_create_related_objects(item_association_params)
+
+    accessory_names = params[:item][:accessory]&.split(',') || []
+    tag_names = params[:item][:tag]&.split(',') || []
+
+    @item.save_with_accessories(accessory_names:) &&
+      @item.save_with_tags(tag_names:) &&
+      @item.update(item_params.except(:title, :artist_name, :release_format, :press_country, :matrix_number, :tag, accessory_ids: []))
+  end
+
+  def item_association_params
+    {
+      title: params[:item][:title],
+      artist_name: params[:item][:artist_name],
+      release_format: params[:item][:release_format],
+      press_country: params[:item][:press_country],
+      matrix_number: params[:item][:matrix_number]
+    }
   end
 end
