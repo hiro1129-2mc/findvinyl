@@ -24,6 +24,7 @@ class EmailsController < ApplicationController
 
     # ユーザーがメールアドレス確認メールのリンクを開くとemailを更新する
     if token_user.update(email: token_user.new_email, new_email: nil, confirmation_token: nil)
+      logout
       redirect_to login_path, notice: t('emails.edit.edit')
     else
       redirect_to root_path, alert: t('emails.edit.not_edited')
