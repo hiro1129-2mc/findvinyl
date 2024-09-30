@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def set_search
-    @q = get_global_search_query(params[:q], params[:type])
+    @q = get_search_query(params[:q], params[:type])
   end
 
   def current_user
@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     redirect_to main_app.login_path, danger: t('defaults.flash_message.require_login')
   end
 
-  def get_global_search_query(search_params, type)
+  def get_search_query(type, search_params)
     case type
     when 'artist'
       Artist.ransack(search_params)
