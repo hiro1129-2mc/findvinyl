@@ -1,14 +1,14 @@
 class RecordsController < ApplicationController
-  before_action :require_login
   before_action :set_record, only: %i[show edit update destroy]
 
   def index
-    @date = params[:month] ? Date.strptime(params[:month], '%Y-%m') : Date.current
+    @date = determine_date
     record_item_service = RecordItemService.new(current_user)
 
-    @records_by_date = group_records_by_date
+    # recordを作成した日にカレンダーに♪を表示するための変数
+    @records_by_date = current_user.records.group_by { |record| record.created_at.to_date }
+    # 円グラフを表示するための変数
     @artist_name_distribution = record_item_service.artist_name_distribution(@date)
-    @data_for_month = record_item_service.fetch_data_for_month(@date)
   end
 
   def search
@@ -25,12 +25,10 @@ class RecordsController < ApplicationController
   end
 
   def create
-    @record = current_user.records.build(record_params.except(:item_ids))
+    @record = current_user.records.build(record_params)
     if @record.save
-      if params[:item_ids].present?
-        params[:item_ids].each do |item_id|
-          @record.record_items.create(item_id:) unless item_id.blank?
-        end
+      params[:item_ids].each do |item_id|
+        @record.record_items.create(item_id:)
       end
       redirect_to records_path, notice: t('records.new.saved')
     else
@@ -51,12 +49,10 @@ class RecordsController < ApplicationController
 
   def update
     @record = current_user.records.find(params[:id])
-    if @record.update(record_params.except(:item_ids))
+    if @record.update(record_params)
       @record.record_items.destroy_all
-      if params[:item_ids].present?
-        params[:item_ids].each do |item_id|
-          @record.record_items.create(item_id:) unless item_id.blank?
-        end
+      params[:item_ids].each do |item_id|
+        @record.record_items.create(item_id:)
       end
       redirect_to record_path(@record), notice: t('records.update.saved')
     else
@@ -80,7 +76,7 @@ class RecordsController < ApplicationController
   end
 
   def report_show
-    @date = params[:month] ? Date.strptime(params[:month], '%Y-%m') : Date.current
+    @date = determine_date
     record_item_service = RecordItemService.new(current_user)
 
     @artist_name_distribution = record_item_service.artist_name_distribution(@date)
@@ -100,10 +96,6 @@ class RecordsController < ApplicationController
   end
 
   def determine_date
-    params[:month] ? Date.parse(params[:month]) : Date.current
-  end
-
-  def group_records_by_date
-    current_user.records.group_by { |record| record.created_at.to_date }
+    params[:month] ? Date.strptime(params[:month], '%Y-%m') : Date.current
   end
 end
