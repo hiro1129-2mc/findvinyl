@@ -6,8 +6,8 @@ class MyPagesController < ApplicationController
     @random = Item.where(user_id: @user.id, role: 0, status: 0).order('RANDOM()').limit(5)
 
     @date = Date.current
-    record_item_service = RecordItemService.new(current_user)
-    @artist_name_distribution = record_item_service.artist_name_distribution(@date)
+    user_record_stats_service = UserRecordStatsService.new(current_user)
+    @artist_name_distribution = user_record_stats_service.artist_name_distribution(@date)
   end
 
   private

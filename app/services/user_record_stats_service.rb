@@ -1,4 +1,4 @@
-class RecordItemService
+class UserRecordStatsService
   require 'ostruct'
 
   def initialize(user)

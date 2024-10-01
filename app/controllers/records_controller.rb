@@ -3,12 +3,12 @@ class RecordsController < ApplicationController
 
   def index
     @date = determine_date
-    record_item_service = RecordItemService.new(current_user)
+    user_record_stats_service = UserRecordStatsService.new(current_user)
 
     # recordを作成した日にカレンダーに♪を表示するための変数
     @records_by_date = current_user.records.group_by { |record| record.created_at.to_date }
     # 円グラフを表示するための変数
-    @artist_name_distribution = record_item_service.artist_name_distribution(@date)
+    @artist_name_distribution = user_record_stats_service.artist_name_distribution(@date)
   end
 
   def search
@@ -77,11 +77,11 @@ class RecordsController < ApplicationController
 
   def report_show
     @date = determine_date
-    record_item_service = RecordItemService.new(current_user)
+    user_record_stats_service = UserRecordStatsService.new(current_user)
 
-    @artist_name_distribution = record_item_service.artist_name_distribution(@date)
-    @monthly_creation_count = record_item_service.monthly_creation_count(@date)
-    @top_titles = record_item_service.top_titles_by_month(@date)
+    @artist_name_distribution = user_record_stats_service.artist_name_distribution(@date)
+    @monthly_creation_count = user_record_stats_service.monthly_creation_count(@date)
+    @top_titles = user_record_stats_service.top_titles_by_month(@date)
   end
 
   private
