@@ -1,5 +1,5 @@
 class RecordsController < ApplicationController
-  before_action :set_record, only: %i[show edit update destroy]
+  before_action :set_record, only: %i[edit update show destroy]
 
   def index
     @date = determine_date
@@ -37,7 +37,6 @@ class RecordsController < ApplicationController
   end
 
   def edit
-    @record = current_user.records.find(params[:id])
     gon.record_items = @record.items.includes(:title, :artist_name).map do |item|
       {
         id: item.id,
@@ -48,7 +47,6 @@ class RecordsController < ApplicationController
   end
 
   def update
-    @record = current_user.records.find(params[:id])
     if @record.update(record_params)
       @record.record_items.destroy_all
       params[:item_ids].each do |item_id|
@@ -60,9 +58,7 @@ class RecordsController < ApplicationController
     end
   end
 
-  def show
-    @record = Record.find(params[:id])
-  end
+  def show; end
 
   def daily_records
     date = Date.parse(params[:date])
@@ -70,7 +66,6 @@ class RecordsController < ApplicationController
   end
 
   def destroy
-    @record = current_user.records.find(params[:id])
     @record.destroy!
     redirect_to records_path, success: t('records.delete.success')
   end
