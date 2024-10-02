@@ -16,8 +16,6 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new(role: params[:role])
-    @conditions = Condition.all
-    @accessories = Accessory.all
 
     @title = params[:title]
     @artist_name = params[:artist_name]
@@ -35,13 +33,9 @@ class ItemsController < ApplicationController
     end
   end
 
-  def show
-    @item = Item.find(params[:id])
-  end
+  def show; end
 
-  def edit
-    @item = current_user.items.find(params[:id])
-  end
+  def edit; end
 
   def update
     if update_item
@@ -52,6 +46,7 @@ class ItemsController < ApplicationController
     end
   end
 
+  # 欲しいものリストのitemをコレクションリストに移動
   def move_to_collection
     if @item.update(role: 'collection')
       redirect_to want_items_path, notice: t('items.role_updated_to_collection')
@@ -60,8 +55,8 @@ class ItemsController < ApplicationController
     end
   end
 
+  # recordに紐づけられたitemに影響を与えないため論理削除にしている
   def soft_delete
-    @item = current_user.items.find(params[:id])
     role = @item.role
     @item.update(status: :deleted)
 
