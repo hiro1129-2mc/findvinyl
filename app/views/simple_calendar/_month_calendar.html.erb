@@ -30,7 +30,7 @@
           <% week.each do |day| %>
             <%= content_tag :td, class: "w-7 h-12 px-1 py-1 md:w-14 md:h-14 md:px-4 md:py-2 border hover:bg-gray-100 text-xs align-top #{calendar.td_classes_for(day)}" do %>
               <% if @records_by_date[day].present? %>
-                <%= link_to daily_records_records_path(date: day.to_s), class: "block" do %>
+                <%= link_to daily_records_path(date: day.to_s), class: "block" do %>
                   <% instance_exec(day, @records_by_date[day] || [], &passed_block) %>
                 <% end %>
               <% else %>

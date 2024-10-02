@@ -1,14 +1,14 @@
 class RecordsController < ApplicationController
-  before_action :require_login
-  before_action :set_record, only: %i[show edit update destroy]
+  before_action :set_record, only: %i[edit update show destroy]
 
   def index
-    @date = params[:month] ? Date.strptime(params[:month], '%Y-%m') : Date.current
-    record_item_service = RecordItemService.new(current_user)
+    @date = determine_date
+    user_record_stats_service = UserRecordStatsService.new(current_user)
 
-    @records_by_date = group_records_by_date
-    @artist_name_distribution = record_item_service.artist_name_distribution(@date)
-    @data_for_month = record_item_service.fetch_data_for_month(@date)
+    # recordを作成した日にカレンダーに♪を表示するための変数
+    @records_by_date = current_user.records.group_by { |record| record.created_at.to_date }
+    # 円グラフを表示するための変数
+    @artist_name_distribution = user_record_stats_service.artist_name_distribution(@date)
   end
 
   def search
@@ -25,12 +25,10 @@ class RecordsController < ApplicationController
   end
 
   def create
-    @record = current_user.records.build(record_params.except(:item_ids))
+    @record = current_user.records.build(record_params)
     if @record.save
-      if params[:item_ids].present?
-        params[:item_ids].each do |item_id|
-          @record.record_items.create(item_id:) unless item_id.blank?
-        end
+      params[:item_ids].each do |item_id|
+        @record.record_items.create(item_id:)
       end
       redirect_to records_path, notice: t('records.new.saved')
     else
@@ -39,7 +37,6 @@ class RecordsController < ApplicationController
   end
 
   def edit
-    @record = current_user.records.find(params[:id])
     gon.record_items = @record.items.includes(:title, :artist_name).map do |item|
       {
         id: item.id,
@@ -50,13 +47,10 @@ class RecordsController < ApplicationController
   end
 
   def update
-    @record = current_user.records.find(params[:id])
-    if @record.update(record_params.except(:item_ids))
+    if @record.update(record_params)
       @record.record_items.destroy_all
-      if params[:item_ids].present?
-        params[:item_ids].each do |item_id|
-          @record.record_items.create(item_id:) unless item_id.blank?
-        end
+      params[:item_ids].each do |item_id|
+        @record.record_items.create(item_id:)
       end
       redirect_to record_path(@record), notice: t('records.update.saved')
     else
@@ -64,9 +58,7 @@ class RecordsController < ApplicationController
     end
   end
 
-  def show
-    @record = Record.find(params[:id])
-  end
+  def show; end
 
   def daily_records
     date = Date.parse(params[:date])
@@ -74,18 +66,17 @@ class RecordsController < ApplicationController
   end
 
   def destroy
-    @record = current_user.records.find(params[:id])
     @record.destroy!
     redirect_to records_path, success: t('records.delete.success')
   end
 
   def report_show
-    @date = params[:month] ? Date.strptime(params[:month], '%Y-%m') : Date.current
-    record_item_service = RecordItemService.new(current_user)
+    @date = determine_date
+    user_record_stats_service = UserRecordStatsService.new(current_user)
 
-    @artist_name_distribution = record_item_service.artist_name_distribution(@date)
-    @monthly_creation_count = record_item_service.monthly_creation_count(@date)
-    @top_titles = record_item_service.top_titles_by_month(@date)
+    @artist_name_distribution = user_record_stats_service.artist_name_distribution(@date)
+    @monthly_creation_count = user_record_stats_service.monthly_creation_count(@date)
+    @top_titles = user_record_stats_service.top_titles_by_month(@date)
   end
 
   private
@@ -100,10 +91,6 @@ class RecordsController < ApplicationController
   end
 
   def determine_date
-    params[:month] ? Date.parse(params[:month]) : Date.current
-  end
-
-  def group_records_by_date
-    current_user.records.group_by { |record| record.created_at.to_date }
+    params[:month] ? Date.strptime(params[:month], '%Y-%m') : Date.current
   end
 end

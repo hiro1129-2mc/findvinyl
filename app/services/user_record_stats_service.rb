@@ -1,15 +1,17 @@
-class RecordItemService
+class UserRecordStatsService
   require 'ostruct'
 
   def initialize(user)
     @user = user
   end
 
+  # 日別レコード再生数を集計
   def monthly_creation_count(date)
     from_date, to_date = month_range(date)
     base_query(from_date, to_date).group_by_day(:created_at).count
   end
 
+  # １ヶ月でよく聞いたアーティストを集計
   def artist_name_distribution(date)
     from_date, to_date = month_range(date)
     results = base_query(from_date, to_date).joins(item: :artist_name)
@@ -27,6 +29,7 @@ class RecordItemService
     top_results
   end
 
+  # １ヶ月でよく聞いたレコードを集計
   def top_titles_by_month(date)
     from_date, to_date = month_range(date)
     results = base_query(from_date, to_date)
@@ -42,11 +45,6 @@ class RecordItemService
         count: result.count
       )
     end
-  end
-
-  def fetch_data_for_month(date)
-    from_date, to_date = month_range(date)
-    RecordItem.where(created_at: from_date..to_date)
   end
 
   private

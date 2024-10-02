@@ -22,11 +22,8 @@ application.register("map", MapController)
 import MenuController from "./menu_controller"
 application.register("menu", MenuController)
 
-import RecordEditController from "./record_edit_controller"
-application.register("record-edit", RecordEditController)
-
-import RecordNewController from "./record_new_controller"
-application.register("record-new", RecordNewController)
+import RecordController from "./record_controller"
+application.register("record", RecordController)
 
 import ReviewModalController from "./review_modal_controller"
 application.register("review-modal", ReviewModalController)
