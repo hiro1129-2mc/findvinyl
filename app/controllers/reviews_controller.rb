@@ -8,7 +8,6 @@ class ReviewsController < ApplicationController
 
   def create
     @review = current_user.reviews.build(review_params)
-    @shop = @review.shop
     if @review.save
       @reviews_count = @shop.review.count
       flash.now.notice = t('shops.reviews.new.saved')
