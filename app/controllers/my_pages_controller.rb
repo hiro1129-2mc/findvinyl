@@ -1,5 +1,4 @@
 class MyPagesController < ApplicationController
-  before_action :require_login
   before_action :set_user, only: %i[show]
 
   def show
@@ -13,6 +12,6 @@ class MyPagesController < ApplicationController
   private
 
   def set_user
-    @user = User.find(current_user.id)
+    @user = current_user
   end
 end
