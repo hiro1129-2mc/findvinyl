@@ -129,12 +129,15 @@ ja:
     confirm_delete: 本当に削除しますか？
     new:
       create_record: 記録作成
-      saved: 記録を作成しました
+      success: 記録を作成しました
+      fail: 記録を作成できませんでした
       search_items: レコード検索
       title_artist_label: タイトル・アーティスト名を入力
       comment: コメント
     edit:
       edit_record: 記録編集
+      edit: 記録を編集しました
+      not_edited: 記録を編集できませんでした
     index:
       record_report: 記録・レポート
       monthly_report: 月間レポート
@@ -147,8 +150,6 @@ ja:
       no_content: コメントがありません
     delete:
       success: 記録を削除しました
-    update:
-      saved: 記録を編集しました
     report_show:
       title: レポート詳細
       daily_record_plays: 日別レコード再生数
