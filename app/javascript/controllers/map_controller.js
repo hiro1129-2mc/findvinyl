@@ -11,6 +11,7 @@ export default class extends Controller {
     }
   }
 
+  // ユーザーの位置情報を取得
   initGeolocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -22,6 +23,7 @@ export default class extends Controller {
     }
   }
 
+  // ユーザーの位置情報を取得できれば地図の中心に設定
   handleLocationSuccess(position) {
     const userLocation = {
       lat: position.coords.latitude,
@@ -30,11 +32,13 @@ export default class extends Controller {
     this.initMap(userLocation);
   }
 
+  // 位置情報の取得に失敗した場合、中心を東京駅付近に設定
   handleLocationError(error) {
     console.warn(`ERROR(${error.code}): ${error.message}`);
     this.initMap({ lat: 35.6811673, lng: 139.7670516 });
   }
 
+  // 地図を初期化
   initMap(center) {
     const mapOptions = {
       center: center,
@@ -44,6 +48,7 @@ export default class extends Controller {
     this.addMarkers(center);
   }
 
+  // ショップにマーカーと情報ウィンドウを追加
   addMarkers(center) {
     const image = '/img/marker.png';
     const infoWindow = new google.maps.InfoWindow();
@@ -53,6 +58,7 @@ export default class extends Controller {
     if (typeof window.shops !== 'undefined') {
       window.shops.forEach(shop => {
         const position = { lat: parseFloat(shop.latitude), lng: parseFloat(shop.longitude) };
+        // 検索結果にはGoogleマップ標準のマーカーを表示
         const marker = new google.maps.Marker({
           position: position,
           map: this.map,
@@ -63,6 +69,7 @@ export default class extends Controller {
         bounds.extend(position);
         markersCount++;
 
+        // マーカーを押すと情報ウィンドウが開く
         marker.addListener('click', () => {
           this.fetchShopImage(shop.shop_image)
             .then(imageUrl => {
@@ -89,6 +96,7 @@ export default class extends Controller {
         });
       });
 
+      // 検索が行われたか確認・検索結果の件数によって地図の中心とズームの設定を分岐
       if (window.isSearchPerformed) {
         if (markersCount === 1) {
           this.map.setCenter(bounds.getCenter());
@@ -103,6 +111,7 @@ export default class extends Controller {
     }
   }
 
+  // ショップ画像を非同期で取得
   async fetchShopImage(photoReference) {
     const proxyUrl = '/shops/image';
     const response = await fetch(`${proxyUrl}?photo_reference=${photoReference}`);
