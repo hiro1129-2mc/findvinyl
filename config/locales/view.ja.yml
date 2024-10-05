@@ -206,8 +206,10 @@ ja:
     reviews:
       content: レビュー内容
       new:
-        saved: レビューを投稿しました
+        success: レビューを投稿しました
+        fail: レビューを投稿できませんでした
       edit:
         edit: レビューを編集しました
+        not_edited: レビューを編集できませんでした
       delete:
         success: レビューを削除しました
