@@ -17,7 +17,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
     redirect_to :root, notice: t('users.destroy.success')
   end
@@ -29,6 +28,6 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = User.find_by(id: params[:id])
+    @user = User.find(params[:id])
   end
 end
