@@ -9,8 +9,8 @@
 -%>
 <span class="page<%= ' current' if page.current? %>">
   <% if page.current? %>
-    <span class="join-item btn btn-active"><%= page %></span>
+    <span class="join-item btn btn-sm md:btn-md btn-active"><%= page %></span>
   <% else %>
-    <%= link_to page, url, {remote: remote, rel: page.rel, class: "join-item btn"} %>
+    <%= link_to page, url, {remote: remote, rel: page.rel, class: "join-item btn btn-sm md:btn-md"} %>
   <% end %>
 </span>
