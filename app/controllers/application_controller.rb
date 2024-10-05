@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   before_action :require_login
   before_action :store_location
   before_action :set_search
-  add_flash_types :success, :danger
 
   helper_method :current_user
 
@@ -17,7 +16,7 @@ class ApplicationController < ActionController::Base
   private
 
   def not_authenticated
-    redirect_to main_app.login_path, danger: t('defaults.flash_message.require_login')
+    redirect_to main_app.login_path, alert: t('defaults.flash_message.require_login')
   end
 
   def get_search_query(type, search_params)

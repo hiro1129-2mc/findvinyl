@@ -157,7 +157,7 @@ export default class extends Controller {
     this.formTarget.querySelector(`input[name="item_ids[]"][value="${item.id}"]`)?.remove()
   }
 
-  // selectedItemsが選択せれていない場合アラートを表示
+  // selectedItemsが選択されていない場合アラートを表示
   handleSubmit(event) {
     if (this.selectedItemsTarget.children.length === 0) {
       event.preventDefault()

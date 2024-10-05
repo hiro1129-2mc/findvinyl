@@ -36,24 +36,29 @@ class Item < ApplicationRecord
     %w[title artist_name]
   end
 
+  # itemsテーブルに外部キーとして保存されている関連オブジェクトを処理する
   def find_or_create_related_objects(attributes)
     attributes.each do |relation, value|
       next if value.blank?
 
+      # 対応するクラスを動的に取得
       relation_class = relation.to_s.classify.constantize
 
+      # カラム名を指定
       column_name = case relation.to_s
                     when 'matrix_number' then :number
                     when 'condition' then :grade
                     else :name
                     end
 
+      # 既存のオブジェクトがあればそれを使用し、なければ新しく作成する
       object = if relation.to_s == 'matrix_number'
                  MatrixNumber.find_or_create_by(column_name => value)
                else
                  relation_class.find_or_create_by(column_name => value.strip)
                end
 
+      # 動的にセッターメソッドを呼び出し、見つかったまたは作成されたオブジェクトのIDを設定
       send("#{relation}_id=", object.id)
     end
   end

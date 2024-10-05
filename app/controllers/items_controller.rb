@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
     if save_item
       redirect_to item_path(@item), notice: t('items.new.saved')
     else
-      flash.now[:danger] = t('items.new.not_created')
+      flash.now[:alert] = t('items.new.not_created')
       render :new, status: :unprocessable_entity
     end
   end
@@ -41,7 +41,7 @@ class ItemsController < ApplicationController
     if update_item
       redirect_to item_path(@item), notice: t('items.edit.edit')
     else
-      flash.now[:danger] = t('items.edit.not_edited')
+      flash.now[:alert] = t('items.edit.not_edited')
       render :edit, status: :unprocessable_entity
     end
   end

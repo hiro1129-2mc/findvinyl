@@ -67,7 +67,7 @@ class RecordsController < ApplicationController
 
   def destroy
     @record.destroy!
-    redirect_to records_path, success: t('records.delete.success')
+    redirect_to records_path, notice: t('records.delete.success')
   end
 
   def report_show
