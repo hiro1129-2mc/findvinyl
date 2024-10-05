@@ -6,20 +6,8 @@
         <label><%= message %></label>
       </div>
     </div>
-  <% when :error, :alert, :danger %>
+  <% when :alert %>
     <div class="alert alert-error">
-      <div class="flex-1">
-        <label><%= message %></label>
-      </div>
-    </div>
-  <% when :warning %>
-    <div class="alert alert-warning">
-      <div class="flex-1">
-        <label><%= message %></label>
-      </div>
-    </div>
-  <% else %>
-    <div class="alert alert-info">
       <div class="flex-1">
         <label><%= message %></label>
       </div>
