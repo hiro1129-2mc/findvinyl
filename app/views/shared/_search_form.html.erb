@@ -2,7 +2,7 @@
   <%= search_form_for @q, url: search_path, html: { class: "join p-2" } do |f| %>
     <div class="join mr-52 md:mr-0">
       <div>
-        <%= f.search_field :name_cont, placeholder: t('search.placeholder.keyword'), class: "input input-bordered join-item md:w-72" %>
+        <%= f.search_field :name_cont, placeholder: t('header.placeholder.keyword'), class: "input input-bordered join-item md:w-72" %>
       </div>
       <%= select_tag :type, options_for_select(
         [

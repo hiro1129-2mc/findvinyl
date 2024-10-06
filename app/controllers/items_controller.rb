@@ -26,9 +26,9 @@ class ItemsController < ApplicationController
   def create
     @item = build_item
     if save_item
-      redirect_to item_path(@item), notice: t('items.new.saved')
+      redirect_to item_path(@item), notice: t('defaults.flash_message.created', item: Item.model_name.human)
     else
-      flash.now[:alert] = t('items.new.not_created')
+      flash.now[:alert] = t('defaults.flash_message.not_created', item: Item.model_name.human)
       render :new, status: :unprocessable_entity
     end
   end
@@ -39,9 +39,9 @@ class ItemsController < ApplicationController
 
   def update
     if update_item
-      redirect_to item_path(@item), notice: t('items.edit.edit')
+      redirect_to item_path(@item), notice: t('defaults.flash_message.updated', item: Item.model_name.human)
     else
-      flash.now[:alert] = t('items.edit.not_edited')
+      flash.now[:alert] = t('defaults.flash_message.not_updated', item: Item.model_name.huma)
       render :edit, status: :unprocessable_entity
     end
   end
@@ -49,9 +49,9 @@ class ItemsController < ApplicationController
   # 欲しいものリストのitemをコレクションリストに移動
   def move_to_collection
     if @item.update(role: 'collection')
-      redirect_to want_items_path, notice: t('items.role_updated_to_collection')
+      redirect_to want_items_path, notice: t('.role_updated_to_collection')
     else
-      redirect_to want_items_path, alert: t('items.role_update_failed')
+      redirect_to want_items_path, alert: t('.role_update_failed')
     end
   end
 
@@ -61,9 +61,9 @@ class ItemsController < ApplicationController
     @item.update(status: :deleted)
 
     if role == 'collection'
-      redirect_to collection_items_path, notice: t('items.delete.success.collection')
+      redirect_to collection_items_path, notice: t('.success.collection')
     else
-      redirect_to want_items_path, notice: t('items.delete.success.want')
+      redirect_to want_items_path, notice: t('.success.want')
     end
   end
 
@@ -75,7 +75,7 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = current_user.items.find_by(id: params[:id])
-    raise ActiveRecord::RecordNotFound, t('items.index.not_found') unless @item
+    raise ActiveRecord::RecordNotFound, t('defaults.flash_message.not_found', item: Item.model_name.huma) unless @item
   end
 
   def set_select_items

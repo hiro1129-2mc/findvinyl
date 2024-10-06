@@ -30,9 +30,9 @@ class RecordsController < ApplicationController
       params[:item_ids].each do |item_id|
         @record.record_items.create(item_id:)
       end
-      redirect_to records_path, notice: t('records.new.success')
+      redirect_to records_path, notice: t('defaults.flash_message.created', item: Record.model_name.human)
     else
-      flash.now[:alert] = t('records.new.fail')
+      flash.now[:alert] = t('defaults.flash_message.not_created', item: Record.model_name.human)
       render :new, status: :unprocessable_entity
     end
   end
@@ -53,9 +53,9 @@ class RecordsController < ApplicationController
       params[:item_ids].each do |item_id|
         @record.record_items.create(item_id:)
       end
-      redirect_to record_path(@record), notice: t('records.edit.edit')
+      redirect_to record_path(@record), notice: t('defaults.flash_message.updated', item: Record.model_name.human)
     else
-      flash.now[:alert] = t('records.edit.not_edited')
+      flash.now[:alert] = t('defaults.flash_message.not_updated', item: Record.model_name.human)
       render :edit, status: :unprocessable_entity
     end
   end
@@ -71,7 +71,7 @@ class RecordsController < ApplicationController
 
   def destroy
     @record.destroy!
-    redirect_to records_path, notice: t('records.delete.success')
+    redirect_to records_path, notice: t('defaults.flash_message.deleted', item: Record.model_name.human)
   end
 
   def report_show
@@ -87,7 +87,8 @@ class RecordsController < ApplicationController
 
   def set_record
     @record = current_user.records.find_by(id: params[:id])
-    redirect_to records_path, alert: 'Record not found.' if @record.nil?
+    redirect_to records_path, alert: t('records.not_found') if @record.nil?
+    raise ActiveRecord::RecordNotFound, t('defaults.flash_message.not_found', item: Record.model_name.human) unless @record
   end
 
   def record_params

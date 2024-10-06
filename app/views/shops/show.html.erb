@@ -13,25 +13,25 @@
 
     <div class="text-white font-bold mb-2">
       <span class="i-majesticons-clock bg-primary w-4 h-4 mr-1" aria-hidden="true"></span>
-      <%= t('shops.opening_hours') %>
+      <%= t('.opening_hours') %>
     </div>
     <div class="text-accent mb-6"><%= @shop.opening_hours.gsub(', ', '<br>').html_safe %></div>
 
     <div class="text-white font-bold mb-2">
       <span class="i-bi-house-door-fill bg-primary w-4 h-4 mr-1" aria-hidden="true"></span>
-      <%= t('shops.web_site') %>
+      <%= t('.web_site') %>
     </div>
     <div class="text-accent link link-hover mb-6 break-all"><%= link_to @shop.web_site, @shop.web_site, target: "_blank", rel: "noopener" %></div>
 
     <div class="text-white font-bold mb-2">
       <span class="i-bi-telephone-fill bg-primary w-4 h-4 mr-1" aria-hidden="true"></span>
-      <%= t('shops.phone_number') %>
+      <%= t('.phone_number') %>
     </div>
     <div class="text-accent mb-6"><%= @shop.phone_number %></div>
 
     <div class="text-white font-bold mb-2">
       <span class="i-ph-map-pin-fill bg-primary w-5 h-5 mr-1" aria-hidden="true"></span>
-      <%= t('shops.address') %>
+      <%= t('.address') %>
     </div>
     <div class="text-accent mb-2 md:mb-0">
       <div>〒<%= @shop.postal_code %></div>
@@ -41,7 +41,7 @@
       <%= link_to "https://www.google.com/maps/dir/?api=1&destination=#{@shop.latitude},#{@shop.longitude}", target: :_blank, rel: "noopener", class: "btn btn-primary text-white rounded-full flex items-center" do %>
         <p class="flex items-center">
           <span class="i-ic-round-directions bg-white w-6 h-6 mr-2" aria-hidden="true"></span>
-          <%= t('shops.routes_transfers') %>
+          <%= t('.routes_transfers') %>
         </p>
       <% end %>
     </div>
@@ -59,13 +59,13 @@
     <div class="flex justify-between items-center">
       <div class="text-white font-bold mb-2">
         <span class="i-ic-baseline-rate-review bg-primary w-5 h-5 mr-1" aria-hidden="true"></span>
-        <%= t('shops.review') %> <%= render 'review_count', reviews_count: @reviews.count %>
+        <%= t('.review') %> <%= render 'review_count', reviews_count: @reviews.count %>
       </div>
       <div class="flex ml-auto mb-4">
         <% if current_user %>
-          <%= link_to t('shops.write_review'), new_shop_review_path(@shop), class: 'btn btn-primary text-white rounded-full flex items-center', data: { turbo_frame: 'review_modal' } %>
+          <%= link_to t('.write_review'), new_shop_review_path(@shop), class: 'btn btn-primary text-white rounded-full flex items-center', data: { turbo_frame: 'review_modal' } %>
         <% else %>
-          <%= link_to t('shops.write_review'), login_path, class: 'btn btn-primary text-white rounded-full flex items-center' %>
+          <%= link_to t('.write_review'), login_path, class: 'btn btn-primary text-white rounded-full flex items-center' %>
         <% end %>
       </div>
     </div>
@@ -74,7 +74,7 @@
         <% if @reviews.present? %>
           <%= render @reviews %>
         <% else %>
-          <p id="no_reviews" class="text-center text-sm md:text-base m-6"><%= t('shops.no_review') %></p>
+          <p id="no_reviews" class="text-center text-sm md:text-base m-6"><%= t('.no_review') %></p>
         <% end %>
       <% end %>
     </div>

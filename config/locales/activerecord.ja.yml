@@ -3,6 +3,8 @@ ja:
     models:
       user: ユーザー
       item: アイテム
+      record: 記録
+      review: レビュー
     attributes:
       user:
         email: メールアドレス
@@ -20,3 +22,5 @@ ja:
         tag: タグ
         accessories: 付属品
         release_format: フォーマット
+      record:
+        content: コメント

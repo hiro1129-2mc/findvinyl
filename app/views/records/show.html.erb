@@ -1,10 +1,10 @@
 <div class="container mx-auto py-8 px-3 md:px-0">
   <div class="w-full md:max-w-md mx-auto bg-base-200 rounded-lg p-8">
-    <h1 class="text-2xl font-bold text-center mb-8"><%= t('records.show.title') %></h1>
+    <h1 class="text-2xl font-bold text-center mb-8"><%= t('.title') %></h1>
 
     <% if @record.items.any? %>
       <div class="mb-6">
-        <div class="text-lg font-bold mb-4"><%= t('records.daily_records.listened_records') %></div>
+        <div class="text-lg font-bold mb-4"><%= t('records.listened_records') %></div>
           <% @record.items.each do |item| %>
             <div class="mb-4">
               <div class="flex items-start mb-1">
@@ -21,7 +21,7 @@
       </div>
     <% end %>
 
-    <div class="text-lg font-bold mb-2"><%= t('records.new.comment') %></div>
+    <div class="text-lg font-bold mb-2"><%= t('.comment') %></div>
     <% if @record.content.present? %>
       <div class="flex flex-wrap p-2 mb-4">
         <div class="w-full break-words">
@@ -30,7 +30,7 @@
       </div>
     <% else %>
       <div class="flex items-center justify-center p-2 mb-4">
-        <div class="text-center text-accent text-sm"><%= t('records.show.no_content') %></div>
+        <div class="text-center text-accent text-sm"><%= t('.no_content') %></div>
       </div>
     <% end %>
 
@@ -38,12 +38,12 @@
 
     <div class="flex justify-end space-x-2 mt-4">
       <%= link_to edit_record_path(@record) do %>
-        <div class="tooltip" data-tip="<%= t('helpers.submit.edit') %>">
+        <div class="tooltip" data-tip="<%= t('defaults.edit') %>">
           <span class="i-bi-pencil bg-primary w-5 h-5 mr-2" aria-hidden="true"></span>
         </div>
       <% end %>
-      <%= link_to record_path(@record), data: { turbo_method: :delete, turbo_confirm: t('records.confirm_delete') } do %>
-        <div class="tooltip" data-tip="<%= t('helpers.submit.delete') %>">
+      <%= link_to record_path(@record), data: { turbo_method: :delete, turbo_confirm: t('defaults.confirm_delete') } do %>
+        <div class="tooltip" data-tip="<%= t('defaults.delete') %>">
           <span class="i-bi-trash3 bg-primary w-5 h-5 mr-2" aria-hidden="true"></span>
         </div>
       <% end %>

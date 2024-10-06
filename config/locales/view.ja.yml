@@ -1,22 +1,38 @@
 ja:
-  defaults:
-    password_reset: パスワードリセット
-    confirm_change_email: メールアドレス変更確認
-    flash_message:
-      require_login: ログインしてください
   helpers:
     submit:
       create: 登録
       submit: 保存
       update: 更新
-      edit: 編集
-      delete: 削除
-      move_to_collection: コレクションに移動
-      select_file: ファイルを選択
-      post: 投稿
     label:
       email: メールアドレス
       password: パスワード
+  defaults:
+    edit: 編集
+    delete: 削除
+    details: 詳細
+    password_reset: パスワードリセット
+    confirm_change_email: メールアドレス変更確認
+    search_shops: お店を探す
+    collection_list: コレクションリスト
+    want_list: 欲しいものリスト
+    records_reports: 記録・レポート
+    bookmarked_shops: ブックマークしたお店
+    reviewed_shops: レビューしたお店
+    no_results: 検索結果が見つかりませんでした
+    release_title: タイトル
+    artist: アーティスト
+    format: フォーマット
+    tag: タグ
+    confirm_delete: 本当に削除しますか？
+    flash_message:
+      require_login: ログインしてください
+      created: "%{item}を作成しました"
+      not_created: "%{item}を作成出来ませんでした"
+      updated: "%{item}を更新しました"
+      not_updated: "%{item}を更新出来ませんでした"
+      deleted: "%{item}を削除しました"
+      not_found: "指定された%{item}が見つかりません"
   user_sessions:
     new:
       title: ログイン
@@ -38,47 +54,23 @@ ja:
       failure: ユーザー登録に失敗しました
     destroy:
       success: アカウントを削除しました
-      delete_account: アカウントを削除する
-      confirm_delete: 本当に削除しますか？
   header:
     login: ログイン
     logout: ログアウト
     to_register_page: 新規登録
     home: ホーム
-    search_shops: お店を探す
     add_item: アイテムを追加
     my_page: マイページ
-  my_interests:
-    collection_list: コレクションリスト
-    want_list: 欲しいものリスト
-    records_reports: 記録・レポート
-    bookmarked_shops: ブックマークしたお店
-    reviewed_shops: レビューしたお店
+    placeholder:
+      keyword: 検索ワード
   footer:
     contact_us: お問い合わせ
     terms_of_use: 利用規約
     privacy_policy: プライバシーポリシー
-  search:
-    button: 検索
-    no_results: 検索結果が見つかりませんでした
-    in_collection_list: コレクション内検索
-    in_want_list: 欲しいもの内検索
-    form:
-      artist: アーティスト
-      release_title: リリースタイトル
-    placeholder:
-      keyword: 検索ワード
-      name_or_address: 店名・住所で検索
-  results:
-    columns:
-      title: タイトル
-      artist: アーティスト
-      format: フォーマット
   artists:
     show:
       releases: リリース
       life_span: 活動期間
-      disambiguation: 認識情報
       country: 国籍
       details_not_available: アーティストの詳細情報はありません
       no_vinyl_release: レコードのリリース情報が見つかりませんでした
@@ -92,28 +84,17 @@ ja:
       track_count: トラック数
       track_list: トラックリスト
       details_not_available: リリースの詳細情報はありません
+      add_to_collection: コレクションに追加
+      add_to_wishlist: 欲しいものに追加
   items:
-    confirm_delete: 本当に削除しますか？
-    role_updated_to_collection: 欲しいものをコレクションに移動しました
-    role_update_failed: 欲しいものをコレクションに移動できませんでした
     placeholder:
       tag_input: ',区切りで入力してください'
     new:
       create_collection: コレクションを作成
       create_want: 欲しいものを作成
-      add_to_collection: コレクションに追加
-      add_to_wishlist: 欲しいものに追加
-      saved: アイテムを保存しました
-      not_created: アイテムを作成できませんでした
     edit:
-      edit: アイテムを編集しました
-      not_edited: アイテムを編集できませんでした
       edit_collection: コレクション編集
       edit_want: 欲しいのもの編集
-    index:
-      tag: タグ
-      not_found: 指定されたアイテムが見つかりません
-      no_items: アイテムがありません
     show:
       collection_show: コレクション詳細
       want_show: 欲しいもの詳細
@@ -122,32 +103,41 @@ ja:
       accessory: 付属品
       user_note: メモ
       no_user_note: メモがありません
-    delete:
+    collection_items:
+      title: コレクションリスト
+      no_items: コレクションがありません
+      placeholder:
+        search_collection: コレクション内検索
+    want_items:
+      title: 欲しいものリスト
+      no_items: 欲しいものがありません
+      movement_to_collection: コレクションに移動
+      placeholder:
+        search_want: 欲しいもの内検索
+    move_to_collection:
+      role_updated_to_collection: 欲しいものをコレクションに移動しました
+      role_update_failed: 欲しいものをコレクションに移動できませんでした
+    soft_delete:
       success:
         collection: コレクションを削除しました
         want: 欲しいものを削除しました
   records:
-    confirm_delete: 本当に削除しますか？
-    new:
-      create_record: 記録作成
-      success: 記録を作成しました
-      fail: 記録を作成できませんでした
-      search_items: レコード検索
+    monthly_report: 月間レポート
+    search_items: レコード検索
+    listened_records: 聴いたレコード
+    placeholder:
       title_artist_label: タイトル・アーティスト名を入力
-      comment: コメント
+    new:
+      title: 記録作成
     edit:
-      edit_record: 記録編集
-      edit: 記録を編集しました
-      not_edited: 記録を編集できませんでした
+      title: 記録編集
     index:
-      record_report: 記録・レポート
-      monthly_report: 月間レポート
+      title: 記録・レポート
     daily_records:
       title: 記録一覧（%{date}）
-      listened_records: 聴いたレコード
-      details_button: 詳細を見る
     show:
       title: 記録詳細
+      comment: コメント
       no_content: コメントがありません
     delete:
       success: 記録を削除しました
@@ -156,20 +146,25 @@ ja:
       daily_record_plays: 日別レコード再生数
       top_artists: よく聴いたアーティスト
       top_records: よく聴いたレコード
-  my_page:
-    title: マイページ
-    what_to_listen: 何を聴きますか？
-    add_to_collection: コレクションをリストに追加しましょう
-    details: 詳細
-  profile:
+  my_pages:
     show:
-      title: アカウント詳細
+      title: マイページ
+      what_to_listen: 何を聴きますか？
+      lets_add_to_collection: コレクションをリストに追加しましょう
+  profiles:
     edit:
       title: アカウント編集
-      edit: アカウント情報を更新しました
-      not_edited: アカウント情報を更新できませんでした
       change_email: メールアドレスを変更する
       change_password: パスワードを変更する
+      select_file: ファイルを選択
+      delete_account: アカウントを削除する
+    update:
+      success: アカウント情報を更新しました
+      failure: アカウント情報を更新できませんでした
+    show:
+      title: アカウント詳細
+      user_name: ユーザー名
+      email: メールアドレス
   password_resets:
     new:
       title: パスワードリセット申請
@@ -180,38 +175,46 @@ ja:
       success: パスワードリセット手順を送信しました
     update:
       success: パスワードを変更しました
-      fail: パスワードを変更できませんでした
+      failure: パスワードを変更できませんでした
   emails:
     edit:
       title: メールアドレス変更
       submit: 送信
-      edit: メールアドレスを更新しました
-      not_edited: メールアドレスを更新できませんでした
+    update:
+      failure: メールアドレスを更新できませんでした
+    confirm_email:
+      success: メールアドレスを更新しました
+      failure: メールアドレスを更新できませんでした
       invalid_token: 無効または期限切れのトークンです
     email_change_confirmation:
       title: 送信完了
   shops:
-    opening_hours: 営業時間
-    web_site: 公式サイト
-    phone_number: 電話番号
-    address: 住所
-    routes_transfers: ルート・乗換
-    bookmark: ブックマークする
-    unbookmark: ブックマークを外す
-    no_bookmark: ブックマークしたお店はありません
-    review: レビュー
-    write_review: レビューを書く
-    write_review_after_login: ログインしてレビューを書く
-    review_count_suffix: 件
-    no_review: まだレビューがありません
-    no_review_shop: レビューしたお店はありません
-    reviews:
+    map:
+      placeholder:
+        name_or_address: 店名・住所で検索
+    show:
+      opening_hours: 営業時間
+      web_site: 公式サイト
+      phone_number: 電話番号
+      address: 住所
+      routes_transfers: ルート・乗換
+      bookmark: ブックマークする
+      unbookmark: ブックマークを外す
+      review: レビュー
+      write_review: レビューを書く
+      review_count_suffix: 件
+      no_review: まだレビューがありません
+    bookmarks:
+      title: ブックマークしたお店
+      no_bookmark_shop: ブックマークしたお店はありません
+    review_shops:
+      title: レビューしたお店
+      no_review_shop: レビューしたお店はありません
+  reviews:
+    placeholder:
       content: レビュー内容
-      new:
-        success: レビューを投稿しました
-        fail: レビューを投稿できませんでした
-      edit:
-        edit: レビューを編集しました
-        not_edited: レビューを編集できませんでした
-      delete:
-        success: レビューを削除しました
+    new:
+      submit: 投稿
+    create:
+      success: レビューを投稿しました
+      failure: レビューを投稿できませんでした

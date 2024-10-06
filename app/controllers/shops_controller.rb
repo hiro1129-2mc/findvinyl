@@ -7,7 +7,7 @@ class ShopsController < ApplicationController
 
     return unless @shops.empty?
 
-    redirect_to map_shops_path, notice: t('search.no_results')
+    redirect_to map_shops_path, notice: t('defaults.no_results')
   end
 
   def shop_image

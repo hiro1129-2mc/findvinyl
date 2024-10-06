@@ -1,6 +1,6 @@
 <div class="container mx-auto py-8 px-3 md:px-0">
   <div class="max-w-lg mx-auto bg-base-200 rounded-lg py-6 px-4 md:p-6">
-    <h1 class="text-2xl font-bold text-center mb-6"><%= t('profile.edit.title') %></h1>
+    <h1 class="text-2xl font-bold text-center mb-6"><%= t('.title') %></h1>
 
     <%= form_with model: @user, url: profile_path, method: :put do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
@@ -20,7 +20,7 @@
             <div data-controller="avatar-preview">
               <%= image_tag @user.avatar.url, data: { avatar_preview_target: "preview" }, class: 'rounded-full mt-2 mb-2 ', id: 'preview', style: 'object-fit: cover; width: 120px; height: 120px;' %>
               <label class="btn btn-accent text-xs mb-2">
-                <%= t('helpers.submit.select_file') %>
+                <%= t('.select_file') %>
                 <%= f.file_field :avatar, data: { avatar_preview_target: "input", action: "change->avatar-preview#preview" }, class: 'hidden', accept: 'image/*' %>
               </label>
             </div>
@@ -36,9 +36,9 @@
 </div>
 
 <div class="text-center mb-4">
-  <%= link_to t('profile.edit.change_email'), edit_email_path, class: 'text-sm text-text-accent mr-4 link link-hover'%>
-  <%= link_to t('profile.edit.change_password'), new_password_reset_path, class: 'text-sm text-text-accent link link-hover'%>
+  <%= link_to t('.change_email'), edit_email_path, class: 'text-sm text-text-accent mr-4 link link-hover'%>
+  <%= link_to t('.change_password'), new_password_reset_path, class: 'text-sm text-text-accent link link-hover'%>
 </div>
 <div class="text-center mb-8">
-  <%= link_to t('users.destroy.delete_account'),user_path(current_user.id), class: 'text-sm text-text-accent link link-hover', data: { turbo_method: :delete, turbo_confirm: t('users.destroy.confirm_delete') } %>
+  <%= link_to t('.delete_account'),user_path(current_user.id), class: 'text-sm text-text-accent link link-hover', data: { turbo_method: :delete, turbo_confirm: t('defaults.confirm_delete') } %>
 </div>
