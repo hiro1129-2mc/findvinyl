@@ -30,8 +30,9 @@ class RecordsController < ApplicationController
       params[:item_ids].each do |item_id|
         @record.record_items.create(item_id:)
       end
-      redirect_to records_path, notice: t('records.new.saved')
+      redirect_to records_path, notice: t('records.new.success')
     else
+      flash.now[:alert] = t('records.new.fail')
       render :new, status: :unprocessable_entity
     end
   end
@@ -52,8 +53,9 @@ class RecordsController < ApplicationController
       params[:item_ids].each do |item_id|
         @record.record_items.create(item_id:)
       end
-      redirect_to record_path(@record), notice: t('records.update.saved')
+      redirect_to record_path(@record), notice: t('records.edit.edit')
     else
+      flash.now[:alert] = t('records.edit.not_edited')
       render :edit, status: :unprocessable_entity
     end
   end

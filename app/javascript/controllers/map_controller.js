@@ -74,9 +74,9 @@ export default class extends Controller {
           this.fetchShopImage(shop.shop_image)
             .then(imageUrl => {
               const contentString = `
-                <div id="content">
-                  <img src="${imageUrl}" class="object-cover aspect-[16/9] max-w-[400px] max-h-[200px] mx-auto mb-2">
-                  <h2 class="text-xl mb-2 text-gray-800">${shop.name}</h2>
+                <div id="content" class="pr-2 md:pr-0">
+                  <img src="${imageUrl}" class="object-cover aspect-[16/9] max-w-[225px] max-h-[125px] md:max-w-[360px] md:max-h-[180px] mx-auto mb-2">
+                  <h2 class="text-lg md:text-xl mb-2 text-gray-800">${shop.name}</h2>
                   <div id="bodyContent" class="text-gray-800 mb-2">
                     <p>〒 ${shop.postal_code}</p>
                     <p>${shop.address}</p>

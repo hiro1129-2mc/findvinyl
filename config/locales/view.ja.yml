@@ -32,6 +32,7 @@ ja:
     new:
       title: ユーザー登録
       to_login_page: ユーザー登録済みの方はこちら
+      min_length: 8文字以上で入力してください
     create:
       success: ユーザー登録が完了しました
       failure: ユーザー登録に失敗しました
@@ -129,12 +130,15 @@ ja:
     confirm_delete: 本当に削除しますか？
     new:
       create_record: 記録作成
-      saved: 記録を作成しました
+      success: 記録を作成しました
+      fail: 記録を作成できませんでした
       search_items: レコード検索
       title_artist_label: タイトル・アーティスト名を入力
       comment: コメント
     edit:
       edit_record: 記録編集
+      edit: 記録を編集しました
+      not_edited: 記録を編集できませんでした
     index:
       record_report: 記録・レポート
       monthly_report: 月間レポート
@@ -147,8 +151,6 @@ ja:
       no_content: コメントがありません
     delete:
       success: 記録を削除しました
-    update:
-      saved: 記録を編集しました
     report_show:
       title: レポート詳細
       daily_record_plays: 日別レコード再生数
@@ -206,8 +208,10 @@ ja:
     reviews:
       content: レビュー内容
       new:
-        saved: レビューを投稿しました
+        success: レビューを投稿しました
+        fail: レビューを投稿できませんでした
       edit:
         edit: レビューを編集しました
+        not_edited: レビューを編集できませんでした
       delete:
         success: レビューを削除しました
