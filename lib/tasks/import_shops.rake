@@ -23,7 +23,7 @@ namespace :shop do
   def search_shops(api_base_url, api_key)
     search_uri = URI("#{api_base_url}/textsearch/json")
     search_params = {
-      query: 'record shops in Ginza',
+      query: 'record shops in 横須賀',
       language: 'ja',
       type: 'store',
       key: api_key

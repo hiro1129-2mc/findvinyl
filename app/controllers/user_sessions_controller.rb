@@ -12,10 +12,6 @@ class UserSessionsController < ApplicationController
     end
   end
 
-  def after_login_path_for(_resource)
-    session[:previous_url] || root_path
-  end
-
   def destroy
     logout
     redirect_to root_path, status: :see_other, notice: t('user_sessions.destroy.success')
