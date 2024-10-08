@@ -18,12 +18,12 @@
     <% if current_user && current_user.own?(review) %>
       <div class="flex justify-end space-x-2 mb-4 mr-2">
         <%= link_to edit_review_path(review), data: { turbo_frame: 'review_modal' } do %>
-          <div class="tooltip" data-tip="<%= t('helpers.submit.edit') %>">
+          <div class="tooltip" data-tip="<%= t('defaults.edit') %>">
             <span class="i-bi-pencil bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
           </div>
         <% end %>
-        <%= link_to review_path(review), data: { turbo_method: :delete, turbo_confirm: t('items.confirm_delete') } do %>
-          <div class="tooltip" data-tip="<%= t('helpers.submit.delete') %>">
+        <%= link_to review_path(review), data: { turbo_method: :delete, turbo_confirm: t('defaults.confirm_delete') } do %>
+          <div class="tooltip" data-tip="<%= t('defaults.delete') %>">
             <span class="i-bi-trash3 bg-primary w-4 h-4 mr-2" aria-hidden="true"></span>
           </div>
         <% end %>

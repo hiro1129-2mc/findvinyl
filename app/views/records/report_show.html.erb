@@ -1,6 +1,6 @@
 <div class="container mx-auto py-8">
   <div class="w-full md:w-10/12 mx-auto">
-    <h1 class="text-2xl font-bold text-center mt-2 mb-8"><%= t('records.report_show.title') %></h1>
+    <h1 class="text-2xl font-bold text-center mt-2 mb-8"><%= t('.title') %></h1>
 
     <div class="flex justify-center md:justify-start mx-4 mb-5">
       <%= link_to '◀︎', report_show_records_path(month: (@date.prev_month).strftime('%Y-%m')), class: "text-lg" %>
@@ -10,12 +10,12 @@
 
     <div class="flex flex-col mb-4 px-3 md:px-0 md:grid gap-4 grid-cols-2">
       <div class="p-6 md:p-10 w-full mx-auto bg-base-200 rounded-2xl">
-        <h1 class="text-center font-bold mb-7"><%= t('records.report_show.top_artists') %></h1>
+        <h1 class="text-center font-bold mb-7"><%= t('.top_artists') %></h1>
         <%= render 'shared/pie_chart' %>
       </div>
 
       <div class="p-6 md:p-10 w-full mx-auto bg-base-200 rounded-2xl">
-        <h1 class="text-center font-bold mb-7"><%= t('records.report_show.top_records') %></h1>
+        <h1 class="text-center font-bold mb-7"><%= t('.top_records') %></h1>
         <% if @top_titles.any? %>
           <div class="overflow-x-scroll text-xs md:text-base">
             <% @top_titles.each do |result| %>
@@ -40,7 +40,7 @@
 
     <div class="mx-3 md:mx-0">
       <div class="p-6 md:p-10 mx-auto bg-base-200 rounded-2xl">
-        <h1 class="text-center font-bold mb-7"><%= t('records.report_show.daily_record_plays') %></h1>
+        <h1 class="text-center font-bold mb-7"><%= t('.daily_record_plays') %></h1>
         <%= line_chart @monthly_creation_count %>
       </div>
     </div>

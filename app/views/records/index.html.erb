@@ -1,6 +1,6 @@
 <div class="container mx-auto py-8">
   <div class="w-full md:w-10/12 mx-auto">
-    <h1 class="text-2xl font-bold text-center mt-2 mb-8"><%= t('records.index.record_report') %></h1>
+    <h1 class="text-2xl font-bold text-center mt-2 mb-8"><%= t('.title') %></h1>
 
     <div class="flex flex-col px-3 md:px-0 md:grid gap-4 grid-cols-2">
       <div class="p-6 md:p-10 w-full mx-auto bg-base-200 rounded-2xl">
@@ -19,12 +19,12 @@
       </div>
 
       <div class="p-6 md:p-10 w-full mx-auto bg-base-200 rounded-2xl">
-        <h2 class="text-center md:mb-2"><%= t('records.index.monthly_report') %></h2>
+        <h2 class="text-center md:mb-2"><%= t('records.monthly_report') %></h2>
         <div class="md:my-20">
           <%= render 'shared/pie_chart' %>
         </div>
         <div class="text-right text-sm text-primary link link-hover">
-          <%= link_to t('my_page.details'), report_show_records_path(month: @date.strftime('%Y-%m')) %>
+          <%= link_to t('defaults.details'), report_show_records_path(month: @date.strftime('%Y-%m')) %>
         </div>
       </div>
     </div>

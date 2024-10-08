@@ -2,9 +2,9 @@
   <div class="w-full max-w-md mx-auto bg-base-200 rounded-lg p-8">
     <h1 class="text-2xl font-bold text-center mb-8">
       <% if @item.collection? %>
-        <%= t('items.show.collection_show') %>
+        <%= t('.collection_show') %>
       <% elsif @item.want? %>
-        <%= t('items.show.want_show') %>
+        <%= t('.want_show') %>
       <% end %>
     </h1>
 
@@ -21,7 +21,7 @@
     </div>
 
     <div class="grid grid-cols-2 gap-4 items-start py-1 rounded-lg text-accent text-sm md:text-base">
-      <span><%= t('results.columns.format') %></span>
+      <span><%= t('defaults.format') %></span>
       <span><%= @item.release_format&.name %></span>
     </div>
 
@@ -50,7 +50,7 @@
     </div>
 
     <div class="grid grid-cols-2 gap-4 items-start py-1 text-accent text-sm md:text-base">
-      <span><%= t('items.index.tag') %></span>
+      <span><%= t('defaults.tag') %></span>
       <div>
         <% @item.tags.each do |tag| %>
           <span class="badge badge-secondary text-sm md:text-base"><%= tag.name %></span>
@@ -73,12 +73,12 @@
 
     <div class="flex justify-end space-x-2 mt-4">
       <%= link_to edit_item_path(@item) do %>
-        <div class="tooltip" data-tip="<%= t('helpers.submit.edit') %>">
+        <div class="tooltip" data-tip="<%= t('defaults.edit') %>">
           <span class="i-bi-pencil bg-primary w-5 h-5 mr-2" aria-hidden="true"></span>
         </div>
       <% end %>
-      <%= link_to soft_delete_item_path(@item), data: { turbo_method: :patch, turbo_confirm: t('items.confirm_delete') } do %>
-        <div class="tooltip" data-tip="<%= t('helpers.submit.delete') %>">
+      <%= link_to soft_delete_item_path(@item), data: { turbo_method: :patch, turbo_confirm: t('defaults.confirm_delete') } do %>
+        <div class="tooltip" data-tip="<%= t('defaults.delete') %>">
           <span class="i-bi-trash3 bg-primary w-5 h-5 mr-2" aria-hidden="true"></span>
         </div>
       <% end %>

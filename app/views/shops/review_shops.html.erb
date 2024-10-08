@@ -1,7 +1,7 @@
 <div class="container mx-auto py-8 px-3 md:px-0">
   <div class="flex flex-col">
     <div class="w-full md:w-8/12 mx-auto bg-base-200 rounded-lg p-8 md:p-10">
-     <h1 class="text-2xl font-bold text-center mb-8"><%= t('my_interests.reviewed_shops') %></h1>
+     <h1 class="text-2xl font-bold text-center mb-8"><%= t('.title') %></h1>
 
       <% if @review_shops.present? %>
         <% @review_shops.each do |shop| %>
@@ -23,7 +23,7 @@
         </div>
       <% else %>
         <div class="flex items-center justify-center py-20">
-          <p class="text-center py-8"><%= t('shops.no_review_shop') %></p>
+          <p class="text-center py-8"><%= t('.no_review_shop') %></p>
         </div>
       <% end %>
     </div>

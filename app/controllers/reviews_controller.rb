@@ -10,10 +10,10 @@ class ReviewsController < ApplicationController
     @review = current_user.reviews.build(review_params)
     if @review.save
       @reviews_count = @shop.review.count
-      flash.now.notice = t('shops.reviews.new.success')
+      flash.now.notice = t('.success')
       render :create
     else
-      flash.now[:alert] = t('shops.reviews.new.fail')
+      flash.now[:alert] = t('.failure')
       render :new, status: :unprocessable_entity
     end
   end
@@ -24,13 +24,13 @@ class ReviewsController < ApplicationController
 
   def update
     if @review.update(review_params.except(:shop_id))
-      flash.now.notice = t('shops.reviews.edit.edit')
+      flash.now.notice = t('defaults.flash_message.updated', item: Review.model_name.human)
       render turbo_stream: [
         turbo_stream.replace(@review),
         turbo_stream.update('flash', partial: 'shared/flash_message')
       ]
     else
-      flash.now[:alert] = t('shops.reviews.edit.not_edited')
+      flash.now[:alert] = t('defaults.flash_message.not_updated', item: Review.model_name.human)
       render :edit, status: :unprocessable_entity
     end
   end
@@ -39,7 +39,7 @@ class ReviewsController < ApplicationController
     @shop = @review.shop
     @review.destroy!
     @reviews_count = @shop.review.count
-    flash.now.notice = t('shops.reviews.delete.success')
+    flash.now.notice = t('defaults.flash_message.deleted', item: Review.model_name.human)
     render :destroy
   end
 

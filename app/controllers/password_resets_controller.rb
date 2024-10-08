@@ -26,7 +26,7 @@ class PasswordResetsController < ApplicationController
       logout
       redirect_to login_path, notice: t('.success')
     else
-      flash.now[:alert] = t('.fail')
+      flash.now[:alert] = t('.failure')
       render :edit, status: :unprocessable_entity
     end
   end
