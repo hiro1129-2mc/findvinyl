@@ -204,7 +204,7 @@ ja:
       write_review: レビューを書く
       review_count_suffix: 件
       no_review: まだレビューがありません
-    bookmarks:
+    bookmark_shops:
       title: ブックマークしたお店
       no_bookmark_shop: ブックマークしたお店はありません
     review_shops:
