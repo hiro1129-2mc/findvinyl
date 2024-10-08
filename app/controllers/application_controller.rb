@@ -31,8 +31,12 @@ class ApplicationController < ActionController::Base
   end
 
   def store_location
-    return unless !logged_in? && request.get? && !request.xhr? && !request.fullpath.match?(%r{/login|/users/new|/password_resets/new|/password_resets/edit|/emails/new|/emails/edit})
+    return if logged_in? || !request.get? || request.xhr? || request.fullpath.start_with?('/login', '/users/new', '/password_resets/', '/emails/')
 
     session[:previous_url] = request.fullpath
+  end
+
+  def after_login_path_for(_resource)
+    session[:previous_url] || root_path
   end
 end
