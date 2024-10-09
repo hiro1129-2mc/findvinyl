@@ -13,6 +13,7 @@
           <div class="my-2"><%= current_user.name %></div>
         </div>
         <%= form_with model: @review, url: shop_reviews_path(@shop), data: { action: "turbo:submit-end->review-modal#close" }, method: :post do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
           <div class="max-w-lg mx-auto p-2 md:p-6 bg-secondary rounded-xl space-y-2 md:space-y-4">
             <div class="form-control">
               <%= f.text_area :content, class: 'w-full rounded-xl p-4 text-base-100', rows: 4, placeholder: t('reviews.placeholder.content'), required: true %>
