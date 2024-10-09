@@ -5,13 +5,13 @@
 
       <% if @bookmark_shops.present? %>
         <% @bookmark_shops.each do |shop| %>
-          <%= link_to shop_path(shop), class: "block card bg-secondary mb-4 p-5 shadow-xl hover:bg-base-200" do %>
+          <%= link_to shop_path(shop), class: "block card bg-secondary mb-4 p-4 shadow-xl hover:bg-base-200" do %>
             <div class="flex flex-col md:flex-row">
               <div class="flex flex-shrink-0 justify-center mb-3 md:mb-0 md:justify-start md:mr-4">
                 <img src="<%= @shop_images[shop.id] %>" class="object-cover w-[200px] h-[100px] rounded-lg" alt="<%= shop.name %>" />
               </div>
               <div class="flex flex-col justify-center ml-2">
-                <h2 class="text-white text-lg font-bold mb-2"><%= shop.name %></h2>
+                <div class="text-white text-lg font-bold mb-2"><%= shop.name %></div>
                 <p class="text-accent">〒<%= shop.postal_code %></p>
                 <p class="text-accent"><%= shop.address %></p>
               </div>

@@ -11,7 +11,7 @@
 
       <div class="form-control mb-2">
         <%= f.label :password, class: "block text-accent mb-2" %>
-        <div class="relative">
+        <div class="relative mb-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
@@ -24,6 +24,7 @@
           </svg>
           <%= f.password_field :password, class: "input input-bordered bg-white text-base-100 w-full pl-10", placeholder: 'Password', required: true %>
         </div>
+        <p class="text-xs text-accent"><%= t('defaults.min_length') %></p>
       </div>
 
       <div class="form-control">

@@ -25,6 +25,7 @@ ja:
     format: フォーマット
     tag: タグ
     confirm_delete: 本当に削除しますか？
+    min_length: ※8文字以上で入力してください
     flash_message:
       require_login: ログインしてください
       created: "%{item}を作成しました"
@@ -48,7 +49,6 @@ ja:
     new:
       title: ユーザー登録
       to_login_page: ユーザー登録済みの方はこちら
-      min_length: 8文字以上で入力してください
     create:
       success: ユーザー登録が完了しました
       failure: ユーザー登録に失敗しました
