@@ -1,4 +1,5 @@
 <%= form_with model: record, local: true, html: { id: 'record_form', data: { record_target: 'form' } } do |form| %>
+  <%= render 'shared/error_messages', object: form.object %>
   <div>
     <label for="item_search" class="block text-accent font-bold mb-2"><%= t('records.search_items') %></label>
     <input data-record-target="searchInput" type="text" id="item_search" name="item_search" class="appearance-none border rounded w-full bg-white py-2 px-3 text-base-100 leading-tight focus:outline-none focus:shadow-outline" placeholder="<%= t('records.placeholder.title_artist_label') %>">
