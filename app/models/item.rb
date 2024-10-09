@@ -17,7 +17,7 @@ class Item < ApplicationRecord
   validates :user_id, presence: true
   validates :title_id, presence: true
   validates :artist_name_id, presence: true
-  validates :user_note, length: { maximum: 500 }
+  validates :user_note, length: { maximum: 10_000 }
 
   enum role: { collection: 0, want: 1 }
   enum status: { active: 0, deleted: 1 }
