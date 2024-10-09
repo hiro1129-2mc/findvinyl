@@ -51,7 +51,7 @@ class ShopsController < ApplicationController
     cache_key = "shop_image_#{photo_reference}"
 
     Rails.cache.fetch(cache_key, expires_in: 24.hours) do
-      url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=#{photo_reference}&key=#{key}"
+      url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photo_reference=#{photo_reference}&key=#{key}"
       begin
         image_data = URI.open(url).read
         "data:image/jpeg;base64,#{Base64.encode64(image_data)}"
