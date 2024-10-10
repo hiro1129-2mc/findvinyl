@@ -16,6 +16,9 @@ application.register("item-edit", ItemEditController)
 import ItemNewController from "./item_new_controller"
 application.register("item-new", ItemNewController)
 
+import ItemValidationController from "./item_validation_controller"
+application.register("item-validation", ItemValidationController)
+
 import MapController from "./map_controller"
 application.register("map", MapController)
 

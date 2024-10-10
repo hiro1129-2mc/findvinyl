@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag 'custom_styles', media: 'all', 'data-turbolinks-track': 'reload' %>
 <div class="container mx-auto py-8 px-3 md:px-0">
   <div class="w-full max-w-md mx-auto bg-base-200 rounded-lg p-6 md:p-8">
-    <%= form_with model: @item, local: true do |form| %>
+    <%= form_with model: @item, local: true, data: { controller: "item-validation" } do |form| %>
       <%= render 'shared/error_messages', object: form.object %>
       <% if params[:role] %>
         <%= form.hidden_field :role, value: params[:role] %>
@@ -19,7 +19,7 @@
             <span class="text-red-500 ml-2">*</span>
           </div>
         <% end %>
-        <%= form.text_field :title, value: @title || params[:title], class: "input input-bordered text-base-100", required: true %>
+        <%= form.text_field :title, value: @title || params[:title], class: "input input-bordered w-full text-base-100", data: { max_length: 255, item_validation_target: "field" }, required: true %>
       </div>
 
       <div class="form-control">
@@ -29,22 +29,22 @@
             <span class="text-red-500 ml-2">*</span>
           </div>
         <% end %>
-        <%= form.text_field :artist_name, value: @artist_name || params[:artist_name], class: "input input-bordered text-base-100", required: true %>
+        <%= form.text_field :artist_name, value: @artist_name || params[:artist_name], class: "input input-bordered w-full text-base-100", data: { max_length: 255, item_validation_target: "field" }, required: true %>
       </div>
 
       <div class="form-control">
         <%= form.label :release_format, class: "label" %>
-        <%= form.text_field :release_format, value: @release_format || params[:release_format], class: "input input-bordered text-base-100" %>
+        <%= form.text_field :release_format, value: @release_format || params[:release_format], class: "input input-bordered text-base-100", data: { max_length: 255, item_validation_target: "field" } %>
       </div>
 
       <div class="form-control">
         <%= form.label :press_country, class: "label" %>
-        <%= form.text_field :press_country, value: @press_country || params[:press_country], class: "input input-bordered text-base-100" %>
+        <%= form.text_field :press_country, value: @press_country || params[:press_country], class: "input input-bordered text-base-100", data: { max_length: 255, item_validation_target: "field" } %>
       </div>
 
       <div class="form-control">
         <%= form.label :matrix_number, class: "label" %>
-        <%= form.text_field :matrix_number, value: @item.matrix_number&.number || params[:item]&.fetch(:matrix_number, nil), class: "input input-bordered text-base-100" %>
+        <%= form.text_field :matrix_number, value: @item.matrix_number&.number || params[:item]&.fetch(:matrix_number, nil), class: "input input-bordered text-base-100", data: { max_length: 255, item_validation_target: "field" } %>
       </div>
 
       <div class="form-control">
@@ -65,7 +65,7 @@
 
       <div class="form-control">
         <%= form.label :tag, class: "label" %>
-        <%= form.text_field :tag, value: @item.tag_names, placeholder: t('items.placeholder.tag_input'), class: "input input-bordered text-base-100" %>
+        <%= form.text_field :tag, value: @item.tag_names, placeholder: t('items.placeholder.tag_input'), class: "input input-bordered text-base-100", data: { max_length: 255, item_validation_target: "field" } %>
       </div>
 
       <div class="form-control">
