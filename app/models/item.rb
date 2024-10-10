@@ -76,18 +76,4 @@ class Item < ApplicationRecord
   def tag_names
     tags.map(&:name).join(',')
   end
-
-  def save_with_accessories(accessory_names:)
-    ActiveRecord::Base.transaction do
-      self.accessories = accessory_names.map { |name| Accessory.find_or_initialize_by(name: name.strip) }
-      save!
-    end
-    true
-  rescue StandardError
-    false
-  end
-
-  def accessory_names
-    accessories.map(&:name).join(',')
-  end
 end
