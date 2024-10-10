@@ -43,8 +43,8 @@
     <div class="grid grid-cols-2 gap-4 items-start py-1 rounded-lg text-accent text-sm md:text-base">
       <span><%= t('items.show.accessory') %></span>
       <div>
-        <% @item.accessory_names.split(',').each do |accessory_name| %>
-          <span class="badge badge-secondary text-sm md:text-base"><%= accessory_name.strip %></span>
+        <% @item.accessories.each do |accessory| %>
+          <span class="badge badge-secondary text-sm md:text-base"><%= accessory.name %></span>
         <% end %>
       </div>
     </div>

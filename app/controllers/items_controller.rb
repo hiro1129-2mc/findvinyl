@@ -84,28 +84,28 @@ class ItemsController < ApplicationController
   end
 
   def build_item
-    item = current_user.items.build(item_params.except(:title, :artist_name, :release_format, :press_country, :matrix_number, :tag, accessory_ids: []))
+    item = current_user.items.build(item_params.except(:title, :artist_name, :release_format, :press_country, :matrix_number, :tag))
     item.find_or_create_related_objects(item_association_params)
     item
   end
 
   def save_item
-    accessory_names = params[:item][:accessory]&.split(',') || []
+    accessory_ids = params[:item][:accessory_ids]&.reject(&:blank?) || []
     tag_names = params[:item][:tag]&.split(',') || []
 
-    @item.save_with_accessories(accessory_names:) &&
-      @item.save_with_tags(tag_names:) &&
+    @item.accessory_ids = accessory_ids
+    @item.save_with_tags(tag_names:) &&
       @item.save
   end
 
   def update_item
     @item.find_or_create_related_objects(item_association_params)
 
-    accessory_names = params[:item][:accessory]&.split(',') || []
+    accessory_ids = params[:item][:accessory_ids]&.reject(&:blank?) || []
     tag_names = params[:item][:tag]&.split(',') || []
 
-    @item.save_with_accessories(accessory_names:) &&
-      @item.save_with_tags(tag_names:) &&
+    @item.accessory_ids = accessory_ids
+    @item.save_with_tags(tag_names:) &&
       @item.update(item_params.except(:title, :artist_name, :release_format, :press_country, :matrix_number, :tag, accessory_ids: []))
   end
 
